@@ -33,41 +33,41 @@ import javax.sql.DataSource;
 @MapperScan("com.fjs.circle.mappers")
 @ComponentScan(basePackages = "com.fjs")
 public class CircleApplication {
-//    @Bean
-//    @ConfigurationProperties(prefix = "spring.datasource")
-//    public DataSource dataSource() {
-//        return new org.apache.tomcat.jdbc.pool.DataSource();
-//    }
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSource dataSource() {
+        return new org.apache.tomcat.jdbc.pool.DataSource();
+    }
 
-//    @Bean
-//    public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
-//
-//        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-//        sqlSessionFactoryBean.setDataSource(dataSource());
-//
-//        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-//
-//        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*.xml"));
-//
-//        return sqlSessionFactoryBean.getObject();
-//    }
+    @Bean
+    public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
 
-//    @Bean
-//    public PlatformTransactionManager transactionManager() {
-//        return new DataSourceTransactionManager(dataSource());
-//    }
-//
-//    @Bean
-//    RestTemplate restTemplate() {
-//        return new RestTemplate();
-//    }
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource());
+
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapper/*.xml"));
+
+        return sqlSessionFactoryBean.getObject();
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
+    }
+
+    @Bean
+    RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(CircleApplication.class, args);
     }
 
-//    @Bean
-//    public RequestContextListener requestContextListener(){
-//        return new RequestContextListener();
-//    }
+    @Bean
+    public RequestContextListener requestContextListener(){
+        return new RequestContextListener();
+    }
 }

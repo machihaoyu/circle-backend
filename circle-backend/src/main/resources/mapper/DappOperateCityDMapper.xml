@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fjs.circle.mappers.DappOperateCityDMapper">
+    <resultMap id="BaseResultMap" type="com.fjs.circle.model.DappOperateCityD">
+        <id column="city_id" property="id" jdbcType="INTEGER" />
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="register_num" property="registerNum" jdbcType="INTEGER" />
+        <result column="house_num" property="houseNum" jdbcType="INTEGER" />
+        <result column="plan_money" property="planMoney" jdbcType="DECIMAL" />
+        <result column="service_commission" property="serviceCommission" jdbcType="DECIMAL" />
+        <result column="product_num" property="productNum" jdbcType="DECIMAL" />
+        <result column="db_ent_time" property="dbEntTime" jdbcType="TIMESTAMP" />
+        <result column="db_upd_time" property="dbUpdTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <resultMap id="View1ResultMap" type="com.fjs.circle.dto.DappOperateCityDDTO">
+        <id column="city_id" property="id" jdbcType="INTEGER" />
+        <result column="total_register_num" property="totalRegisterNum" jdbcType="INTEGER" />
+        <result column="total_house_num" property="totalHouseNum" jdbcType="INTEGER" />
+        <result column="total_plan_money" property="totalPlanMoney" jdbcType="DECIMAL" />
+        <result column="total_service_commission" property="totalServiceCommission" jdbcType="DECIMAL" />
+        <result column="total_product_num" property="totalProductNum" jdbcType="DECIMAL" />
+    </resultMap>
+
+    <select id="selectView1" resultMap="View1ResultMap" parameterType="java.util.Map" >
+        select city_id,city
+        ,sum(register_num)  as total_register_num
+        ,sum(house_num) as total_house_num
+        ,sum(plan_money)  as total_plan_money
+        ,sum(service_commission) as total_service_commission
+        ,sum(product_num) as total_product_num
+        from dapp_operate_city_d
+        group by city
+    </select>
+</mapper>

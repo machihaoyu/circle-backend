@@ -10,6 +10,8 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.Map;
+
 @Configuration
 @EnableSwagger2
 public class Swagger2 {
@@ -27,7 +29,7 @@ public class Swagger2 {
     //HTTP Status 200 状态码表示成功，其他表示异常; 业务异常状态码见 Response Messages
     private ApiInfo apiInfo() {
         Contact contact = new Contact(" IT技术中心 ", "http://www.fangjinsuo.com", "");
-        ApiInfo apiInfo = new ApiInfo("Thea(接口) APIs",//大标题
+        ApiInfo apiInfo = new ApiInfo("Circle(接口) APIs",//大标题
                 "" +
                         "【使用说明】：" +
                         "普通调用使用 try catch，" +
