@@ -4,14 +4,14 @@ services:
     image: 192.168.1.126/library/fjs/circle-backend-dev:branch1
     deploy:
       mode: replicated
-      replicas: 1 
+      replicas: 2 
       update_config: 
         parallelism: 1   #每次更新复本数量
         delay: 2s        #每次更新间隔
       resources:
         limits:
           cpus: "0.5"
-          memory: 1000M
+          memory: 2100M
       restart_policy:
         condition: on-failure
     networks:
