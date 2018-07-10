@@ -3,8 +3,7 @@ services:
   circle-backend:
     image: 192.168.1.126/library/fjs/circle-backend-dev:branch1
     deploy:
-      mode: replicated
-      replicas: 2 
+      replicas: 1 
       update_config: 
         parallelism: 1   #每次更新复本数量
         delay: 2s        #每次更新间隔
