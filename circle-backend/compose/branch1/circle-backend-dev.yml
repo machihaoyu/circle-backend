@@ -1,7 +1,7 @@
 version: '3.1'
 services:
-  circle:
-    image: 192.168.1.126/library/fjs/circle-dev:branch1
+  circle-backend:
+    image: 192.168.1.126/library/fjs/circle-backend-dev:branch1
     deploy:
       mode: replicated
       replicas: 1 
@@ -17,7 +17,7 @@ services:
     networks:
       fjs_overlay_branch1:
         aliases:
-          - circle
+          - circle-backend
     ports:
       - "1480:8410"
     environment:
@@ -35,7 +35,7 @@ services:
       - '-Xmx1000M'
       - '-XX:+UseParallelGC'
       - '-jar'
-      - /opt/circle-dev-1.0.0.war
+      - /opt/circle-backend-1.0.0.war
 networks:
   fjs_overlay_branch1:
     external:
