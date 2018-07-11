@@ -1,6 +1,8 @@
 package com.fjs.circle.controller;
 
+import com.fjs.circle.dto.DTO2;
 import com.fjs.circle.dto.DappOperateCityDDTO;
+import com.fjs.circle.dto.DappOperateCityDDTO2;
 import com.fjs.circle.dto.common.CircleDTO;
 import com.fjs.circle.dto.common.CommonMessage;
 import com.fjs.circle.service.DappOperateCityDService;
@@ -44,6 +46,48 @@ public class DappOperateCityDController {
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
             logger.error("-------------->selectOne查询视图1失败",e);
+            circleDTO.setResult(CommonMessage.FAIL.getCode());
+            circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
+        }
+        circleDTO.setData(dappOperateCityDDTOList);
+        return circleDTO;
+    }
+
+    @ApiOperation(value="视图X", notes="视图X")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
+    @RequestMapping(value = "/selectX", method = RequestMethod.GET)
+    @ResponseBody
+    public CircleDTO<List<DTO2>> selectX(){
+        CircleDTO circleDTO = new CircleDTO();
+        List<DTO2> dto2List = null;
+        try{
+            dto2List = dappOperateCityDService.selectTwo();
+            circleDTO.setResult(CommonMessage.SUCCESS.getCode());
+            circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
+        }catch (Exception e){
+            logger.error("-------------->selectTwo查询视图2失败",e);
+            circleDTO.setResult(CommonMessage.FAIL.getCode());
+            circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
+        }
+        circleDTO.setData(dto2List);
+        return circleDTO;
+    }
+
+    @ApiOperation(value="视图2", notes="视图2")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
+    @RequestMapping(value = "/selectTwo", method = RequestMethod.POST)
+    @ResponseBody
+    public CircleDTO<List<DappOperateCityDDTO2>> selectTwo(){
+        CircleDTO circleDTO = new CircleDTO();
+        List<DappOperateCityDDTO2> dappOperateCityDDTOList = null;
+        try{
+            dappOperateCityDDTOList = dappOperateCityDService.selectYear();
+            circleDTO.setResult(CommonMessage.SUCCESS.getCode());
+            circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
+        }catch (Exception e){
+            logger.error("-------------->selectTwo查询视图2失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }

@@ -31,6 +31,51 @@
         ,sum(service_commission) as total_service_commission
         ,sum(product_num) as total_product_num
         from dapp_operate_city_d
+        where city <![CDATA[!= ]]> '其他'
         group by city
+    </select>
+
+    <resultMap id="View1ResultMap2" type="com.fjs.circle.dto.DTO2">
+        <result column="create_year" property="createYear" jdbcType="VARCHAR" />
+        <result column="feechannel_name" property="feechannelName" jdbcType="VARCHAR" />
+        <result column="give_money" property="giveMoney" jdbcType="DECIMAL" />
+        <result column="row_number" property="rowNumber" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="selectView2" resultMap="View1ResultMap2" parameterType="java.util.Map" >
+        select create_year,a.feechannel_name,a.give_money,row_number from (
+        select create_year,a.feechannel_name,a.give_money,
+        if(@create_year=a.create_year ,
+        @rank:=@rank+1,
+        @rank:=1) as row_number,
+        @create_year:=a.create_year
+        from (
+        select year(create_date) as create_year,feechannel_name,sum(give_money) give_money from dapp_feechannel_operate_d group by year(create_date),feechannel_name order by year(create_date),give_money desc ) a,
+        (select @rownum :=0,@create_year:=null,@rank:=0)b
+        ) a where row_number &lt;10
+    </select>
+
+    <resultMap id="ViewYearResultMap" type="com.fjs.circle.dto.DappOperateCityDDTO2">
+        <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+        <result column="total_register_num" property="totalRegisterNum" jdbcType="INTEGER" />
+        <result column="total_house_num" property="totalHouseNum" jdbcType="INTEGER" />
+        <result column="total_plan_money" property="totalPlanMoney" jdbcType="DECIMAL" />
+        <result column="total_service_commission" property="totalServiceCommission" jdbcType="DECIMAL" />
+        <result column="total_product_num" property="totalProductNum" jdbcType="DECIMAL" />
+    </resultMap>
+
+    <select id="selectYear" resultMap="ViewYearResultMap" parameterType="java.util.Map" >
+        select
+        YEAR(create_date) as create_date
+        ,city
+        ,sum(register_num)  as total_register_num
+        ,sum(house_num) as total_house_num
+        ,sum(plan_money)  as total_plan_money
+        ,sum(service_commission) as total_service_commission
+        ,sum(product_num) as total_product_num
+        from fangdb.dapp_operate_city_d
+        where city <![CDATA[!= ]]> '其他'
+        and YEAR(create_date)>='2016'
+        group by YEAR(create_date),city
     </select>
 </mapper>

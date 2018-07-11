@@ -1,18 +1,16 @@
 package com.fjs.circle.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 视图1显示DTO
- * Created by yinzf on 2018/7/9.
+ * Created by yinzf on 2018/7/11.
  */
-public class DappOperateCityDDTO implements Serializable{
-
+public class DappOperateCityDDTO2 {
+    @ApiModelProperty(value = "年份")
+    private String createDate;
     @ApiModelProperty(value = "城市id")
     @JsonSerialize(include= JsonSerialize.Inclusion.NON_EMPTY)
     private Integer id;
@@ -34,6 +32,14 @@ public class DappOperateCityDDTO implements Serializable{
     @ApiModelProperty(value = "资金渠道开拓数")
     @JsonSerialize(include= JsonSerialize.Inclusion.NON_EMPTY)
     private Integer totalProductNum;
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
 
     public Integer getId() {
         return id;
