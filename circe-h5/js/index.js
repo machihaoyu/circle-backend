@@ -403,9 +403,10 @@ function MyFirst() {
   var option1 = {
     title: {
       text: '渠道',
-      left: 'left',
+      left: 'center',
       top: 25,
       textStyle: {
+        fontSize: 38,
         color: '#FFF'
       }
     },
@@ -439,6 +440,7 @@ function MyFirst() {
         label: {
           normal: {
             textStyle: {
+              fontSize: 24,
               color: 'rgba(255, 255, 255, 1)'
             }
           }
@@ -446,6 +448,7 @@ function MyFirst() {
         labelLine: {
           normal: {
             lineStyle: {
+              fontSize: 24,
               color: 'rgba(255, 255, 255, 0.3)'
             },
             smooth: 0.2,
@@ -501,6 +504,7 @@ function myrAdar(data) {
       text: data.city,
       // subtext: '纯属虚构'
       textStyle: {
+        fontSize: 38,
         color: '#FFF'
       }
     },
@@ -508,6 +512,7 @@ function myrAdar(data) {
       trigger: 'axis'
     },
     textStyle: {
+      fontSize: 24,
       color: '#FFF'
     },
     color:['#00e2e3','#ff8714'],
@@ -518,8 +523,9 @@ function myrAdar(data) {
       data:['历史累计'],
       // data:['历史累计','年累计'],
       textStyle: {
+        fontSize: 32,
         color: '#FFF'
-      }
+      },
     },
     toolbox: {
       show : true
@@ -533,6 +539,11 @@ function myrAdar(data) {
           { text: '协议放款额',max:4361855},
           { text: '协议佣金额',max:203651},
         ],
+        name: {
+          textStyle: {
+            fontSize: 32
+          }
+        },
         splitArea : {
           show : true,
           areaStyle : {
@@ -612,20 +623,19 @@ function MyThird() {
     title : {
       text: '对比图',
       textStyle: {
+        fontSize: 38,
         color: '#FFF'
       }
     },
     textStyle: {
       color: '#FFF'
     },
-
     angleAxis: {
       type: 'category',
       data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
       z: 10
     },
     radiusAxis: {
-
     },
     polar: {
 
@@ -660,6 +670,7 @@ function MyThird() {
       y : 'bottom',
       data: ['A', 'B', 'C'],
       textStyle: {
+        fontSize: 32,
         color: '#FFF'
       }
     }
@@ -677,7 +688,11 @@ function MyFifth() {
   var column = echarts.init(document.getElementById('main'));
   var  line = {
     tooltip : {
-      trigger: 'axis'
+      trigger: 'axis',
+      textStyle: {
+        fontSize: 38,
+        color: '#FFF'
+      }
     },
     toolbox: {
       show : true,
@@ -687,6 +702,7 @@ function MyFifth() {
     },
     calculable : true,
     textStyle: {
+      fontSize: 24,
       color: '#FFF'
     },
     color:['#ff8714','#00e2e3'],
@@ -695,6 +711,7 @@ function MyFifth() {
       y : 'top',
       data:['降水量','平均温度'],
       textStyle: {
+        fontSize: 30,
         color: '#FFF'
       }
     },
