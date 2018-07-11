@@ -403,8 +403,8 @@ function MyFirst() {
   var option1 = {
     title: {
       text: '渠道',
-      left: 'center',
-      top: 25,
+      left: 'left',
+      top: 60,
       textStyle: {
         fontSize: 38,
         color: '#FFF'
