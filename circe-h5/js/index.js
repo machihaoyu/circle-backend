@@ -1,5 +1,9 @@
 
 window.onload =function () {
+  // 第一次请求  --雷达图数据
+  queryData(true);
+
+
   MyFirst();
   MySecond();
   MyThird();
@@ -11,7 +15,6 @@ window.onload =function () {
 
 
 }
-
 
 // $(document).ready(function () {
 //   MyFirst();
@@ -395,33 +398,11 @@ function MyAnimate() {
 }
 function MyFirst() {
 
-    $.ajax({
-      type:"POST",
-      headers:{
-        "Accept": "*/*",
-        "Authorization": "Bearer 467405f6-331c-4914-beb7-42027bf09a01"
-      },
-      // url:'http://192.168.1.124:1280/api/v1/insertComment',
-      url:'http://192.168.1.124:1480/DappOperateCityD/v1/selectOne',
-      dataType:"json",
-      beforeSend: function(xhr) {
-        xhr.setRequestHeader("Authorization");
-      },
-      data:{},
-
-      success:function (data) {
-          console.log(data,'11');
-      }
-
-    }
-
-  )
-
-  //   模块一-----玫瑰图1
+      //   模块一-----玫瑰图1
   var rose = echarts.init(document.getElementById('rose'));
   var option1 = {
     title: {
-      text: 'Customized Pie',
+      text: '渠道',
       left: 'left',
       top: 25,
       textStyle: {
@@ -482,12 +463,42 @@ function MyFirst() {
   };
   rose.setOption(option1);
 }
+
 function MySecond() {
-  // 模块2-------雷达图
+  var timer2  =setInterval(queryData,18000)
+}
+// 展示二 雷达图 --数据
+function queryData(isFirst) {
+  $.ajax({
+      // url:'http://192.168.3.91:8030/DappOperateCityD/v1/selectOne',
+      url:'http://192.168.1.124:1480/DappOperateCityD/v1/selectOne',
+      type:"POST",
+      crossDomain:true,
+      headers:{
+        "Authorization": "Bearer 467405f6-331c-4914-beb7-42027bf09a01"
+      },
+      // url:'http://192.168.1.124:1030/fjs/paris-backend/api/v1/hotSpot/backend/list',
+      success:function (data) {
+        var  lists = data.data;
+        if(isFirst){
+          myrAdar(lists[0])
+          lists.splice(0,1);
+          leiDa(lists);
+        }else{
+          // console.log(lists,'123344');
+          leiDa(lists);
+        }
+      },
+      dataType:"json"
+    }
+  )
+}
+function myrAdar(data) {
+  //------雷达图
   var radar = echarts.init(document.getElementById('radar'));
   var radarOption = {
     title : {
-      text: '预算 vs 开销',
+      text: data.city,
       // subtext: '纯属虚构'
       textStyle: {
         color: '#FFF'
@@ -501,10 +512,11 @@ function MySecond() {
     },
     color:['#00e2e3','#ff8714'],
     legend: {
-      orient : 'vertical',
+      // orient : 'vertical',
       x : 'right',
       y : 'bottom',
-      data:['预算分配','实际开销'],
+      data:['历史累计'],
+      // data:['历史累计','年累计'],
       textStyle: {
         color: '#FFF'
       }
@@ -515,24 +527,37 @@ function MySecond() {
     polar : [
       {
         indicator : [
-          { text: '销售', max: 6000},
-          { text: '管理', max: 16000},
-          { text: '信息技术', max: 30000},
-          { text: '客服', max: 38000},
-          { text: '研发', max: 52000},
-          { text: '市场', max: 25000}
+          { text: '注册客户数',max:86092.6},
+          { text: '客户有房', max:29348},
+          { text: '资金渠道开拓数',max:4514},
+          { text: '协议放款额',max:4361855},
+          { text: '协议佣金额',max:203651},
         ],
+        splitArea : {
+          show : true,
+          areaStyle : {
+            color: "rgba(255,255,255,0.3)"  // 图表背景网格的颜色
+          }
+        },
+        splitLine : {
+          show : true,
+          lineStyle : {
+            width : 1,
+            color : 'rgba(0,0,0,0.8)' // 图表背景网格线的颜色
+          }
+        }
       }
     ],
     calculable : true,
     series : [
       {
-        name: '预算 vs 开销',
+        name: "",
         type: 'radar',
         data : [
           {
-            value : [4300, 10000, 28000, 35000, 50000, 19000],
-            name : '预算分配',
+            // value : [4300, 10000, 28000, 35000, 50000, 19000],
+            value : [data.totalRegisterNum, data.totalHouseNum,data.totalProductNum, data.totalPlanMoney, data.totalServiceCommission],
+            name : '历史累计',
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -541,23 +566,45 @@ function MySecond() {
               }
             },
           },
-          {
-            value : [5000, 14000, 28000, 31000, 42000, 21000],
-            name : '实际开销',
-            itemStyle: {
-              normal: {
-                lineStyle: {
-                  color:"yellow" // 图表中各个图区域的边框线颜色
-                }
-              }
-            },
-          }
+          // {
+          //   // value : [5000, 14000, 28000, 31000, 42000, 21000],
+          //   value : [data.totalRegisterNum, data.totalPlanMoney, data.totalProductNum, data.totalHouseNum , data.totalServiceCommission],
+          //   name : '年累计',
+          //   itemStyle: {
+          //     normal: {
+          //       lineStyle: {
+          //         color:"yellow" // 图表中各个图区域的边框线颜色
+          //       }
+          //     }
+          //   },
+          // }
         ]
       }
     ]
   };
   radar.setOption(radarOption);
+
 }
+function leiDa(data) {
+  var list = 0;
+  var timer1 = setInterval(
+    function () {
+      if(list == data.length){
+        clearInterval(timer1);
+        return;
+      }
+      myrAdar(data[list]);
+      list++;
+    },3000
+  )
+  
+
+
+
+
+}
+
+
 function MyThird() {
   // 模块3 ------极坐标系下的堆叠柱状图
   var polarp = echarts.init(document.getElementById('polarp'));
@@ -578,8 +625,10 @@ function MyThird() {
       z: 10
     },
     radiusAxis: {
+
     },
     polar: {
+
     },
     series: [
       {
@@ -618,9 +667,11 @@ function MyThird() {
   polarp.setOption(coordinates);
   // 模块4----  地图+ 设计
 }
+
 function MyFourth() {
 
 }
+
 function MyFifth() {
   //  模块5-----柱线混合
   var column = echarts.init(document.getElementById('main'));
@@ -649,9 +700,10 @@ function MyFifth() {
     },
     xAxis : [
       {
+        splitLine:{show: false},//去除网格线
         type : 'category',
         data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
-      }
+      },
     ],
     yAxis : [
       {
@@ -688,68 +740,64 @@ function MyFifth() {
 
 function MySixth() {
   // move();
-  sixed();
+  Sixed();
+  Seventh();
+  Eighth();
+  Ninth();
+
 }
 
-function sixed() {
-  var ul1 = document.getElementById("ul1");
-  var ul2 = document.getElementById("ul2");
-  var box = document.getElementById("list6");
+//  第六部分 --滚动--
+function Sixed() {
+  var ul1 = document.getElementById("content6ul1");
+  var ul2 = document.getElementById("content6ul2");
+  var box = document.getElementById("content6");
   // var scrTop = box.scrollHeight;
   // box.style.height= scrTop+"px"
   // console.log(scrTop,box.style.height);
-
+  roll(ul1,ul2,box,50);
+}
+function Seventh() {
+  var ul1 = document.getElementById("content7ul1");
+  var ul2 = document.getElementById("content7ul2");
+  var box = document.getElementById("content7");
+  roll(ul1,ul2,box,60);
+}
+function Eighth() {
+  var ul1 = document.getElementById("content8ul1");
+  var ul2 = document.getElementById("content8ul2");
+  var box = document.getElementById("content8");
+  roll(ul1,ul2,box,60);
+}
+function Ninth() {
+  var ul1 = document.getElementById("content9ul1");
+  var ul2 = document.getElementById("content9ul2");
+  var box = document.getElementById("content9");
   roll(ul1,ul2,box,50);
 }
 
-
-//  滚动
+//  滚动-ALl   6,7,8,9
 function roll(ul1,ul2,box,t) {
   ul2.innerHTML = ul1.innerHTML;
   box.scrollTop = 0;
   var timer = setInterval(function () {
-    rollStart(box);
+    rollStart(box,ul1);
   }, t);
   box.onmouseover = function () {
     clearInterval(timer)
   }
   box.onmouseout = function () {
     timer = setInterval(function () {
-      rollStart(box);
+      rollStart(box,ul1);
     }, t);
   }
 }
-function rollStart(box) {
+function rollStart(box,ul1) {
   // var box = document.getElementById("list6")
   if (box.scrollTop >= ul1.scrollHeight) {
-      console.log(box.scrollTop, ul1.scrollHeight)
     box.scrollTop = 0;
   } else {
     box.scrollTop++;
   }
 }
-// //  滚动
-// function roll(t) {
-//   var ul1 = document.getElementById("ul1");
-//   var ul2 = document.getElementById("ul2");
-//   var box = document.getElementById("list6");
-//   ul2.innerHTML = ul1.innerHTML;
-//
-//   box.scrollTop = 0;
-//   var timer = setInterval(rollStart, t);
-//   box.onmouseover = function () {
-//     clearInterval(timer)
-//   }
-//   box.onmouseout = function () {
-//     timer = setInterval(rollStart, t);
-//   }
-// }
-// function rollStart() {
-//   var box = document.getElementById("list6");
-//   if (box.scrollTop >= ul1.scrollHeight) {
-//     box.scrollTop = 0;
-//   } else {
-//     box.scrollTop++;
-//   }
-// }
 
