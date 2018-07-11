@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   circle-backend:
-    image: 192.168.1.126/library/fjs/circle-backend-dev:branch1
+    image: 192.168.1.126/library/fjs/circle-backend:branch1
     deploy:
       replicas: 1 
       update_config: 
@@ -20,7 +20,7 @@ services:
     ports:
       - "1480:8410"
     environment:
-      - CONFIG_PROFILE=dev
+      - CONFIG_PROFILE=sit
       - CONFIG_PASSWORD=123456
       - CONFIG_SERVER_ADDRESS=zues
       - EUREKA_PASSWORD=123456
