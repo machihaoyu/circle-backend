@@ -3,7 +3,6 @@ window.onload =function () {
   // 第一次请求  --雷达图数据
   queryData(true);
 
-
   MyFirst();
   MySecond();
   MyThird();
@@ -404,10 +403,9 @@ function MyFirst() {
     title: {
       text: '渠道',
       left: 'left',
-      top: 60,
+      top: 25,
       textStyle: {
-        fontSize: 38,
-        color: '#FFF'
+        color: '#fff'
       }
     },
     tooltip : {
@@ -440,7 +438,6 @@ function MyFirst() {
         label: {
           normal: {
             textStyle: {
-              fontSize: 24,
               color: 'rgba(255, 255, 255, 1)'
             }
           }
@@ -448,7 +445,6 @@ function MyFirst() {
         labelLine: {
           normal: {
             lineStyle: {
-              fontSize: 24,
               color: 'rgba(255, 255, 255, 0.3)'
             },
             smooth: 0.2,
@@ -504,7 +500,6 @@ function myrAdar(data) {
       text: data.city,
       // subtext: '纯属虚构'
       textStyle: {
-        fontSize: 38,
         color: '#FFF'
       }
     },
@@ -512,7 +507,6 @@ function myrAdar(data) {
       trigger: 'axis'
     },
     textStyle: {
-      fontSize: 24,
       color: '#FFF'
     },
     color:['#00e2e3','#ff8714'],
@@ -523,7 +517,6 @@ function myrAdar(data) {
       data:['历史累计'],
       // data:['历史累计','年累计'],
       textStyle: {
-        fontSize: 32,
         color: '#FFF'
       },
     },
@@ -539,11 +532,6 @@ function myrAdar(data) {
           { text: '协议放款额',max:4361855},
           { text: '协议佣金额',max:203651},
         ],
-        name: {
-          textStyle: {
-            fontSize: 32
-          }
-        },
         splitArea : {
           show : true,
           areaStyle : {
@@ -623,7 +611,6 @@ function MyThird() {
     title : {
       text: '对比图',
       textStyle: {
-        fontSize: 38,
         color: '#FFF'
       }
     },
@@ -670,7 +657,6 @@ function MyThird() {
       y : 'bottom',
       data: ['A', 'B', 'C'],
       textStyle: {
-        fontSize: 32,
         color: '#FFF'
       }
     }
@@ -690,7 +676,6 @@ function MyFifth() {
     tooltip : {
       trigger: 'axis',
       textStyle: {
-        fontSize: 38,
         color: '#FFF'
       }
     },
@@ -702,7 +687,6 @@ function MyFifth() {
     },
     calculable : true,
     textStyle: {
-      fontSize: 24,
       color: '#FFF'
     },
     color:['#ff8714','#00e2e3'],
@@ -711,7 +695,6 @@ function MyFifth() {
       y : 'top',
       data:['降水量','平均温度'],
       textStyle: {
-        fontSize: 30,
         color: '#FFF'
       }
     },

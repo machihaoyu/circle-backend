@@ -31,540 +31,211 @@ h1{
     font-size: 1.3vh;
 }
 
-
-@media screen and (min-width:4000px) and (max-width:4200px){
-
-    html,body{
+/*@media screen and (min-width:1000px) and (max-width:2000px) {*/
+    html, body {
         height: 100%;
         width: 100%;
         font-family: hiraginoSansGB W3;
         /*background: #ccc;*/
     }
-    .all{
+
+    .all {
         width: 100%;
         height: 100%;
         margin: 0;
         overflow: hidden;
-        background: url("../image/bg.png") no-repeat center;
-        background-size: contain;
-    }
-    /* 三部分 -- */
-    .bigFirst{
-        float: left;
-        width: 20%;
-        height: 100%;
-        padding-left:6.5%;
-    }
-    .bigSecond{
-        float: left;
-        width: 50%;
-        height:100%;
-        padding-top:4%
-    }
-    .bigThird{
-        float: left;
-        width: 16%;
-        height: 100%;
-        padding-top:6.2%;
-        padding-left: 3vh;
-    }
-    /* 九大模块 */
-    .list1,.list2,.list3{
-        width: 90%;
-        height: 27%;
-    }
-    .list4{
-        width: 100%;
-        height: 68%;
-        background: url("../image/kaung.png") no-repeat;
-        background-size: contain;
-        position: relative;
-    }
-    .list5{
-        width: 100%;
-        height: 20%;
-    }
-    .list6,.list7,.list8,.list9{
-        width: 75%;
-        height: 18%;
-        padding-top: 3%;
-        /*background: blue;*/
-        color: aliceblue;
-    }
-    /* 第一部分 */
-    .list1{
-        margin-top: 20%;
-    }
-    .list2{
-
-    }
-    .list3{
-        padding-top: 12%;
-    }
-    /* 1.2.3 .线--  长线 */
-    .p1,.p2,.p3{
-        width: 15%;
-        position: absolute;
-    }
-    .p1{
-        top: 10%;
-    }
-    .p2{
-        top: 37%;
-    }
-    .p3{
-        top: 72%;
-    }
-    /* 第二部分 */
-    /* 4 中心--  地图 */
-    .centerOne{
-        width: 100%;
-        /*height: 96%;*/
-        height: 85%;
-        /*background: url("../image/imp.png") no-repeat;*/
-        /*background-position: center;*/
-        /*background-position: center;*/
-        position: relative;
-    }
-    .centerOne>img{
-        width: 85%;
-        height: 100%;
-    }
-    .centerOne>div{
-        height: 6vh;
-        vertical-align: bottom;
-        position: absolute;
-    }
-    .exampleLine{
-        width: 0.7vh;
-        border-radius: 5px 5px 0 0;
-        display: inline-flex;
-        visibility: hidden;
-        animation:animate-height 2s ;
-        animation-fill-mode: forwards;
-    }
-    .AllName{
-        width: 2vh;
-        position: absolute;
-        bottom:-20px;
-        color: white;
-        font-size: 14px;
-
-    }
-    .City>div{
-        position: absolute;
-        bottom: 0;
-    }
-
-    .cityOne{
-        left:0;
-        background: #ff8714;
-    }
-    .cityTwo{
-        left: 0.7vh;
-        background: #f25e52;
-    }
-    .Beijing{
-        top:20%;
-        right:35%;
-    }
-    .BeiList1{
-        height: 60%;
-    }
-    .BeiList2{
-        height: 51%;
-    }
-
-    .Zhengzhou{
-        top:37%;
-        right:37%;
-    }
-    .ZhengList1{
-        height: 66%;
-    }
-    .ZhengList2{
-        height: 33%;
-    }
-
-    .Shanghai{
-        top:43%;
-        right:22%;
-    }
-    .ShangList1{
-        height: 21%;
-    }
-    .ShangList2{
-        height: 39%;
-    }
-
-    .Hangzhou{
-        top:45%;
-        right:24%;
-    }
-    .HangList1{
-        height: 12%;
-    }
-    .HangList2{
-        height: 34%;
-    }
-
-    .Guangzhou{
-        top:70%;
-        right:34%;
-    }
-    .GuangList1{
-        height: 14%;
-    }
-    .GuangList2{
-        height: 54%;
-    }
-
-    .Shenzhen{
-        top:71%;
-        right:32%;
-    }
-    .ShenList1{
-        height: 55%;
-    }
-    .ShenList2{
-        height: 55%;
-    }
-
-
-    /* 动画 */
-    @keyframes animate-height {
-        0% {
-            height: 0;
-        }
-        100% {
-            visibility: visible;
-        }
-    }
-
-    .message{
-        width: 50vh;
-        /*background: red;*/
-        position: absolute;
-        top:9vh;
-        left: 5%;
-    }
-    .countSpan{
-        font-size: 1.5vh;
-        color: #00e2e3;
-    }
-    .firstD{
-        /*width: 30%;*/
-        display: inline-block;
-        padding-left: 5vh;
-        /*text-align: center;*/
-    }
-    .importDiv{
-        margin-top: 5vh;
-    }
-    .smallLine{
-        width: 10vh;
-    }
-
-    .secondD{
-        /*width: 30%;*/
-        /*background: green;*/
-        display: inline-block;
-        margin-left:25%;
-        /*text-align: center;*/
-    }
-
-    .Notes{
-        /*width: 200px;*/
-        position: absolute;
-        bottom: 8vh;
-        left: 10vh;
-        color: #00e2e3;
-        font-size: 1.3vh;
-    }
-    .note2{
-        margin-top: 10px;
-    }
-    .note1>span{
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        background: #ff8714;
-        margin-right: 5px;
-    }
-    .note2>span{
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        background: #f25e52;
-        margin-right: 5px;
-    }
-
-    /* 5 柱线混合 */
-    #main{
-        width: 100%;
-        height: 100%;
-    }
-
-    /* 第三部分 */
-    .p4{
-        width: 13%;
-        position: absolute;
-        top:12%;
-    }
-    .list6{
-        padding-left: 5%;
-        margin-top: 7%;
-        border-top: 2px solid #00e2e3 ;
-        overflow: hidden;
-    }
-    #content6{
-        margin-top: 5%;
-        /*height: 140px;*/
-        height: 70%;
-        overflow: hidden;
-    }
-    #content7{
-        margin-top: 6%;
-        /*height: 110px;*/
-        height: 70%;
-        overflow: hidden;
-    }
-    #content8{
-        margin-top: 6%;
-        height: 70%;
-        overflow: hidden;
-    }
-    #content9{
-        margin-top: 6%;
-        height: 70%;
-        overflow: hidden;
-    }
-    li{
-        list-style: none;
-        padding:5% 0;
-        font-size: 1.25vh;
-        /*margin-top: 10px;*/
-    }
-    .listSpan{
-        display:inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        /*background: red;*/
-    }
-    li:nth-child(odd) .listSpan{
-        background: #ff8714;
-    }
-    li:nth-child(even) .listSpan{
-        background: #f25e52;
-    }
-    li span{
-        text-align: left;
-    }
-    span{
-        color: #00e2e3;
-    }
-
-
-}
-
-
-
-
-
-@media screen and (min-width:1000px) and (max-width:2000px){
-    html,body{
-        height: 100%;
-        width: 100%;
-        font-family: hiraginoSansGB W3;
-        /*background: #ccc;*/
-    }
-    .all{
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        overflow: hidden;
-        background: url("../image/bg.png") no-repeat center;
+        background: url("../image/bg.png") no-repeat ;
         background-size: cover;
     }
+
     /* 三部分 -- */
-    .bigFirst{
+    .bigFirst {
         float: left;
         width: 21%;
         height: 100%;
-        padding-left:4.5%;
+        padding-left: 4.5%;
+        position: relative;
     }
-    .bigSecond{
+    .bigSecond {
         float: left;
         width: 50%;
-        height:100%;
-        padding-top:4%
+        height: 100%;
+        padding-top: 4%
     }
-    .bigThird{
+    .bigThird {
         float: left;
         width: 17%;
         height: 100%;
-        padding-top:6.2%;
+        padding-top: 4.5%;
         padding-left: 3%;
     }
+
     /* 九大模块 */
-    .list1,.list2,.list3{
+    .list1, .list2, .list3 {
         width: 90%;
         height: 27%;
     }
-    .list4{
+    .list4 {
         width: 100%;
-        height: 68.5%;
+        height: 70%;
         background: url("../image/kaung.png") no-repeat;
-        background-size: cover;
+        background-size: 100% 100%;
         position: relative;
     }
-    .list5{
+    .list5 {
         width: 100%;
         height: 22%;
     }
-    .list6,.list7,.list8,.list9{
+
+    .list6, .list7, .list8, .list9 {
         width: 100%;
         height: 18%;
         padding-top: 3%;
         /*background: blue;*/
         color: aliceblue;
+        /*border-top: 1.5px solid #00e2e3;*/
     }
+
     /* 第一部分 */
-    .list1{
+    .list1 {
         margin-top: 20%;
     }
-    .list2{
+    .list2 {
 
     }
-    .list3{
+    .list3 {
         padding-top: 12%;
     }
     /* 1.2.3 .线--  长线 */
-    .p1,.p2,.p3{
-        width: 15%;
+    .p2, .p3 {
+        width: 50%;
         position: absolute;
     }
-    .p1{
-        top: 10%;
+
+    .p2 {
+        top: 32%;
     }
-    .p2{
-        top: 37%;
-    }
-    .p3{
-        top: 72%;
+    .p3 {
+        top: 63%;
     }
     /* 第二部分 */
     /* 4 中心--  地图 */
-    .centerOne{
+    .centerOne {
         width: 100%;
-        /*height: 96%;*/
-        height: 85%;
+        /*height: 100%;*/
+        height: 100%;
         background: url("../image/imp.png") no-repeat;
-        background-position: bottom;
-        /*background-position: center;*/
+        background-position: top;
+        background-size: 96% 95%;
         position: relative;
     }
-    .centerOne>div{
-        height: 80px;
+    .centerOne > div {
+        height: 7vh;
         vertical-align: bottom;
         position: absolute;
     }
-    .exampleLine{
+    .exampleLine {
         width: 8px;
         border-radius: 5px 5px 0 0;
         display: inline-flex;
         visibility: hidden;
-        animation:animate-height 2s ;
+        animation: animate-height 2s;
         animation-fill-mode: forwards;
     }
-    .AllName{
+    .AllName {
         width: 50px;
         position: absolute;
-        bottom:-20px;
+        bottom: -20px;
         color: white;
         font-size: 14px;
 
     }
-    .City>div{
+    .City > div {
         position: absolute;
         bottom: 0;
     }
-
-    .cityOne{
-        left:0;
+    .cityOne {
+        left: 0;
         background: #ff8714;
     }
-    .cityTwo{
+    .cityTwo {
         left: 8px;
         background: #f25e52;
     }
-    .Beijing{
-        top:15%;
-        right:28%;
+    .Beijing {
+        top: 20%;
+        right: 24%;
     }
-    .BeiList1{
+    .BeiList1 {
         height: 60%;
     }
-    .BeiList2{
+
+    .BeiList2 {
         height: 51%;
     }
 
-    .Zhengzhou{
-        top:31%;
-        right:30%;
+    .Zhengzhou {
+        top: 36%;
+        right: 28%;
     }
-    .ZhengList1{
+
+    .ZhengList1 {
         height: 66%;
     }
-    .ZhengList2{
+
+    .ZhengList2 {
         height: 33%;
     }
 
-    .Shanghai{
-        top:38%;
-        right:17%;
+    .Shanghai {
+        top: 42%;
+        right: 11%;
     }
-    .ShangList1{
+
+    .ShangList1 {
         height: 21%;
     }
-    .ShangList2{
+
+    .ShangList2 {
         height: 39%;
     }
 
-    .Hangzhou{
-        top:43%;
-        right:20%;
+    .Hangzhou {
+        top: 47%;
+        right: 13%;
     }
-    .HangList1{
+
+    .HangList1 {
         height: 12%;
     }
-    .HangList2{
+
+    .HangList2 {
         height: 34%;
     }
 
-    .Guangzhou{
-        top:66%;
-        right:30%;
+    .Guangzhou {
+        top: 66%;
+        right: 28%;
     }
-    .GuangList1{
+
+    .GuangList1 {
         height: 14%;
     }
-    .GuangList2{
+
+    .GuangList2 {
         height: 54%;
     }
 
-    .Shenzhen{
-        top:68%;
-        right:27%;
+    .Shenzhen {
+        top: 69%;
+        right: 25%;
     }
-    .ShenList1{
+    .ShenList1 {
         height: 55%;
     }
-    .ShenList2{
+    .ShenList2 {
         height: 55%;
     }
-
 
     /* 动画 */
     @keyframes animate-height {
@@ -575,40 +246,37 @@ h1{
             visibility: visible;
         }
     }
-
-    .message{
+    .message {
         width: 50%;
         /*background: red;*/
         position: absolute;
-        top:10%;
+        top: 10%;
         left: 5%;
     }
-    .countSpan{
+    .countSpan {
         font-size: 16px;
         color: #00e2e3;
     }
-    .firstD{
+    .firstD {
         /*width: 30%;*/
         display: inline-block;
         padding-left: 20%;
         /*text-align: center;*/
     }
-    .importDiv{
+    .importDiv {
         margin-top: 50px;
     }
-    .smallLine{
+    .smallLine {
         width: 100px;
     }
-
-    .secondD{
+    .secondD {
         /*width: 30%;*/
         /*background: green;*/
         display: inline-block;
-        margin-left:25%;
+        margin-left: 25%;
         /*text-align: center;*/
     }
-
-    .Notes{
+    .Notes {
         width: 200px;
         position: absolute;
         bottom: 15%;
@@ -616,17 +284,17 @@ h1{
         color: #00e2e3;
         font-size: 16px;
     }
-    .note2{
+    .note2 {
         margin-top: 10px;
     }
-    .note1>span{
+    .note1 > span {
         display: inline-block;
         width: 15px;
         height: 15px;
         background: #ff8714;
         margin-right: 5px;
     }
-    .note2>span{
+    .note2 > span {
         display: inline-block;
         width: 15px;
         height: 15px;
@@ -635,72 +303,483 @@ h1{
     }
 
     /* 5 柱线混合 */
-    #main{
+    #main {
         width: 100%;
         height: 100%;
     }
-
     /* 第三部分 */
-    .p4{
+    .p4 {
         width: 13%;
         position: absolute;
-        top:12%;
+        top: 12%;
     }
-    .list6{
+    .importantH1{
+        color: white;
+        font-size: 20px;
+
+    }
+    .list6 {
         padding-left: 5%;
-        margin-top: 7%;
-        border-top: 2px solid #00e2e3 ;
+        margin-top: 10%;
+        /*border-top: 1.5px dotted #00e2e3;*/
         overflow: hidden;
     }
-    #content6{
+
+    #content6 {
         margin-top: 5%;
-        /*height: 140px;*/
         height: 70%;
         overflow: hidden;
     }
-    #content7{
+
+    #content7 {
         margin-top: 6%;
-        /*height: 110px;*/
-        height: 70%;
+        padding: 10px 0;
+        height: 63%;
         overflow: hidden;
     }
-    #content8{
+
+    #content8 {
         margin-top: 6%;
-        height: 70%;
+        padding: 10px 0;
+        height: 63%;
         overflow: hidden;
     }
-    #content9{
+
+    #content9 {
         margin-top: 6%;
-        height: 70%;
+        padding: 10px 0;
+        height: 63%;
         overflow: hidden;
     }
-    li{
+
+    li {
         list-style: none;
-        padding:5px 0;
+        padding: 5px 0;
         font-size: 16px;
         /*margin-top: 10px;*/
     }
-    .listSpan{
-        display:inline-block;
+
+    .listSpan {
+        display: inline-block;
         width: 10px;
         height: 10px;
         border-radius: 50%;
         /*background: red;*/
     }
-    li:nth-child(odd) .listSpan{
+
+    li:nth-child(odd) .listSpan {
         background: #ff8714;
     }
-    li:nth-child(even) .listSpan{
+
+    li:nth-child(even) .listSpan {
         background: #f25e52;
     }
-    li span{
+
+    li span {
         text-align: left;
     }
-    span{
+
+    span {
         color: #00e2e3;
     }
 
+/*}*/
 
-}
+
+
+
+
+
+/*@media screen and (min-width:3600px) and (max-width:4200px) {*/
+
+    /*html, body {*/
+        /*height: 100%;*/
+        /*width: 100%;*/
+        /*font-family: hiraginoSansGB W3;*/
+        /*!*background: #ccc;*!*/
+    /*}*/
+
+    /*.all {*/
+        /*width: 100%;*/
+        /*height: 100%;*/
+        /*margin: 0;*/
+        /*overflow: hidden;*/
+        /*background: url("../image/bg.png") no-repeat center;*/
+        /*background-size: contain;*/
+    /*}*/
+
+    /*!* 三部分 -- *!*/
+    /*.bigFirst {*/
+        /*float: left;*/
+        /*width: 20%;*/
+        /*height: 100%;*/
+        /*padding-left: 6.5%;*/
+    /*}*/
+
+    /*.bigSecond {*/
+        /*float: left;*/
+        /*width: 50%;*/
+        /*height: 100%;*/
+        /*padding-top: 4%*/
+    /*}*/
+
+    /*.bigThird {*/
+        /*float: left;*/
+        /*width: 16%;*/
+        /*height: 100%;*/
+        /*padding-top: 6.2%;*/
+        /*padding-left: 3vh;*/
+    /*}*/
+
+    /*!* 九大模块 *!*/
+    /*.list1, .list2, .list3 {*/
+        /*width: 90%;*/
+        /*height: 27%;*/
+    /*}*/
+
+    /*.list4 {*/
+        /*width: 100%;*/
+        /*height: 68%;*/
+        /*background: url("../image/kaung.png") no-repeat;*/
+        /*background-size: contain;*/
+        /*position: relative;*/
+    /*}*/
+
+    /*.list5 {*/
+        /*width: 100%;*/
+        /*height: 20%;*/
+    /*}*/
+
+    /*.list6, .list7, .list8, .list9 {*/
+        /*width: 75%;*/
+        /*height: 18%;*/
+        /*padding-top: 3%;*/
+        /*!*background: blue;*!*/
+        /*color: aliceblue;*/
+    /*}*/
+
+    /*!* 第一部分 *!*/
+    /*.list1 {*/
+        /*margin-top: 20%;*/
+    /*}*/
+
+    /*.list2 {*/
+
+    /*}*/
+
+    /*.list3 {*/
+        /*padding-top: 12%;*/
+    /*}*/
+
+    /*!* 1.2.3 .线--  长线 *!*/
+    /*.p1, .p2, .p3 {*/
+        /*width: 15%;*/
+        /*position: absolute;*/
+    /*}*/
+
+    /*.p1 {*/
+        /*top: 10%;*/
+    /*}*/
+
+    /*.p2 {*/
+        /*top: 37%;*/
+    /*}*/
+
+    /*.p3 {*/
+        /*top: 72%;*/
+    /*}*/
+
+    /*!* 第二部分 *!*/
+    /*!* 4 中心--  地图 *!*/
+    /*.centerOne {*/
+        /*width: 100%;*/
+        /*!*height: 96%;*!*/
+        /*height: 85%;*/
+        /*!*background: url("../image/imp.png") no-repeat;*!*/
+        /*!*background-position: center;*!*/
+        /*!*background-position: center;*!*/
+        /*position: relative;*/
+    /*}*/
+
+    /*.centerOne > img {*/
+        /*width: 85%;*/
+        /*height: 100%;*/
+    /*}*/
+
+    /*.centerOne > div {*/
+        /*height: 6vh;*/
+        /*vertical-align: bottom;*/
+        /*position: absolute;*/
+    /*}*/
+
+    /*.exampleLine {*/
+        /*width: 0.7vh;*/
+        /*border-radius: 5px 5px 0 0;*/
+        /*display: inline-flex;*/
+        /*visibility: hidden;*/
+        /*animation: animate-height 2s;*/
+        /*animation-fill-mode: forwards;*/
+    /*}*/
+
+    /*.AllName {*/
+        /*width: 2vh;*/
+        /*position: absolute;*/
+        /*bottom: -20px;*/
+        /*color: white;*/
+        /*font-size: 14px;*/
+
+    /*}*/
+
+    /*.City > div {*/
+        /*position: absolute;*/
+        /*bottom: 0;*/
+    /*}*/
+
+    /*.cityOne {*/
+        /*left: 0;*/
+        /*background: #ff8714;*/
+    /*}*/
+
+    /*.cityTwo {*/
+        /*left: 0.7vh;*/
+        /*background: #f25e52;*/
+    /*}*/
+
+    /*.Beijing {*/
+        /*top: 20%;*/
+        /*right: 35%;*/
+    /*}*/
+
+    /*.BeiList1 {*/
+        /*height: 60%;*/
+    /*}*/
+
+    /*.BeiList2 {*/
+        /*height: 51%;*/
+    /*}*/
+
+    /*.Zhengzhou {*/
+        /*top: 37%;*/
+        /*right: 37%;*/
+    /*}*/
+
+    /*.ZhengList1 {*/
+        /*height: 66%;*/
+    /*}*/
+
+    /*.ZhengList2 {*/
+        /*height: 33%;*/
+    /*}*/
+
+    /*.Shanghai {*/
+        /*top: 43%;*/
+        /*right: 22%;*/
+    /*}*/
+
+    /*.ShangList1 {*/
+        /*height: 21%;*/
+    /*}*/
+
+    /*.ShangList2 {*/
+        /*height: 39%;*/
+    /*}*/
+
+    /*.Hangzhou {*/
+        /*top: 45%;*/
+        /*right: 24%;*/
+    /*}*/
+
+    /*.HangList1 {*/
+        /*height: 12%;*/
+    /*}*/
+
+    /*.HangList2 {*/
+        /*height: 34%;*/
+    /*}*/
+
+    /*.Guangzhou {*/
+        /*top: 70%;*/
+        /*right: 34%;*/
+    /*}*/
+
+    /*.GuangList1 {*/
+        /*height: 14%;*/
+    /*}*/
+
+    /*.GuangList2 {*/
+        /*height: 54%;*/
+    /*}*/
+
+    /*.Shenzhen {*/
+        /*top: 71%;*/
+        /*right: 32%;*/
+    /*}*/
+
+    /*.ShenList1 {*/
+        /*height: 55%;*/
+    /*}*/
+
+    /*.ShenList2 {*/
+        /*height: 55%;*/
+    /*}*/
+
+    /*!* 动画 *!*/
+    /*@keyframes animate-height {*/
+        /*0% {*/
+            /*height: 0;*/
+        /*}*/
+        /*100% {*/
+            /*visibility: visible;*/
+        /*}*/
+    /*}*/
+
+    /*.message {*/
+        /*width: 50vh;*/
+        /*!*background: red;*!*/
+        /*position: absolute;*/
+        /*top: 9vh;*/
+        /*left: 5%;*/
+    /*}*/
+
+    /*.countSpan {*/
+        /*font-size: 1.5vh;*/
+        /*color: #00e2e3;*/
+    /*}*/
+
+    /*.firstD {*/
+        /*!*width: 30%;*!*/
+        /*display: inline-block;*/
+        /*padding-left: 5vh;*/
+        /*!*text-align: center;*!*/
+    /*}*/
+
+    /*.importDiv {*/
+        /*margin-top: 5vh;*/
+    /*}*/
+
+    /*.smallLine {*/
+        /*width: 10vh;*/
+    /*}*/
+
+    /*.secondD {*/
+        /*!*width: 30%;*!*/
+        /*!*background: green;*!*/
+        /*display: inline-block;*/
+        /*margin-left: 25%;*/
+        /*!*text-align: center;*!*/
+    /*}*/
+
+    /*.Notes {*/
+        /*!*width: 200px;*!*/
+        /*position: absolute;*/
+        /*bottom: 8vh;*/
+        /*left: 10vh;*/
+        /*color: #00e2e3;*/
+        /*font-size: 1.3vh;*/
+    /*}*/
+
+    /*.note2 {*/
+        /*margin-top: 10px;*/
+    /*}*/
+
+    /*.note1 > span {*/
+        /*display: inline-block;*/
+        /*width: 15px;*/
+        /*height: 15px;*/
+        /*background: #ff8714;*/
+        /*margin-right: 5px;*/
+    /*}*/
+
+    /*.note2 > span {*/
+        /*display: inline-block;*/
+        /*width: 15px;*/
+        /*height: 15px;*/
+        /*background: #f25e52;*/
+        /*margin-right: 5px;*/
+    /*}*/
+
+    /*!* 5 柱线混合 *!*/
+    /*#main {*/
+        /*width: 100%;*/
+        /*height: 100%;*/
+    /*}*/
+
+    /*!* 第三部分 *!*/
+    /*.p4 {*/
+        /*width: 13%;*/
+        /*position: absolute;*/
+        /*top: 12%;*/
+    /*}*/
+
+    /*.list6 {*/
+        /*padding-left: 5%;*/
+        /*margin-top: 7%;*/
+        /*border-top: 2px solid #00e2e3;*/
+        /*overflow: hidden;*/
+    /*}*/
+
+    /*#content6 {*/
+        /*margin-top: 5%;*/
+        /*!*height: 140px;*!*/
+        /*height: 70%;*/
+        /*overflow: hidden;*/
+    /*}*/
+
+    /*#content7 {*/
+        /*margin-top: 6%;*/
+        /*!*height: 110px;*!*/
+        /*height: 70%;*/
+        /*overflow: hidden;*/
+    /*}*/
+
+    /*#content8 {*/
+        /*margin-top: 6%;*/
+        /*height: 70%;*/
+        /*overflow: hidden;*/
+    /*}*/
+
+    /*#content9 {*/
+        /*margin-top: 6%;*/
+        /*height: 70%;*/
+        /*overflow: hidden;*/
+    /*}*/
+
+    /*li {*/
+        /*list-style: none;*/
+        /*padding: 5% 0;*/
+        /*font-size: 1.25vh;*/
+        /*!*margin-top: 10px;*!*/
+    /*}*/
+
+    /*.listSpan {*/
+        /*display: inline-block;*/
+        /*width: 10px;*/
+        /*height: 10px;*/
+        /*border-radius: 50%;*/
+        /*!*background: red;*!*/
+    /*}*/
+
+    /*li:nth-child(odd) .listSpan {*/
+        /*background: #ff8714;*/
+    /*}*/
+
+    /*li:nth-child(even) .listSpan {*/
+        /*background: #f25e52;*/
+    /*}*/
+
+    /*li span {*/
+        /*text-align: left;*/
+    /*}*/
+
+    /*span {*/
+        /*color: #00e2e3;*/
+    /*}*/
+
+/*}*/
+
+
+
+
+
 
 
