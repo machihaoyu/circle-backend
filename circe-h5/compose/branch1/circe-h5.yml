@@ -18,7 +18,7 @@ services:
         aliases:
           - circe-h5
     ports:
-      - "1481:8411"
+      - "1481:80"
 networks:
   fjs_overlay_branch1:
     external:
