@@ -396,8 +396,7 @@ function MyAnimate() {
   $('.countSpan').each(count)
 }
 function MyFirst() {
-
-      //   模块一-----玫瑰图1
+  //   模块一-----玫瑰图1
   var rose = echarts.init(document.getElementById('rose'));
   var option1 = {
     title: {
@@ -761,13 +760,13 @@ function Seventh() {
   var ul1 = document.getElementById("content7ul1");
   var ul2 = document.getElementById("content7ul2");
   var box = document.getElementById("content7");
-  roll(ul1,ul2,box,60);
+  roll(ul1,ul2,box,50);
 }
 function Eighth() {
   var ul1 = document.getElementById("content8ul1");
   var ul2 = document.getElementById("content8ul2");
   var box = document.getElementById("content8");
-  roll(ul1,ul2,box,60);
+  roll(ul1,ul2,box,50);
 }
 function Ninth() {
   var ul1 = document.getElementById("content9ul1");
@@ -783,9 +782,9 @@ function roll(ul1,ul2,box,t) {
   var timer = setInterval(function () {
     rollStart(box,ul1);
   }, t);
-  box.onmouseover = function () {
-    clearInterval(timer)
-  }
+  // box.onmouseover = function () {
+  //   clearInterval(timer)
+  // }
   box.onmouseout = function () {
     timer = setInterval(function () {
       rollStart(box,ul1);
