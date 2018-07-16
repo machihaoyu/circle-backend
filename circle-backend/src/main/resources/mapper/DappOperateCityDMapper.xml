@@ -78,4 +78,127 @@
         and YEAR(create_date)>='2016'
         group by YEAR(create_date),city
     </select>
+
+    <resultMap id="historyChannelResultMap" type="com.fjs.circle.dto.ChannelDTO">
+        <result column="rownum" property="rownum" jdbcType="INTEGER" />
+        <result column="feechannel_name" property="feechannelName" jdbcType="VARCHAR" />
+        <result column="give_money" property="giveMoney" jdbcType="DECIMAL" />
+    </resultMap>
+
+    <select id="getHistoryChannel" resultMap="historyChannelResultMap" parameterType="java.util.Map" >
+        select  rownum
+        ,feechannel_name
+        ,give_money
+        from (
+        select @rownum:=@rownum+1 rownum,a.feechannel_name,a.give_money
+        from (
+        select feechannel_name,
+        sum(give_money) give_money
+        from dapp_feechannel_operate_d
+        group by feechannel_name
+        order by give_money desc ) a,
+        (select @rownum :=0)b
+        ) a
+        where rownum &lt;= 10
+    </select>
+
+    <select id="getYearChannel" resultMap="historyChannelResultMap" parameterType="java.util.Map" >
+    select  rownum
+    ,feechannel_name
+    ,give_money
+    from (
+    select @rownum:=@rownum+1 rownum,a.feechannel_name,a.give_money
+    from (
+    select feechannel_name,
+    sum(give_money) give_money
+    from dapp_feechannel_operate_d
+    where  YEAR(create_date) &lt;= year(date_sub(now(),interval 1 year))
+    group by feechannel_name
+    order by give_money desc ) a,
+    (select @rownum :=0)b
+    ) a
+    where rownum &lt;= 10
+    </select>
+
+    <resultMap id="mediaResultMap" type="com.fjs.circle.dto.CustomerDTO">
+        <result column="rownum" property="rownum" jdbcType="INTEGER" />
+        <result column="media" property="media" jdbcType="VARCHAR" />
+        <result column="channel_num" property="channelNum" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="getHistoryMedia" resultMap="mediaResultMap" parameterType="java.util.Map" >
+        select  rownum
+        ,media
+        ,channel_num
+        from (
+        select @rownum:=@rownum+1 rownum,a.media,channel_num
+        from (
+        select
+        media,
+        sum(channel_num) as channel_num
+        from  fangdb.dapp_channel_customer_operate_d
+        group by media order by channel_num desc ) a,
+        (select @rownum :=0)b
+        ) a  where rownum &lt;= 10
+    </select>
+
+    <select id="getYearMedia" resultMap="mediaResultMap" parameterType="java.util.Map" >
+        select  rownum
+        ,media
+        ,channel_num
+        from (
+        select @rownum:=@rownum+1 rownum,a.media,channel_num
+        from (
+        select
+        media,
+        sum(channel_num) as channel_num
+        from  fangdb.dapp_channel_customer_operate_d
+        where  YEAR(create_date) &lt;= year(date_sub(now(),interval 1 year))
+        group by media order by channel_num desc ) a,
+        (select @rownum :=0)b
+        ) a  where rownum &lt;= 10
+    </select>
+
+    <resultMap id="efficiencyResultMap" type="com.fjs.circle.dto.EfficiencyDTO">
+        <result column="rownum" property="rownum" jdbcType="INTEGER" />
+        <result column="media" property="media" jdbcType="VARCHAR" />
+        <result column="concat(useful_rate,'%')" property="efficiency" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getHistoryEfficiency" resultMap="efficiencyResultMap" parameterType="java.util.Map" >
+        select rownum
+        ,media
+        ,concat(useful_rate,'%')
+        from (
+        select @rownum:=@rownum+1 rownum,a.media,useful_rate
+        from (
+        select
+        media,
+        sum(useful_channel_num)/sum(channel_num)*100 as useful_rate
+        from  fangdb.dapp_channel_customer_operate_d
+        group by media
+        HAVING sum(useful_channel_num) &gt;= 500
+        order by useful_rate desc ) a,
+        (select @rownum :=0)b
+        ) a  where rownum  &lt;= 10
+    </select>
+
+    <select id="getYearEfficiency" resultMap="efficiencyResultMap" parameterType="java.util.Map" >
+        select rownum
+        ,media
+        ,concat(useful_rate,'%')
+        from (
+        select @rownum:=@rownum+1 rownum,a.media,useful_rate
+        from (
+        select
+        media,
+        sum(useful_channel_num)/sum(channel_num)*100 as useful_rate
+        from  fangdb.dapp_channel_customer_operate_d
+        where YEAR(create_date) &lt;= year(date_sub(now(),interval 1 year))
+        group by media
+        HAVING sum(useful_channel_num) &gt;= 500
+        order by useful_rate desc ) a,
+        (select @rownum :=0)b
+        ) a  where rownum &lt;= 10
+    </select>
 </mapper>
