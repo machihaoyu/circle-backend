@@ -6,12 +6,10 @@ window.onload =function () {
   MyFirst();
   MySecond();
   MyThird();
-  // MyFourth();
+  MyFourth();
   MyFifth();
   MySixth();
   MyAnimate();
-
-
 
 }
 
@@ -395,72 +393,159 @@ function MyAnimate() {
   }
   $('.countSpan').each(count)
 }
+//  第一部分
 function MyFirst() {
-  //   模块一-----玫瑰图1
+  $.ajax({
+      url:'http://192.168.1.124:1480/DappOperateCityD/v1/historyChannel',
+      type:"GET",
+      crossDomain:true,
+      headers:{
+        "Authorization": "Bearer 467405f6-331c-4914-beb7-42027bf09a01"
+      },
+      success:function (data) {
+        myContrast(data.data);
+      },
+      dataType:"json"
+    }
+  )
+}
+function myContrast(data) {
+  // console.log(data,'==========');
+  //   模块一-----
   var rose = echarts.init(document.getElementById('rose'));
   var option1 = {
-    title: {
-      text: '渠道',
-      left: 'left',
-      top: 25,
+    title : {
+      text: '放款对比',
+      top:50,
       textStyle: {
-        color: '#fff'
+        fontSize:32,
+        color: '#FFF'
       }
     },
     tooltip : {
       trigger: 'item',
       formatter: "{a} <br/>{b} : {c} ({d}%)"
     },
-    visualMap: {
-      show: false,
-      min: 80,
-      max: 600,
-      inRange: {
-        colorLightness: [0, 1]
-      }
+    legend: {
+      orient : 'vertical',
+      x : 'right',
+      y:'top',
+      textStyle: {
+        fontSize:30,
+        color: '#FFF'
+      },
+      data:[data[0].feechannelName,data[1].feechannelName,data[2].feechannelName,data[3].feechannelName,data[4].feechannelName,]
     },
+    toolbox: {
+      show : true
+    },
+    calculable : true,
     series : [
       {
-        name:'访问来源',
+        name:'放款对比',
         type:'pie',
-        radius : '55%',
-        center: ['50%', '50%'],
-        color:['#f25e52','#ff8714','#ffcc3f','#00e2e3'],
-        data:[
-          {value:335, name:'直接访问'},
-          {value:310, name:'邮件营销'},
-          {value:274, name:'联盟广告'},
-          {value:235, name:'视频广告'},
-          // {value:400, name:'搜索引擎'}
-        ].sort(function (a, b) { return a.value - b.value; }),
-        roseType: 'radius',
-        label: {
-          normal: {
-            textStyle: {
-              color: 'rgba(255, 255, 255, 1)'
+        radius : ['50%', '70%'],
+        center: ['50%','45%'],
+        color:['#f25e52','#ff8714','#ffcc3f','#00e2e3','blue'],
+        itemStyle : {
+          normal : {
+            label : {
+              show : false
+            },
+            labelLine : {
+              show : false
+            }
+          },
+          emphasis : {
+            label : {
+              show : true,
+              position : 'center',
+              textStyle : {
+                fontSize : '15',
+                fontWeight : 'bold'
+              }
             }
           }
         },
-        labelLine: {
-          normal: {
-            lineStyle: {
-              color: 'rgba(255, 255, 255, 0.3)'
-            },
-            smooth: 0.2,
-            length: 10,
-            length2: 20
-          }
-        },
-        animationType: 'scale',
-        animationEasing: 'elasticOut',
-        animationDelay: function (idx) {
-          return Math.random() * 200;
-        }
+        data:[
+          {value:data[0].giveMoney, name:data[0].feechannelName},
+          {value:data[1].giveMoney, name:data[1].feechannelName},
+          {value:data[2].giveMoney, name:data[2].feechannelName},
+          {value:data[3].giveMoney, name:data[3].feechannelName},
+          {value:data[4].giveMoney, name:data[4].feechannelName}
+        ]
       }
     ]
   };
+
+  // var option1 = {
+  //   title: {
+  //     text: '资金渠道放款对比',
+  //     left: 'left',
+  //     top: 25,
+  //     textStyle: {
+  //       color: '#fff'
+  //     }
+  //   },
+  //   tooltip : {
+  //     trigger: 'item',
+  //     formatter: "{a} <br/>{b} : {c} ({d}%)"
+  //   },
+  //   visualMap: {
+  //     show: false,
+  //     min: 80,
+  //     max: 600,
+  //     inRange: {
+  //       colorLightness: [0, 1]
+  //     }
+  //   },
+  //   series : [
+  //     {
+  //       name:'资金对比',
+  //       type:'pie',
+  //       radius : '55%',
+  //       center: ['50%', '50%'],
+  //       color:['#f25e52','#ff8714','#ffcc3f','#00e2e3'],
+  //       data:[
+  //         {value:data[0].giveMoney, name:data[0].feechannelName},
+  //         {value:data[1].giveMoney, name:data[1].feechannelName},
+  //         {value:data[2].giveMoney, name:data[2].feechannelName},
+  //         {value:data[3].giveMoney, name:data[3].feechannelName}
+  //         // {value:data[4].giveMoney, name:data[4].feechannelName},
+  //
+  //         // {value:400, name:'搜索引擎'}
+  //       ].sort(function (a, b) { return a.value - b.value; }),
+  //       roseType: 'radius',
+  //       label: {
+  //         normal: {
+  //           textStyle: {
+  //             color: 'rgba(255, 255, 255, 1)'
+  //           }
+  //         }
+  //       },
+  //       labelLine: {
+  //         normal: {
+  //           lineStyle: {
+  //             color: 'rgba(255, 255, 255, 0.3)'
+  //           },
+  //           smooth: 0.2,
+  //           length: 10,
+  //           length2: 20
+  //         }
+  //       },
+  //       animationType: 'scale',
+  //       animationEasing: 'elasticOut',
+  //       animationDelay: function (idx) {
+  //         return Math.random() * 200;
+  //       }
+  //     }
+  //   ]
+  // };
   rose.setOption(option1);
 }
+
+
+
 
 function MySecond() {
   var timer2  =setInterval(queryData,18000)
@@ -479,7 +564,7 @@ function queryData(isFirst) {
       success:function (data) {
         var  lists = data.data;
         if(isFirst){
-          myrAdar(lists[0])
+          myRadar(lists[0]);
           lists.splice(0,1);
           leiDa(lists);
         }else{
@@ -491,7 +576,7 @@ function queryData(isFirst) {
     }
   )
 }
-function myrAdar(data) {
+function myRadar(data) {
   //------雷达图
   var radar = echarts.init(document.getElementById('radar'));
   var radarOption = {
@@ -499,6 +584,7 @@ function myrAdar(data) {
       text: data.city,
       // subtext: '纯属虚构'
       textStyle: {
+        fontSize:35,
         color: '#FFF'
       }
     },
@@ -506,6 +592,7 @@ function myrAdar(data) {
       trigger: 'axis'
     },
     textStyle: {
+      fontSize:30,
       color: '#FFF'
     },
     color:['#00e2e3','#ff8714'],
@@ -516,6 +603,7 @@ function myrAdar(data) {
       data:['历史累计'],
       // data:['历史累计','年累计'],
       textStyle: {
+        fontSize:32,
         color: '#FFF'
       },
     },
@@ -525,12 +613,18 @@ function myrAdar(data) {
     polar : [
       {
         indicator : [
-          { text: '注册客户数',max:86092.6},
-          { text: '客户有房', max:29348},
-          { text: '资金渠道开拓数',max:4514},
-          { text: '协议放款额',max:4361855},
-          { text: '协议佣金额',max:203651},
+          // { text: '注册客户数'},
+          // { text: '客户有房'},
+          // { text: '资金渠道开拓数'},
+          // { text: '协议放款额'},
+          // { text: '协议佣金额'},
+          { text: '注册客户数',max:230000},
+          { text: '客户有房', max:59348},
+          { text: '资金渠道开拓数',max:4513.3},
+          { text: '协议放款额',max:4361854.222},
+          { text: '协议佣金额',max:203650.7},
         ],
+        center : ['49%','50%'],
         splitArea : {
           show : true,
           areaStyle : {
@@ -591,17 +685,13 @@ function leiDa(data) {
         clearInterval(timer1);
         return;
       }
-      myrAdar(data[list]);
+      myRadar(data[list]);
       list++;
     },3000
   )
-  
-
-
 
 
 }
-
 
 function MyThird() {
   // 模块3 ------极坐标系下的堆叠柱状图
@@ -610,21 +700,37 @@ function MyThird() {
     title : {
       text: '对比图',
       textStyle: {
+        fontSize:36,
         color: '#FFF'
       }
     },
     textStyle: {
+      fontSize:42,
       color: '#FFF'
     },
-    angleAxis: {
-      type: 'category',
-      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-      z: 10
-    },
+    angleAxis: [
+      {
+        axisLabel:{                     //坐标轴刻度标签的相关设置
+          show:true,                  //是否显示
+          interval:"0",            //坐标轴刻度标签的显示间隔，在类目轴中有效。默认会采用标签不重叠的策略间隔显示标签。可以设置成 0 强制显示所有标签。如果设置为 1，表示『隔一个标签显示一个标签』，如果值为 2，表示隔两个标签显示一个标签，以此类推
+          inside:false,               //刻度标签是否朝内，默认朝外
+          rotate:0,     //刻度标签旋转的角度，在类目轴的类目标签显示不下的时候可以通过旋转防止标签之间重叠。旋转的角度从 -90 度到 90 度
+          margin:8,                   //刻度标签与轴线之间的距离
+          showMinLabel:null,          //是否显示最小 tick 的 label。可取值 true, false, null。默认自动判定（即如果标签重叠，不会显示最小 tick 的 label）
+          showMaxLabel:null,          //是否显示最大 tick 的 label。可取值 true, false, null。默认自动判定（即如果标签重叠，不会显示最大 tick 的 label）
+          textStyle: {
+            fontSize:32,
+            color: '#FFF'
+          }
+        },
+        type: 'category',
+        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        z: 10
+      }
+    ],
     radiusAxis: {
     },
     polar: {
-
     },
     series: [
       {
@@ -665,6 +771,43 @@ function MyThird() {
 }
 
 function MyFourth() {
+  //  北京-----
+  var  beiNum0 = 123589;
+  var  beiNum1 = 959588;
+  $('.beiSpan')[0].setAttribute ( 'data-to', beiNum0) ;
+  $('.beiSpan')[1].setAttribute ( 'data-to', beiNum1) ;
+
+  //  上海-----
+  var  shangNum0 = 333333333;
+  var  shangNum1 = 44444444;
+  $('.shangSpan')[0].setAttribute ( 'data-to', shangNum0) ;
+  $('.shangSpan')[1].setAttribute ( 'data-to', shangNum1) ;
+
+  //  广州-----
+  var  guangNum0 = 543211111;
+  var  guangNum1 = 6312233544;
+  $('.guangSpan')[0].setAttribute ( 'data-to', guangNum0) ;
+  $('.guangSpan')[1].setAttribute ( 'data-to', guangNum1) ;
+
+
+  //  深圳-----
+  var  shenNum0 = 754221;
+  var  shenNum1 = 87562523;
+  $('.shenSpan')[0].setAttribute ( 'data-to', shenNum0) ;
+  $('.shenSpan')[1].setAttribute ( 'data-to', shenNum1) ;
+
+//  杭州-----
+  var  hangNum0 = 999991;
+  var  hangNum1 = 100002111;
+  $('.hangSpan')[0].setAttribute ( 'data-to', hangNum0) ;
+  $('.hangSpan')[1].setAttribute ( 'data-to', hangNum1) ;
+
+ //  郑州-----
+  var  zhengNum0 = 1100325;
+  var  zhengNum1= 1255888;
+  $('.zhengSpan')[0].setAttribute ( 'data-to', zhengNum0) ;
+  $('.zhengSpan')[1].setAttribute ( 'data-to', zhengNum1) ;
+
 
 }
 
@@ -686,19 +829,28 @@ function MyFifth() {
     },
     calculable : true,
     textStyle: {
+      fontSize:32,
       color: '#FFF'
     },
     color:['#ff8714','#00e2e3'],
     legend: {
-      x : 'right',
+      x : 'center',
       y : 'top',
       data:['降水量','平均温度'],
       textStyle: {
+        fontSize:40,
         color: '#FFF'
       }
     },
     xAxis : [
       {
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff',
+            fontSize:32
+          }
+        },
         splitLine:{show: false},//去除网格线
         type : 'category',
         data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
@@ -709,14 +861,16 @@ function MyFifth() {
         type : 'value',
         name : '水量',
         axisLabel : {
-          formatter: '{value} ml'
+          formatter: '{value} ml',
+          fontSize:32
         }
       },
       {
         type : 'value',
         name : '温度',
         axisLabel : {
-          formatter: '{value} °C'
+          formatter: '{value} °C',
+          fontSize:32
         }
       }
     ],
@@ -785,11 +939,11 @@ function roll(ul1,ul2,box,t) {
   // box.onmouseover = function () {
   //   clearInterval(timer)
   // }
-  box.onmouseout = function () {
-    timer = setInterval(function () {
-      rollStart(box,ul1);
-    }, t);
-  }
+  // box.onmouseout = function () {
+  //   timer = setInterval(function () {
+  //     rollStart(box,ul1);
+  //   }, t);
+  // }
 }
 function rollStart(box,ul1) {
   // var box = document.getElementById("list6")
