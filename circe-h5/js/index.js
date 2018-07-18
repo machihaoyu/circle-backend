@@ -416,9 +416,9 @@ function myContrast(data) {
   var option1 = {
     title : {
       text: '放款对比',
-      top:50,
+      top:20,
       textStyle: {
-        fontSize:32,
+        fontSize:18,
         color: '#FFF'
       }
     },
@@ -431,7 +431,7 @@ function myContrast(data) {
       x : 'right',
       y:'top',
       textStyle: {
-        fontSize:30,
+        fontSize:12,
         color: '#FFF'
       },
       data:[data[0].feechannelName,data[1].feechannelName,data[2].feechannelName,data[3].feechannelName,data[4].feechannelName,]
@@ -446,7 +446,7 @@ function myContrast(data) {
         type:'pie',
         radius : ['50%', '70%'],
         center: ['50%','45%'],
-        color:['#f25e52','#ff8714','#ffcc3f','#00e2e3','blue'],
+        color:['#f25e52','#ff8714','#ffcc3f','#00e2e3','#6495ED'],
         itemStyle : {
           normal : {
             label : {
@@ -545,8 +545,6 @@ function myContrast(data) {
 }
 
 
-
-
 function MySecond() {
   var timer2  =setInterval(queryData,18000)
 }
@@ -584,7 +582,7 @@ function myRadar(data) {
       text: data.city,
       // subtext: '纯属虚构'
       textStyle: {
-        fontSize:35,
+        fontSize:18,
         color: '#FFF'
       }
     },
@@ -592,7 +590,7 @@ function myRadar(data) {
       trigger: 'axis'
     },
     textStyle: {
-      fontSize:30,
+      fontSize:12,
       color: '#FFF'
     },
     color:['#00e2e3','#ff8714'],
@@ -603,7 +601,7 @@ function myRadar(data) {
       data:['历史累计'],
       // data:['历史累计','年累计'],
       textStyle: {
-        fontSize:32,
+        fontSize:12,
         color: '#FFF'
       },
     },
@@ -620,7 +618,7 @@ function myRadar(data) {
           // { text: '协议佣金额'},
           { text: '注册客户数',max:230000},
           { text: '客户有房', max:59348},
-          { text: '资金渠道开拓数',max:4513.3},
+          { text: '资金渠道开拓数',max:4887.3},
           { text: '协议放款额',max:4361854.222},
           { text: '协议佣金额',max:203650.7},
         ],
@@ -693,6 +691,7 @@ function leiDa(data) {
 
 }
 
+
 function MyThird() {
   // 模块3 ------极坐标系下的堆叠柱状图
   var polarp = echarts.init(document.getElementById('polarp'));
@@ -700,12 +699,12 @@ function MyThird() {
     title : {
       text: '对比图',
       textStyle: {
-        fontSize:36,
+        fontSize:18,
         color: '#FFF'
       }
     },
     textStyle: {
-      fontSize:42,
+      fontSize:12,
       color: '#FFF'
     },
     angleAxis: [
@@ -719,7 +718,7 @@ function MyThird() {
           showMinLabel:null,          //是否显示最小 tick 的 label。可取值 true, false, null。默认自动判定（即如果标签重叠，不会显示最小 tick 的 label）
           showMaxLabel:null,          //是否显示最大 tick 的 label。可取值 true, false, null。默认自动判定（即如果标签重叠，不会显示最大 tick 的 label）
           textStyle: {
-            fontSize:32,
+            fontSize:16,
             color: '#FFF'
           }
         },
@@ -770,6 +769,7 @@ function MyThird() {
   // 模块4----  地图+ 设计
 }
 
+
 function MyFourth() {
   //  北京-----
   var  beiNum0 = 123589;
@@ -811,6 +811,7 @@ function MyFourth() {
 
 }
 
+
 function MyFifth() {
   //  模块5-----柱线混合
   var column = echarts.init(document.getElementById('main'));
@@ -829,7 +830,7 @@ function MyFifth() {
     },
     calculable : true,
     textStyle: {
-      fontSize:32,
+      fontSize:12,
       color: '#FFF'
     },
     color:['#ff8714','#00e2e3'],
@@ -838,7 +839,7 @@ function MyFifth() {
       y : 'top',
       data:['降水量','平均温度'],
       textStyle: {
-        fontSize:40,
+        fontSize:16,
         color: '#FFF'
       }
     },
@@ -848,7 +849,7 @@ function MyFifth() {
           show: true,
           textStyle: {
             color: '#fff',
-            fontSize:32
+            fontSize:16
           }
         },
         splitLine:{show: false},//去除网格线
@@ -862,7 +863,7 @@ function MyFifth() {
         name : '水量',
         axisLabel : {
           formatter: '{value} ml',
-          fontSize:32
+          fontSize:16
         }
       },
       {
@@ -870,7 +871,7 @@ function MyFifth() {
         name : '温度',
         axisLabel : {
           formatter: '{value} °C',
-          fontSize:32
+          fontSize:16
         }
       }
     ],
@@ -890,6 +891,7 @@ function MyFifth() {
   };
   column.setOption(line);
 }
+
 
 function MySixth() {
   // move();
