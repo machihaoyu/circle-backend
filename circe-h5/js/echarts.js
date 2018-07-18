@@ -8596,7 +8596,7 @@ ZImage.prototype = {
         // Draw rect text
         if (style.text != null) {
             // Only restore transform when needs draw text.
-            this.restoreTransform(ctx);    
+            this.restoreTransform(ctx);
             this.drawRectText(ctx, this.getBoundingRect());
         }
     },
@@ -14140,7 +14140,7 @@ Path.prototype = {
         // Draw rect text
         if (style.text != null) {
             // Only restore transform when needs draw text.
-            this.restoreTransform(ctx);    
+            this.restoreTransform(ctx);
             this.drawRectText(ctx, this.getBoundingRect());
         }
     },
@@ -46032,7 +46032,7 @@ SeriesModel.extend({
 
         return tree.data;
     },
-    
+
     /**
      * Make the configuration 'orient' backward compatibly, with 'horizontal = LR', 'vertical = TB'.
      * @returns {string} orient
@@ -46897,7 +46897,7 @@ function commonLayout(seriesModel, api) {
     var width = 0;
     var height = 0;
     var separation$$1 = null;
-    
+
     if (layout === 'radial') {
         width = 2 * Math.PI;
         height = Math.min(layoutInfo.height, layoutInfo.width) / 2;
@@ -46954,7 +46954,7 @@ function commonLayout(seriesModel, api) {
             });
         }
         else {
-            var orient = seriesModel.getOrient(); 
+            var orient = seriesModel.getOrient();
             if (orient === 'RL' || orient === 'LR') {
                 ky = height / (right.getLayout().x + delta + tx);
                 kx = width / ((bottom.depth - 1) || 1);
@@ -46978,7 +46978,7 @@ function commonLayout(seriesModel, api) {
                 });
             }
         }
-    } 
+    }
 }
 
 /*
@@ -57610,7 +57610,7 @@ extendChartView({
         var width = layoutInfo.width;
         // view height
         var height = layoutInfo.height;
-        
+
         var nodeData = seriesModel.getData();
         var edgeData = seriesModel.getData('edge');
 
@@ -57735,12 +57735,12 @@ extendChartView({
                         localY: this.shape.y / height
                     });
                 };
-        
+
                 el.draggable = true;
                 el.cursor = 'move';
             });
         }
-        
+
         if (!this._data && seriesModel.get('animation')) {
             group.setClipPath(createGridClipShape$2(group.getBoundingRect(), seriesModel, function () {
                 group.removeClipPath();
@@ -58024,7 +58024,7 @@ function computeNodeValues(nodes) {
 
 /**
  * Compute the x-position for each node.
- * 
+ *
  * Here we use Kahn algorithm to detect cycle when we traverse
  * the node to computer the initial x position.
  *
@@ -58054,7 +58054,7 @@ function computeNodeBreadths(nodes, edges, nodeWidth, width) {
             zeroIndegrees.push(nodes[i]);
         }
     }
-    
+
     while (zeroIndegrees.length) {
         each$1(zeroIndegrees, function (node) {
             node.setLayout({x: x}, true);
@@ -58069,18 +58069,18 @@ function computeNodeBreadths(nodes, edges, nodeWidth, width) {
                 }
             });
         });
-       
+
         ++x;
         zeroIndegrees = nextNode;
         nextNode = [];
     }
-    
+
     for (var i = 0; i < remainEdges.length; i++) {
         if (__DEV__) {
             if (remainEdges[i] === 1) {
                 throw new Error('Sankey is a DAG, the original data has cycle!');
             }
-        } 
+        }
     }
 
     moveSinksRight(nodes, x);
@@ -58388,7 +58388,7 @@ var sankeyVisual = function (ecModel, payload) {
                     maxValue = nodeValue;
                 }
             });
-            
+
             each$1(nodes, function (node) {
                 var mapping = new VisualMapping({
                     type: 'color',
@@ -58396,7 +58396,7 @@ var sankeyVisual = function (ecModel, payload) {
                     dataExtent: [minValue, maxValue],
                     visual: seriesModel.get('color')
                 });
-    
+
                 var mapValueToColor = mapping.mapValueToVisual(node.getLayout().value);
                 node.setVisual('color', mapValueToColor);
                 // If set itemStyle.normal.color
@@ -67424,10 +67424,10 @@ var sunburstLayout = function (seriesType, ecModel, api, payload) {
                     ? unitRadian : (value * unitRadian);
                 if (angle < minAngle) {
                     angle = minAngle;
-                    
+
                 }
                 else {
-                    
+
                 }
 
                 endAngle = startAngle + dir * angle;
