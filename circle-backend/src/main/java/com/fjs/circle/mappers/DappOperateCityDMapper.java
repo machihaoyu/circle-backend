@@ -35,4 +35,6 @@ public interface DappOperateCityDMapper extends MyMapper<DappOperateCityD> {
     public List<DTO4> getAllCity(Map<String, Object> paramsMap);
 
     public List<DTO4> getCity(Map<String, Object> paramsMap);
+
+    public List<DTO5> getTrend(Map<String, Object> paramsMap);
 }

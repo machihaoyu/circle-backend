@@ -248,4 +248,19 @@
             ,sum(plan_money)/10000         as plan_money         -- 协议放款额(亿)
             from fangdb.dapp_operate_city_d
     </select>
+
+    <resultMap id="trendResultMap" type="com.fjs.circle.dto.DTO5">
+        <result column="qu" property="qu" jdbcType="VARCHAR" />
+        <result column="service_num" property="serviceNum" jdbcType="VARCHAR" />
+        <result column="service_commission" property="serviceCommission" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getTrend" resultMap="trendResultMap" parameterType="java.util.Map" >
+        select  CONCAT(YEAR(create_date),'年第',quarter(create_date),'季度') as qu -- 分季度
+               ,sum(service_num)/10000           as service_num           -- 服务客户数(万)
+               ,sum(service_commission)/10000    as service_commission    -- 协议放款额(亿)
+           from fangdb.dapp_operate_d
+         where create_date>='2016-04-01'
+        GROUP BY qu
+    </select>
 </mapper>
