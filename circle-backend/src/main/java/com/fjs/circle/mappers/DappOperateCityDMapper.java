@@ -29,4 +29,10 @@ public interface DappOperateCityDMapper extends MyMapper<DappOperateCityD> {
     public List<EfficiencyDTO> getHistoryEfficiency(Map<String, Object> paramsMap);
 
     public List<EfficiencyDTO> getYearEfficiency(Map<String, Object> paramsMap);
+
+    public List<DTO3> getPole(Map<String, Object> paramsMap);
+
+    public List<DTO4> getAllCity(Map<String, Object> paramsMap);
+
+    public List<DTO4> getCity(Map<String, Object> paramsMap);
 }

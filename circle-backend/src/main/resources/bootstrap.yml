@@ -6,5 +6,5 @@ spring:
 #            profile: yzf2
 
             uri: http://user:${CONFIG_PASSWORD}@${CONFIG_SERVER_ADDRESS}:${CONFIG_SERVER_PORT}
-            name: circle-backend-application
+            name: circle-application
             profile: ${CONFIG_PROFILE}

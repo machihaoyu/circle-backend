@@ -201,4 +201,51 @@
         (select @rownum :=0)b
         ) a  where rownum &lt;= 10
     </select>
+
+    <resultMap id="poleResultMap" type="com.fjs.circle.dto.DTO3">
+        <result column="dayofweek_name" property="dayofweekName" jdbcType="VARCHAR" />
+        <result column="service_num" property="serviceNum" jdbcType="VARCHAR" />
+        <result column="service_contract_num" property="serviceContractNum" jdbcType="VARCHAR" />
+        <result column="contract_num" property="contractNum" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getPole" resultMap="poleResultMap" parameterType="java.util.Map" >
+        select
+         case DAYOFWEEK(create_date) when  1 then '周日'
+                                     when  2 then '周一'
+                                     when  3 then '周二'
+                                     when  4 then '周三'
+                                     when  5 then '周四'
+                                     when  6 then '周五'
+                                     when  7 then '周六'
+          end as dayofweek_name                             -- 星期几
+        , ln(sum(service_num)) as service_num                   -- 注册客户数
+        ,ln(sum(service_contract_num)) as service_contract_num  -- 协议签订数
+        ,ln(sum(contract_num)) as contract_num                  -- 放款合同签订数
+        from fangdb.dapp_operate_d
+        group by DAYOFWEEK(create_date)
+    </select>
+
+    <resultMap id="baseTotalResultMap" type="com.fjs.circle.dto.DTO4">
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="register_num" property="registerNum" jdbcType="VARCHAR" />
+        <result column="plan_money" property="planMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getAllCity" resultMap="baseTotalResultMap" parameterType="java.util.Map" >
+        select
+        city
+        ,sum(register_num)/10000             as register_num
+        ,sum(plan_money)/10000         as plan_money
+        from fangdb.dapp_operate_city_d
+        where city   <![CDATA[!= ]]> '其他'
+        group by city
+    </select>
+
+    <select id="getCity" resultMap="baseTotalResultMap" parameterType="java.util.Map" >
+        select
+            sum(register_num)/10000             as register_num        -- 注册数
+            ,sum(plan_money)/10000         as plan_money         -- 协议放款额(亿)
+            from fangdb.dapp_operate_city_d
+    </select>
 </mapper>
