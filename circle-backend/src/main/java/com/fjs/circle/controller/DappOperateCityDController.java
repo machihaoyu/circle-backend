@@ -30,7 +30,7 @@ public class DappOperateCityDController {
     @Autowired
     private DappOperateCityDService dappOperateCityDService;
 
-    @ApiOperation(value="视图1", notes="视图1")
+    @ApiOperation(value="城市各个维度数据 - 历史累计", notes="城市各个维度数据 - 历史累计")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
     @RequestMapping(value = "/selectOne", method = RequestMethod.POST)
@@ -72,7 +72,7 @@ public class DappOperateCityDController {
         return circleDTO;
     }
 
-    @ApiOperation(value="视图2", notes="视图2")
+    @ApiOperation(value="城市各个维度数据 - 年累计(截止到上年年末的年累计)", notes="城市各个维度数据 - 年累计(截止到上年年末的年累计)")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
     @RequestMapping(value = "/selectTwo", method = RequestMethod.POST)

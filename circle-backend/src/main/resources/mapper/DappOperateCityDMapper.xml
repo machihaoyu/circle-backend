@@ -17,7 +17,7 @@
     <resultMap id="View1ResultMap" type="com.fjs.circle.dto.DappOperateCityDDTO">
         <id column="city_id" property="id" jdbcType="INTEGER" />
         <result column="total_register_num" property="totalRegisterNum" jdbcType="INTEGER" />
-        <result column="total_house_num" property="totalHouseNum" jdbcType="INTEGER" />
+        <result column="house_rate" property="houseRate" jdbcType="INTEGER" />
         <result column="total_plan_money" property="totalPlanMoney" jdbcType="DECIMAL" />
         <result column="total_service_commission" property="totalServiceCommission" jdbcType="DECIMAL" />
         <result column="total_product_num" property="totalProductNum" jdbcType="DECIMAL" />
@@ -26,7 +26,7 @@
     <select id="selectView1" resultMap="View1ResultMap" parameterType="java.util.Map" >
         select city_id,city
         ,sum(register_num)  as total_register_num
-        ,sum(house_num) as total_house_num
+        ,sum(house_num)/sum(register_num)*100 as house_rate -- 客户有房率
         ,sum(plan_money)  as total_plan_money
         ,sum(service_commission) as total_service_commission
         ,sum(product_num) as total_product_num

@@ -22,9 +22,9 @@ public class DappOperateCityDDTO implements Serializable{
     @ApiModelProperty(value = "注册数")
     @JsonSerialize(include= JsonSerialize.Inclusion.NON_EMPTY)
     private Integer totalRegisterNum;
-    @ApiModelProperty(value = "有房数")
+    @ApiModelProperty(value = "有房率")
     @JsonSerialize(include= JsonSerialize.Inclusion.NON_EMPTY)
-    private Integer totalHouseNum;
+    private String houseRate;
     @ApiModelProperty(value = "协议放款额")
     @JsonSerialize(include= JsonSerialize.Inclusion.NON_EMPTY)
     private BigDecimal totalPlanMoney;
@@ -59,14 +59,6 @@ public class DappOperateCityDDTO implements Serializable{
         this.totalRegisterNum = totalRegisterNum;
     }
 
-    public Integer getTotalHouseNum() {
-        return totalHouseNum;
-    }
-
-    public void setTotalHouseNum(Integer totalHouseNum) {
-        this.totalHouseNum = totalHouseNum;
-    }
-
     public BigDecimal getTotalPlanMoney() {
         return totalPlanMoney;
     }
@@ -89,5 +81,13 @@ public class DappOperateCityDDTO implements Serializable{
 
     public void setTotalProductNum(Integer totalProductNum) {
         this.totalProductNum = totalProductNum;
+    }
+
+    public String getHouseRate() {
+        return houseRate;
+    }
+
+    public void setHouseRate(String houseRate) {
+        this.houseRate = houseRate;
     }
 }
