@@ -347,4 +347,32 @@
         ) a
         where rownum &lt;= 10
     </select>
+
+    <resultMap id="top5ResultMap" type="com.fjs.circle.dto.Top5DTO">
+        <result column="rownum" property="rownum" jdbcType="VARCHAR" />
+        <result column="sub_company_name" property="subCompanyName" jdbcType="VARCHAR" />
+        <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+        <result column="commission_num" property="commissionNum" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="top5" resultMap="top5ResultMap" parameterType="java.util.Map" >
+        select  rownum            -- 季度排名
+        ,sub_company_name  -- 分公司
+        ,member_name       -- 巴员名称
+        ,commission_num    -- 收佣数
+        from (
+        select @rownum:=@rownum+1 rownum,a.sub_company_name,member_name,a.commission_num
+        from (
+        select
+        sub_company_name,
+        member_name,
+        sum(commission_num) as commission_num
+        from fangdb.dapp_user_operate_d
+        where quarter(create_date) = quarter( curdate( )) and year(create_date)=year(CURDATE())
+        group by sub_company_name,member_name
+        order by commission_num desc,create_date desc ) a,
+        (select @rownum :=0)b
+        ) a
+        where rownum &lt;= 10
+    </select>
 </mapper>

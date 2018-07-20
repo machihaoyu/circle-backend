@@ -43,4 +43,6 @@ public interface DappOperateCityDMapper extends MyMapper<DappOperateCityD> {
     public List<Top16DTO> top16(Map<String, Object> paramsMap);
 
     public List<Top22DTO> top22(Map<String, Object> paramsMap);
+
+    public List<Top5DTO> top5(Map<String, Object> paramsMap);
 }

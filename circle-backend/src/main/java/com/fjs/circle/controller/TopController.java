@@ -1,9 +1,6 @@
 package com.fjs.circle.controller;
 
-import com.fjs.circle.dto.DTO5;
-import com.fjs.circle.dto.Top10DTO;
-import com.fjs.circle.dto.Top16DTO;
-import com.fjs.circle.dto.Top22DTO;
+import com.fjs.circle.dto.*;
 import com.fjs.circle.dto.common.CircleDTO;
 import com.fjs.circle.dto.common.CommonMessage;
 import com.fjs.circle.service.TopService;
@@ -94,6 +91,27 @@ public class TopController {
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
         circleDTO.setData(top22DTOList);
+        return circleDTO;
+    }
+
+    @ApiOperation(value="季度版-业务员主题-收佣数", notes="季度版-业务员主题-收佣数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
+    @RequestMapping(value = "/top5", method = RequestMethod.GET)
+    @ResponseBody
+    public CircleDTO<List<Top5DTO>> top5(){
+        CircleDTO circleDTO = new CircleDTO();
+        List<Top5DTO> top5DTOList = null;
+        try{
+            top5DTOList = topService.getTop5();
+            circleDTO.setResult(CommonMessage.SUCCESS.getCode());
+            circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
+        }catch (Exception e){
+            logger.error("-------------->top5查询视图失败",e);
+            circleDTO.setResult(CommonMessage.FAIL.getCode());
+            circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
+        }
+        circleDTO.setData(top5DTOList);
         return circleDTO;
     }
 }

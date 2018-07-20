@@ -1,9 +1,6 @@
 package com.fjs.circle.service;
 
-import com.fjs.circle.dto.DTO5;
-import com.fjs.circle.dto.Top10DTO;
-import com.fjs.circle.dto.Top16DTO;
-import com.fjs.circle.dto.Top22DTO;
+import com.fjs.circle.dto.*;
 import com.fjs.circle.mappers.DappOperateCityDMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,5 +49,16 @@ public class TopService {
         Map<String, Object> paramsMap = new HashMap<>();
         top22DTOList = dappOperateCityDMapper.top22(paramsMap);
         return top22DTOList;
+    }
+
+    /**
+     * top16
+     * @return
+     */
+    public List<Top5DTO> getTop5(){
+        List<Top5DTO> top5DTOList = new ArrayList<>();
+        Map<String, Object> paramsMap = new HashMap<>();
+        top5DTOList = dappOperateCityDMapper.top5(paramsMap);
+        return top5DTOList;
     }
 }
