@@ -117,4 +117,56 @@
         from  fangdb.dapp_channel_customer_fund_summary
         where busi_type=2
     </select>
+
+    <select id="getTotal3" resultMap="total1ResultMap" parameterType="java.util.Map" >
+        select
+        first_class_desc,                -- 一级渠道描述
+        channel_num                      -- 获客数
+        from  fangdb.dapp_channel_customer_fund_summary
+        where busi_type=3
+    </select>
+
+    <resultMap id="model2ResultMap" type="com.fjs.circle.dto.stage2.Model2DTO">
+        <result column="financial_instatution_type" property="financialInstatutionType" jdbcType="VARCHAR" />
+        <result column="product_type" property="productType" jdbcType="VARCHAR" />
+        <result column="give_money" property="giveMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getModel2" resultMap="model2ResultMap" parameterType="java.util.Map" >
+        select financial_instatution_type,  -- 放款机构
+       product_type,                -- 产品类型
+       give_money                   -- 放款额
+   from fangdb.dapp_channel_customer_fund_summary
+  where busi_type=4
+    </select>
+
+    <resultMap id="model3CakeResultMap" type="com.fjs.circle.dto.stage2.Model3CakeDTO">
+        <result column="create_year" property="createYear" jdbcType="VARCHAR" />
+        <result column="product_type" property="productType" jdbcType="VARCHAR" />
+        <result column="give_money" property="giveMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getModel3Cake" resultMap="model3CakeResultMap" parameterType="java.util.Map" >
+        select create_year,
+       product_type,     -- 产品类型
+       give_money        -- 放款额
+   from fangdb.dapp_channel_customer_fund_summary
+  where busi_type=5
+    </select>
+
+    <resultMap id="histogramResultMap" type="com.fjs.circle.dto.stage2.Model3HistogramDTO">
+        <result column="create_year" property="createYear" jdbcType="VARCHAR" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="product_type" property="productType" jdbcType="VARCHAR" />
+        <result column="give_money" property="giveMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getHistogram" resultMap="histogramResultMap" parameterType="java.util.Map" >
+        select create_year,  -- 年份
+       city,         -- 城市
+       product_type, -- 产品类型
+       give_money    -- 放款额
+   from fangdb.dapp_channel_customer_fund_summary
+  where busi_type=6
+    </select>
 </mapper>

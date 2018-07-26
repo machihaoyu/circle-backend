@@ -139,4 +139,44 @@ public class Stage2Service {
         bdDTOList = stage2Mapper.getBD(paramsMap);
         return bdDTOList;
     }
+
+    /**
+     * 模块一 外部环图另一部分
+     * @return
+     */
+    public List<TotalDTO> getTotal3(){
+        List<TotalDTO> totalDTOList = new ArrayList<>();
+        Map<String, Object> paramsMap = new HashMap<>();
+        totalDTOList = stage2Mapper.getTotal3(paramsMap);
+        return totalDTOList;
+    }
+
+    /**
+     * 模块二
+     * @return
+     */
+    public List<Model2DTO> getModel2(){
+        List<Model2DTO> model2DTOList = new ArrayList<>();
+        Map<String, Object> paramsMap = new HashMap<>();
+        model2DTOList = stage2Mapper.getModel2(paramsMap);
+        return model2DTOList;
+    }
+
+    /**
+     * 饼状
+     * @return
+     */
+    public List<Model3CakeDTO> getModel3Cake(){
+        List<Model3CakeDTO> model3CakeDTOList = new ArrayList<>();
+        Map<String, Object> paramsMap = new HashMap<>();
+        model3CakeDTOList = stage2Mapper.getModel3Cake(paramsMap);
+        return model3CakeDTOList;
+    }
+
+    public List<Model3HistogramDTO> getHistogram(){
+        List<Model3HistogramDTO> model3HistogramDTOList = new ArrayList<>();
+        Map<String, Object> paramsMap = new HashMap<>();
+        model3HistogramDTOList = stage2Mapper.getHistogram(paramsMap);
+        return model3HistogramDTOList;
+    }
 }

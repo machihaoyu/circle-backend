@@ -30,4 +30,12 @@ public interface Stage2Mapper {
     public List<TotalDTO> getTotal(Map<String, Object> paramsMap);
 
     public List<BDDTO> getBD(Map<String, Object> paramsMap);
+
+    public List<TotalDTO> getTotal3(Map<String, Object> paramsMap);
+
+    public List<Model2DTO> getModel2(Map<String, Object> paramsMap);
+
+    public List<Model3CakeDTO> getModel3Cake(Map<String, Object> paramsMap);
+
+    public List<Model3HistogramDTO> getHistogram(Map<String, Object> paramsMap);
 }

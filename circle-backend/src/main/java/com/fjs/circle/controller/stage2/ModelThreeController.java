@@ -2,8 +2,9 @@ package com.fjs.circle.controller.stage2;
 
 import com.fjs.circle.dto.common.CircleDTO;
 import com.fjs.circle.dto.common.CommonMessage;
-import com.fjs.circle.dto.stage2.BDDTO;
-import com.fjs.circle.dto.stage2.TotalDTO;
+import com.fjs.circle.dto.stage2.Model2DTO;
+import com.fjs.circle.dto.stage2.Model3CakeDTO;
+import com.fjs.circle.dto.stage2.Model3HistogramDTO;
 import com.fjs.circle.service.Stage2Service;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -21,76 +22,55 @@ import java.util.List;
 
 /**
  * Created by yinzf on 2018/7/26.
- */;
+ */
 @Controller
-@Api(description = "阶段2模块一控制器")
-@RequestMapping("/stage2/v1/one")
-public class ModelOneController {
-    private  static  final Logger logger = LoggerFactory.getLogger(ModelOneController.class);
+@Api(description = "阶段2模块三控制器")
+@RequestMapping("/stage2/v1/three")
+public class ModelThreeController {
+    private  static  final Logger logger = LoggerFactory.getLogger(ModelThreeController.class);
 
     @Autowired
     private Stage2Service stage2Service;
 
-    @ApiOperation(value="模块一总的", notes="模块一总的")
+    @ApiOperation(value="模块三饼图", notes="模块三饼图")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/totalOne", method = RequestMethod.GET)
+    @RequestMapping(value = "/cake", method = RequestMethod.GET)
     @ResponseBody
-    public CircleDTO<List<TotalDTO>> totalOne(){
+    public CircleDTO<List<Model3CakeDTO>> cake(){
         CircleDTO circleDTO = new CircleDTO();
-        List<TotalDTO> totalDTOList = null;
+        List<Model3CakeDTO> model3CakeDTOList = null;
         try{
-            totalDTOList = stage2Service.getTotal();
+            model3CakeDTOList = stage2Service.getModel3Cake();
             circleDTO.setResult(CommonMessage.SUCCESS.getCode());
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
-            logger.error("-------------->totalOne失败",e);
+            logger.error("-------------->cake()失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
-        circleDTO.setData(totalDTOList);
+        circleDTO.setData(model3CakeDTOList);
         return circleDTO;
     }
 
-    @ApiOperation(value="模块一 BD/网络营销", notes="模块一 BD/网络营销")
+    @ApiOperation(value="模块三柱状图", notes="模块三柱状图")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/bd", method = RequestMethod.GET)
+    @RequestMapping(value = "/histogram", method = RequestMethod.GET)
     @ResponseBody
-    public CircleDTO<List<BDDTO>> bd(){
+    public CircleDTO<List<Model3HistogramDTO>> histogram(){
         CircleDTO circleDTO = new CircleDTO();
-        List<BDDTO> bdDTOList = null;
+        List<Model3HistogramDTO> model3HistogramDTOList = null;
         try{
-            bdDTOList = stage2Service.getBD();
+            model3HistogramDTOList = stage2Service.getHistogram();
             circleDTO.setResult(CommonMessage.SUCCESS.getCode());
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
-            logger.error("-------------->bd失败",e);
+            logger.error("-------------->histogram()失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
-        circleDTO.setData(bdDTOList);
-        return circleDTO;
-    }
-
-    @ApiOperation(value="模块一外部环图另一部分", notes="模块一外部环图另一部分")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/totalThree", method = RequestMethod.GET)
-    @ResponseBody
-    public CircleDTO<List<TotalDTO>> totalThree(){
-        CircleDTO circleDTO = new CircleDTO();
-        List<TotalDTO> totalDTOList = null;
-        try{
-            totalDTOList = stage2Service.getTotal();
-            circleDTO.setResult(CommonMessage.SUCCESS.getCode());
-            circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
-        }catch (Exception e){
-            logger.error("-------------->totalThree失败",e);
-            circleDTO.setResult(CommonMessage.FAIL.getCode());
-            circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
-        }
-        circleDTO.setData(totalDTOList);
+        circleDTO.setData(model3HistogramDTOList);
         return circleDTO;
     }
 }
