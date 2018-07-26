@@ -1,8 +1,6 @@
 package com.fjs.circle.mappers;
 
-import com.fjs.circle.dto.stage2.YearCommissionDTO;
-import com.fjs.circle.dto.stage2.YearContractDTO;
-import com.fjs.circle.dto.stage2.YearServiceDTO;
+import com.fjs.circle.dto.stage2.*;
 
 import java.util.List;
 import java.util.Map;
@@ -28,4 +26,8 @@ public interface Stage2Mapper {
     public List<YearContractDTO> getMonthContract(Map<String, Object> paramsMap);
 
     public List<YearCommissionDTO> getMonthCommission(Map<String, Object> paramsMap);
+
+    public List<TotalDTO> getTotal(Map<String, Object> paramsMap);
+
+    public List<BDDTO> getBD(Map<String, Object> paramsMap);
 }

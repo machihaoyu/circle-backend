@@ -1,11 +1,8 @@
 package com.fjs.circle.controller;
 
-import com.fjs.circle.dto.DappOperateCityDDTO;
 import com.fjs.circle.dto.common.CircleDTO;
 import com.fjs.circle.dto.common.CommonMessage;
-import com.fjs.circle.dto.stage2.YearCommissionDTO;
-import com.fjs.circle.dto.stage2.YearContractDTO;
-import com.fjs.circle.dto.stage2.YearServiceDTO;
+import com.fjs.circle.dto.stage2.*;
 import com.fjs.circle.service.Stage2Service;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

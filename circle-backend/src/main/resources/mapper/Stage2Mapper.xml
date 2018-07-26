@@ -90,4 +90,31 @@
         from fangdb.dapp_sub_company_top
         where busi_type=9
     </select>
+
+    <resultMap id="total1ResultMap" type="com.fjs.circle.dto.stage2.TotalDTO">
+        <result column="first_class_desc" property="firstClassDesc" jdbcType="VARCHAR" />
+        <result column="channel_num" property="channelNum" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getTotal" resultMap="total1ResultMap" parameterType="java.util.Map" >
+        select
+         first_class_desc,                -- 一级渠道描述
+         channel_num                      -- 获客数
+    from  fangdb.dapp_channel_customer_fund_summary
+    where busi_type=1
+    </select>
+
+    <resultMap id="bdResultMap" type="com.fjs.circle.dto.stage2.BDDTO">
+        <result column="first_class_desc" property="firstClassDesc" jdbcType="VARCHAR" />
+        <result column="media" property="media" jdbcType="VARCHAR" />
+        <result column="channel_num" property="channelNum" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getBD" resultMap="bdResultMap" parameterType="java.util.Map" >
+        select first_class_desc,   -- 一级渠道描述
+       media,              -- 媒体
+       channel_num         -- 获客数
+        from  fangdb.dapp_channel_customer_fund_summary
+        where busi_type=2
+    </select>
 </mapper>

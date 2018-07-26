@@ -1,8 +1,6 @@
 package com.fjs.circle.service;
 
-import com.fjs.circle.dto.stage2.YearCommissionDTO;
-import com.fjs.circle.dto.stage2.YearContractDTO;
-import com.fjs.circle.dto.stage2.YearServiceDTO;
+import com.fjs.circle.dto.stage2.*;
 import com.fjs.circle.mappers.Stage2Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -118,5 +116,27 @@ public class Stage2Service {
         Map<String, Object> paramsMap = new HashMap<>();
         yearCommissionDTOList = stage2Mapper.getMonthCommission(paramsMap);
         return yearCommissionDTOList;
+    }
+
+    /**
+     * 模块一 总的
+     * @return
+     */
+    public List<TotalDTO> getTotal(){
+        List<TotalDTO> totalDTOList = new ArrayList<>();
+        Map<String, Object> paramsMap = new HashMap<>();
+        totalDTOList = stage2Mapper.getTotal(paramsMap);
+        return totalDTOList;
+    }
+
+    /**
+     * 模块一 BD/网络营销
+     * @return
+     */
+    public List<BDDTO> getBD(){
+        List<BDDTO> bdDTOList = new ArrayList<>();
+        Map<String, Object> paramsMap = new HashMap<>();
+        bdDTOList = stage2Mapper.getBD(paramsMap);
+        return bdDTOList;
     }
 }
