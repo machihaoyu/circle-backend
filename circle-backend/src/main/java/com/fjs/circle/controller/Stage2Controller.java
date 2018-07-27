@@ -1,9 +1,9 @@
 package com.fjs.circle.controller;
 
-import com.fjs.circle.dto.*;
 import com.fjs.circle.dto.common.CircleDTO;
 import com.fjs.circle.dto.common.CommonMessage;
-import com.fjs.circle.service.DappOperateCityDService;
+import com.fjs.circle.dto.stage2.*;
+import com.fjs.circle.service.Stage2Service;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -19,203 +19,205 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- * Created by yinzf on 2018/7/9.
+ * 统计阶段2
+ * Created by yinzf on 2018/7/26.
  */
 @Controller
-@Api(description = "视图1控制器")
-@RequestMapping("/DappOperateCityD/v1")
-public class DappOperateCityDController {
-    private  static  final Logger logger = LoggerFactory.getLogger(DappOperateCityDController.class);
+@Api(description = "阶段2控制器")
+@RequestMapping("/stage2/v1")
+public class Stage2Controller {
+    private  static  final Logger logger = LoggerFactory.getLogger(Stage2Controller.class);
 
     @Autowired
-    private DappOperateCityDService dappOperateCityDService;
+    private Stage2Service stage2Service;
 
-    @ApiOperation(value="城市各个维度数据 - 历史累计", notes="城市各个维度数据 - 历史累计")
+    @ApiOperation(value="年度-签订协议数", notes="年度-签订协议数")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/selectOne", method = RequestMethod.POST)
+    @RequestMapping(value = "/yearService", method = RequestMethod.GET)
     @ResponseBody
-    public CircleDTO<List<DappOperateCityDDTO>> selectOne(){
+    public CircleDTO<List<YearServiceDTO>> yearService(){
         CircleDTO circleDTO = new CircleDTO();
-        List<DappOperateCityDDTO> dappOperateCityDDTOList = null;
+        List<YearServiceDTO> yearServiceDTOList = null;
         try{
-            dappOperateCityDDTOList = dappOperateCityDService.selectOne();
+            yearServiceDTOList = stage2Service.getYearService();
             circleDTO.setResult(CommonMessage.SUCCESS.getCode());
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
-            logger.error("-------------->selectOne查询视图1失败",e);
+            logger.error("-------------->yearService失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
-        circleDTO.setData(dappOperateCityDDTOList);
+        circleDTO.setData(yearServiceDTOList);
         return circleDTO;
     }
 
-    @ApiOperation(value="视图X", notes="视图X")
+    @ApiOperation(value="年度-放款额", notes="年度-放款额")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/selectX", method = RequestMethod.GET)
+    @RequestMapping(value = "/yearContract", method = RequestMethod.GET)
     @ResponseBody
-    public CircleDTO<List<DTO2>> selectX(){
+    public CircleDTO<List<YearContractDTO>> yearContract(){
         CircleDTO circleDTO = new CircleDTO();
-        List<DTO2> dto2List = null;
+        List<YearContractDTO> yearContractDTOList = null;
         try{
-            dto2List = dappOperateCityDService.selectTwo();
+            yearContractDTOList = stage2Service.getContractService();
             circleDTO.setResult(CommonMessage.SUCCESS.getCode());
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
-            logger.error("-------------->selectTwo查询视图2失败",e);
+            logger.error("-------------->contractService失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
-        circleDTO.setData(dto2List);
+        circleDTO.setData(yearContractDTOList);
         return circleDTO;
     }
 
-    @ApiOperation(value="城市各个维度数据 - 年累计(截止到上年年末的年累计)", notes="城市各个维度数据 - 年累计(截止到上年年末的年累计)")
+    @ApiOperation(value="年度-收佣额", notes="年度-收佣额")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/selectTwo", method = RequestMethod.POST)
+    @RequestMapping(value = "/yearCommission", method = RequestMethod.GET)
     @ResponseBody
-    public CircleDTO<List<DappOperateCityDDTO2>> selectTwo(){
+    public CircleDTO<List<YearCommissionDTO>> yearCommission(){
         CircleDTO circleDTO = new CircleDTO();
-        List<DappOperateCityDDTO2> dappOperateCityDDTOList = null;
+        List<YearCommissionDTO> yearCommissionDTOS = null;
         try{
-            dappOperateCityDDTOList = dappOperateCityDService.selectYear();
+            yearCommissionDTOS = stage2Service.getCommissionService();
             circleDTO.setResult(CommonMessage.SUCCESS.getCode());
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
-            logger.error("-------------->selectTwo查询视图2失败",e);
+            logger.error("-------------->commissionService失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
-        circleDTO.setData(dappOperateCityDDTOList);
+        circleDTO.setData(yearCommissionDTOS);
         return circleDTO;
     }
 
-    @ApiOperation(value="历史累计资金渠道放款", notes="历史累计资金渠道放款")
+    @ApiOperation(value="季度-签订协议数", notes="季度-签订协议数")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/historyChannel", method = RequestMethod.GET)
+    @RequestMapping(value = "/seasonService", method = RequestMethod.GET)
     @ResponseBody
-    public CircleDTO<List<ChannelDTO>> selectHistoryChannel(){
+    public CircleDTO<List<YearServiceDTO>> seasonService(){
         CircleDTO circleDTO = new CircleDTO();
-        List<ChannelDTO> channelDTOList = null;
+        List<YearServiceDTO> yearServiceDTOList = null;
         try{
-            channelDTOList = dappOperateCityDService.historyChannel();
+            yearServiceDTOList = stage2Service.getSeasonService();
             circleDTO.setResult(CommonMessage.SUCCESS.getCode());
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
-            logger.error("-------------->selecthistoryChannel查询失败",e);
+            logger.error("-------------->seasonService失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
-        circleDTO.setData(channelDTOList);
+        circleDTO.setData(yearServiceDTOList);
         return circleDTO;
     }
 
-    @ApiOperation(value="年累计资金渠道放款", notes="年累计资金渠道放款")
+    @ApiOperation(value="季度-放款额", notes="季度-放款额")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/yearChannel", method = RequestMethod.GET)
+    @RequestMapping(value = "/seasonContract", method = RequestMethod.GET)
     @ResponseBody
-    public CircleDTO<List<ChannelDTO>> selectYearChannel(){
+    public CircleDTO<List<YearContractDTO>> seasonContract(){
         CircleDTO circleDTO = new CircleDTO();
-        List<ChannelDTO> channelDTOList = null;
+        List<YearContractDTO> yearContractDTOList = null;
         try{
-            channelDTOList = dappOperateCityDService.yearChannel();
+            yearContractDTOList = stage2Service.getSeasonContract();
             circleDTO.setResult(CommonMessage.SUCCESS.getCode());
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
-            logger.error("-------------->selectYearChannel查询失败",e);
+            logger.error("-------------->seasonContract失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
-        circleDTO.setData(channelDTOList);
+        circleDTO.setData(yearContractDTOList);
         return circleDTO;
     }
 
-    @ApiOperation(value="历史累计渠道获客", notes="历史累计渠道获客")
+    @ApiOperation(value="季度-收佣额", notes="季度-收佣额")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/historyMedia", method = RequestMethod.GET)
+    @RequestMapping(value = "/seasonCommission", method = RequestMethod.GET)
     @ResponseBody
-    public CircleDTO<List<CustomerDTO>> selectHistoryMedia(){
+    public CircleDTO<List<YearCommissionDTO>> seasonCommission(){
         CircleDTO circleDTO = new CircleDTO();
-        List<CustomerDTO> customerDTOList = null;
+        List<YearCommissionDTO> yearCommissionDTOS = null;
         try{
-            customerDTOList = dappOperateCityDService.historyMedia();
+            yearCommissionDTOS = stage2Service.getSeasonCommission();
             circleDTO.setResult(CommonMessage.SUCCESS.getCode());
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
-            logger.error("-------------->selecthistoryMedia查询失败",e);
+            logger.error("-------------->seasonCommission失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
-        circleDTO.setData(customerDTOList);
+        circleDTO.setData(yearCommissionDTOS);
         return circleDTO;
     }
 
-    @ApiOperation(value="年累计渠道获客", notes="年累计渠道获客")
+
+    @ApiOperation(value="月度-签订协议数", notes="月度-签订协议数")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/yearMedia", method = RequestMethod.GET)
+    @RequestMapping(value = "/monthService", method = RequestMethod.GET)
     @ResponseBody
-    public CircleDTO<List<CustomerDTO>> selectYearMedia(){
+    public CircleDTO<List<YearServiceDTO>> monthService(){
         CircleDTO circleDTO = new CircleDTO();
-        List<CustomerDTO> customerDTOList = null;
+        List<YearServiceDTO> yearServiceDTOList = null;
         try{
-            customerDTOList = dappOperateCityDService.yearMedia();
+            yearServiceDTOList = stage2Service.getMonthService();
             circleDTO.setResult(CommonMessage.SUCCESS.getCode());
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
-            logger.error("-------------->selectYearMedia查询失败",e);
+            logger.error("-------------->monthService失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
-        circleDTO.setData(customerDTOList);
+        circleDTO.setData(yearServiceDTOList);
         return circleDTO;
     }
 
-    @ApiOperation(value="历史累计获客渠道效率转化前十", notes="历史累计获客渠道效率转化前十")
+    @ApiOperation(value="月度-放款额", notes="月度-放款额")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/historyEfficiency", method = RequestMethod.GET)
+    @RequestMapping(value = "/monthContract", method = RequestMethod.GET)
     @ResponseBody
-    public CircleDTO<List<EfficiencyDTO>> selectHistoryEfficiency(){
+    public CircleDTO<List<YearContractDTO>> monthContract(){
         CircleDTO circleDTO = new CircleDTO();
-        List<EfficiencyDTO> efficiencyDTOList = null;
+        List<YearContractDTO> yearContractDTOList = null;
         try{
-            efficiencyDTOList = dappOperateCityDService.historyEfficiency();
+            yearContractDTOList = stage2Service.getMonthContract();
             circleDTO.setResult(CommonMessage.SUCCESS.getCode());
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
-            logger.error("-------------->selecthistoryEfficiency查询失败",e);
+            logger.error("-------------->monthContract失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
-        circleDTO.setData(efficiencyDTOList);
+        circleDTO.setData(yearContractDTOList);
         return circleDTO;
     }
 
-    @ApiOperation(value="年累计获客渠道效率转化前十", notes="年累计获客渠道效率转化前十")
+    @ApiOperation(value="月度-收佣额", notes="月度-收佣额")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "认证信息", required = true, paramType = "header", defaultValue = "Bearer 467405f6-331c-4914-beb7-42027bf09a01", dataType = "string")})
-    @RequestMapping(value = "/yearEfficiency", method = RequestMethod.GET)
+    @RequestMapping(value = "/monthCommission", method = RequestMethod.GET)
     @ResponseBody
-    public CircleDTO<List<EfficiencyDTO>> selectYearEfficiency(){
+    public CircleDTO<List<YearCommissionDTO>> monthCommission(){
         CircleDTO circleDTO = new CircleDTO();
-        List<EfficiencyDTO> efficiencyDTOList = null;
+        List<YearCommissionDTO> yearCommissionDTOS = null;
         try{
-            efficiencyDTOList = dappOperateCityDService.yearEfficiency();
+            yearCommissionDTOS = stage2Service.getMonthCommission();
             circleDTO.setResult(CommonMessage.SUCCESS.getCode());
             circleDTO.setMessage(CommonMessage.SUCCESS.getCodeDesc());
         }catch (Exception e){
-            logger.error("-------------->selectYearEfficiency查询失败",e);
+            logger.error("-------------->monthCommission失败",e);
             circleDTO.setResult(CommonMessage.FAIL.getCode());
             circleDTO.setMessage(CommonMessage.FAIL.getCodeDesc());
         }
-        circleDTO.setData(efficiencyDTOList);
+        circleDTO.setData(yearCommissionDTOS);
         return circleDTO;
     }
 }

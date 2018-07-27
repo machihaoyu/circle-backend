@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fjs.circle.mappers.Stage2Mapper">
+    <resultMap id="yearServiceResultMap" type="com.fjs.circle.dto.stage2.YearServiceDTO">
+        <id column="rownum" property="rownum" jdbcType="INTEGER" />
+        <result column="sub_company_name" property="subCompanyName" jdbcType="VARCHAR" />
+        <result column="service_contract_num" property="serviceContractNum" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="getYearService" resultMap="yearServiceResultMap" parameterType="java.util.Map" >
+        select  rownum                  -- 年度排名
+       ,sub_company_name        -- 分公司
+       ,service_contract_num    -- 签订协议数
+      from fangdb.dapp_sub_company_top
+      where busi_type=1
+    </select>
+
+    <resultMap id="yearContractResultMap" type="com.fjs.circle.dto.stage2.YearContractDTO">
+        <id column="rownum" property="rownum" jdbcType="INTEGER" />
+        <result column="sub_company_name" property="subCompanyName" jdbcType="VARCHAR" />
+        <result column="give_money" property="giveMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getYearContract" resultMap="yearContractResultMap" parameterType="java.util.Map" >
+        select  rownum                  -- 年度排名
+       ,sub_company_name        -- 分公司
+       ,give_money              -- 放款额
+        from fangdb.dapp_sub_company_top
+        where busi_type=2
+    </select>
+
+    <resultMap id="yearCommissionResultMap" type="com.fjs.circle.dto.stage2.YearCommissionDTO">
+        <id column="rownum" property="rownum" jdbcType="INTEGER" />
+        <result column="sub_company_name" property="subCompanyName" jdbcType="VARCHAR" />
+        <result column="commission_total" property="commissionTotal" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getYearCommission" resultMap="yearCommissionResultMap" parameterType="java.util.Map" >
+        select rownum                   -- 年度排名
+		,sub_company_name           -- 分公司
+		,commission_total		        -- 收佣额
+        from fangdb.dapp_sub_company_top
+        where busi_type=3
+    </select>
+
+    <select id="getSeasonService" resultMap="yearServiceResultMap" parameterType="java.util.Map" >
+        select rownum                   -- 季度排名
+		,sub_company_name		        -- 分公司
+		,service_contract_num	      -- 签订协议数
+        from fangdb.dapp_sub_company_top
+        where busi_type=4
+    </select>
+
+    <select id="getSeasonContract" resultMap="yearContractResultMap" parameterType="java.util.Map" >
+        select  rownum                  -- 年度排名
+        ,sub_company_name        -- 分公司
+        ,give_money              -- 放款额
+        from fangdb.dapp_sub_company_top
+        where busi_type=5
+    </select>
+
+    <select id="getSeasonCommission" resultMap="yearCommissionResultMap" parameterType="java.util.Map" >
+        select rownum                   -- 年度排名
+        ,sub_company_name           -- 分公司
+        ,commission_total		        -- 收佣额
+        from fangdb.dapp_sub_company_top
+        where busi_type=6
+    </select>
+
+    <select id="getMonthService" resultMap="yearServiceResultMap" parameterType="java.util.Map" >
+        select rownum                   -- 季度排名
+        ,sub_company_name		        -- 分公司
+        ,service_contract_num	      -- 签订协议数
+        from fangdb.dapp_sub_company_top
+        where busi_type=7
+    </select>
+
+    <select id="getMonthContract" resultMap="yearContractResultMap" parameterType="java.util.Map" >
+        select  rownum                  -- 年度排名
+        ,sub_company_name        -- 分公司
+        ,give_money              -- 放款额
+        from fangdb.dapp_sub_company_top
+        where busi_type=8
+    </select>
+
+    <select id="getMonthCommission" resultMap="yearCommissionResultMap" parameterType="java.util.Map" >
+        select rownum                   -- 年度排名
+        ,sub_company_name           -- 分公司
+        ,commission_total		        -- 收佣额
+        from fangdb.dapp_sub_company_top
+        where busi_type=9
+    </select>
+
+    <resultMap id="total1ResultMap" type="com.fjs.circle.dto.stage2.TotalDTO">
+        <result column="first_class_desc" property="firstClassDesc" jdbcType="VARCHAR" />
+        <result column="channel_num" property="channelNum" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getTotal" resultMap="total1ResultMap" parameterType="java.util.Map" >
+        select
+         first_class_desc,                -- 一级渠道描述
+         channel_num                      -- 获客数
+    from  fangdb.dapp_channel_customer_fund_summary
+    where busi_type=1
+    </select>
+
+    <resultMap id="bdResultMap" type="com.fjs.circle.dto.stage2.BDDTO">
+        <result column="first_class_desc" property="firstClassDesc" jdbcType="VARCHAR" />
+        <result column="media" property="media" jdbcType="VARCHAR" />
+        <result column="channel_num" property="channelNum" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getBD" resultMap="bdResultMap" parameterType="java.util.Map" >
+        select first_class_desc,   -- 一级渠道描述
+       media,              -- 媒体
+       channel_num         -- 获客数
+        from  fangdb.dapp_channel_customer_fund_summary
+        where busi_type=2
+    </select>
+
+    <select id="getTotal3" resultMap="total1ResultMap" parameterType="java.util.Map" >
+        select
+        first_class_desc,                -- 一级渠道描述
+        channel_num                      -- 获客数
+        from  fangdb.dapp_channel_customer_fund_summary
+        where busi_type=3
+    </select>
+
+    <resultMap id="model2ResultMap" type="com.fjs.circle.dto.stage2.Model2DTO">
+        <result column="financial_instatution_type" property="financialInstatutionType" jdbcType="VARCHAR" />
+        <result column="product_type" property="productType" jdbcType="VARCHAR" />
+        <result column="give_money" property="giveMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getModel2" resultMap="model2ResultMap" parameterType="java.util.Map" >
+        select financial_instatution_type,  -- 放款机构
+       product_type,                -- 产品类型
+       give_money                   -- 放款额
+   from fangdb.dapp_channel_customer_fund_summary
+  where busi_type=4
+    </select>
+
+    <resultMap id="model3CakeResultMap" type="com.fjs.circle.dto.stage2.Model3CakeDTO">
+        <result column="create_year" property="createYear" jdbcType="VARCHAR" />
+        <result column="product_type" property="productType" jdbcType="VARCHAR" />
+        <result column="give_money" property="giveMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getModel3Cake" resultMap="model3CakeResultMap" parameterType="java.util.Map" >
+        select create_year,
+       product_type,     -- 产品类型
+       give_money        -- 放款额
+   from fangdb.dapp_channel_customer_fund_summary
+  where busi_type=5
+    </select>
+
+    <resultMap id="histogramResultMap" type="com.fjs.circle.dto.stage2.Model3HistogramDTO">
+        <result column="create_year" property="createYear" jdbcType="VARCHAR" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="product_type" property="productType" jdbcType="VARCHAR" />
+        <result column="give_money" property="giveMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getHistogram" resultMap="histogramResultMap" parameterType="java.util.Map" >
+        select create_year,  -- 年份
+       city,         -- 城市
+       product_type, -- 产品类型
+       give_money    -- 放款额
+   from fangdb.dapp_channel_customer_fund_summary
+  where busi_type=6
+    </select>
+</mapper>

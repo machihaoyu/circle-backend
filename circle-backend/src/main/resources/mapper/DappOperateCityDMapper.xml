@@ -17,7 +17,7 @@
     <resultMap id="View1ResultMap" type="com.fjs.circle.dto.DappOperateCityDDTO">
         <id column="city_id" property="id" jdbcType="INTEGER" />
         <result column="total_register_num" property="totalRegisterNum" jdbcType="INTEGER" />
-        <result column="total_house_num" property="totalHouseNum" jdbcType="INTEGER" />
+        <result column="house_rate" property="houseRate" jdbcType="INTEGER" />
         <result column="total_plan_money" property="totalPlanMoney" jdbcType="DECIMAL" />
         <result column="total_service_commission" property="totalServiceCommission" jdbcType="DECIMAL" />
         <result column="total_product_num" property="totalProductNum" jdbcType="DECIMAL" />
@@ -26,7 +26,7 @@
     <select id="selectView1" resultMap="View1ResultMap" parameterType="java.util.Map" >
         select city_id,city
         ,sum(register_num)  as total_register_num
-        ,sum(house_num) as total_house_num
+        ,sum(house_num)/sum(register_num)*100 as house_rate -- 客户有房率
         ,sum(plan_money)  as total_plan_money
         ,sum(service_commission) as total_service_commission
         ,sum(product_num) as total_product_num
@@ -200,5 +200,179 @@
         order by useful_rate desc ) a,
         (select @rownum :=0)b
         ) a  where rownum &lt;= 10
+    </select>
+
+    <resultMap id="poleResultMap" type="com.fjs.circle.dto.DTO3">
+        <result column="dayofweek_name" property="dayofweekName" jdbcType="VARCHAR" />
+        <result column="service_num" property="serviceNum" jdbcType="VARCHAR" />
+        <result column="service_contract_num" property="serviceContractNum" jdbcType="VARCHAR" />
+        <result column="contract_num" property="contractNum" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getPole" resultMap="poleResultMap" parameterType="java.util.Map" >
+        select
+         case DAYOFWEEK(create_date) when  1 then '周日'
+                                     when  2 then '周一'
+                                     when  3 then '周二'
+                                     when  4 then '周三'
+                                     when  5 then '周四'
+                                     when  6 then '周五'
+                                     when  7 then '周六'
+          end as dayofweek_name                             -- 星期几
+        , ln(sum(service_num)) as service_num                   -- 注册客户数
+        ,ln(sum(service_contract_num)) as service_contract_num  -- 协议签订数
+        ,ln(sum(contract_num)) as contract_num                  -- 放款合同签订数
+        from fangdb.dapp_operate_d
+        group by DAYOFWEEK(create_date)
+    </select>
+
+    <resultMap id="baseTotalResultMap" type="com.fjs.circle.dto.DTO4">
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="register_num" property="registerNum" jdbcType="VARCHAR" />
+        <result column="plan_money" property="planMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getAllCity" resultMap="baseTotalResultMap" parameterType="java.util.Map" >
+        select
+        city
+        ,sum(register_num)/10000             as register_num
+        ,sum(plan_money)/10000         as plan_money
+        from fangdb.dapp_operate_city_d
+        where city   <![CDATA[!= ]]> '其他'
+        group by city
+    </select>
+
+    <select id="getCity" resultMap="baseTotalResultMap" parameterType="java.util.Map" >
+        select
+            sum(register_num)/10000             as register_num        -- 注册数
+            ,sum(plan_money)/10000         as plan_money         -- 协议放款额(亿)
+            from fangdb.dapp_operate_city_d
+    </select>
+
+    <resultMap id="trendResultMap" type="com.fjs.circle.dto.DTO5">
+        <result column="qu" property="qu" jdbcType="VARCHAR" />
+        <result column="service_num" property="serviceNum" jdbcType="VARCHAR" />
+        <result column="service_commission" property="serviceCommission" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getTrend" resultMap="trendResultMap" parameterType="java.util.Map" >
+        select  CONCAT(YEAR(create_date),'年第',quarter(create_date),'季度') as qu -- 分季度
+               ,sum(service_num)/10000           as service_num           -- 服务客户数(万)
+               ,sum(service_commission)/10000    as service_commission    -- 协议放款额(亿)
+           from fangdb.dapp_operate_d
+         where create_date>='2016-04-01'
+        GROUP BY qu
+    </select>
+
+    <resultMap id="top10ResultMap" type="com.fjs.circle.dto.Top10DTO">
+        <result column="rownum" property="rownum" jdbcType="VARCHAR" />
+        <result column="sub_company_name" property="subCompanyName" jdbcType="VARCHAR" />
+        <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+        <result column="service_contract_num" property="serviceContractNum" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="top10" resultMap="top10ResultMap" parameterType="java.util.Map" >
+        select  rownum                  -- 月度排名
+        ,sub_company_name        -- 分公司
+        ,member_name             -- 巴员名称
+        ,service_contract_num    -- 签订协议数
+        from (
+        select @rownum:=@rownum+1 rownum,a.sub_company_name,member_name,a.service_contract_num
+        from (
+        select
+        sub_company_name,
+        member_name,
+        sum(service_contract_num) as service_contract_num
+        from fangdb.dapp_user_operate_d
+        where quarter(create_date) = quarter( curdate( )) and year(create_date)=year(CURDATE())
+        group by sub_company_name,member_name
+        order by service_contract_num desc ) a,
+        (select @rownum :=0)b
+        ) a
+        where rownum &lt;= 10
+    </select>
+
+    <resultMap id="top16ResultMap" type="com.fjs.circle.dto.Top16DTO">
+        <result column="rownum" property="rownum" jdbcType="VARCHAR" />
+        <result column="sub_company_name" property="subCompanyName" jdbcType="VARCHAR" />
+        <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+        <result column="meet_num" property="meetNum" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="top16" resultMap="top16ResultMap" parameterType="java.util.Map" >
+        select  rownum            -- 周排名
+        ,sub_company_name  -- 分公司
+        ,member_name       -- 巴员名称
+        ,meet_num          -- 面见客户数
+        from (
+        select @rownum:=@rownum+1 rownum,a.sub_company_name,member_name,a.meet_num
+        from (
+        select
+        sub_company_name,
+        member_name,
+        sum(meet_num) as meet_num
+        from fangdb.dapp_user_operate_d
+        where YEARWEEK(create_date) = YEARWEEK(curdate())
+        group by sub_company_name,member_name
+        order by meet_num desc ) a,
+        (select @rownum :=0)b
+        ) a
+        where rownum &lt;= 10
+    </select>
+
+    <resultMap id="top22ResultMap" type="com.fjs.circle.dto.Top22DTO">
+        <result column="rownum" property="rownum" jdbcType="VARCHAR" />
+        <result column="sub_company_name" property="subCompanyName" jdbcType="VARCHAR" />
+        <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+        <result column="communicate_num" property="communicateNum" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="top22" resultMap="top22ResultMap" parameterType="java.util.Map" >
+        select  rownum            -- 日排名
+        ,sub_company_name  -- 分公司
+        ,member_name       -- 巴员名称
+        ,communicate_num   -- 沟通数
+        from (
+        select @rownum:=@rownum+1 rownum,a.sub_company_name,member_name,a.communicate_num
+        from (
+        select
+        sub_company_name,
+        member_name,
+        sum(communicate_num) as communicate_num
+        from fangdb.dapp_user_operate_d
+        where create_date = curdate()
+        group by sub_company_name,member_name
+        order by communicate_num desc ) a,
+        (select @rownum :=0)b
+        ) a
+        where rownum &lt;= 10
+    </select>
+
+    <resultMap id="top5ResultMap" type="com.fjs.circle.dto.Top5DTO">
+        <result column="rownum" property="rownum" jdbcType="VARCHAR" />
+        <result column="sub_company_name" property="subCompanyName" jdbcType="VARCHAR" />
+        <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+        <result column="commission_num" property="commissionNum" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="top5" resultMap="top5ResultMap" parameterType="java.util.Map" >
+        select  rownum            -- 季度排名
+        ,sub_company_name  -- 分公司
+        ,member_name       -- 巴员名称
+        ,commission_num    -- 收佣数
+        from (
+        select @rownum:=@rownum+1 rownum,a.sub_company_name,member_name,a.commission_num
+        from (
+        select
+        sub_company_name,
+        member_name,
+        sum(commission_num) as commission_num
+        from fangdb.dapp_user_operate_d
+        where quarter(create_date) = quarter( curdate( )) and year(create_date)=year(CURDATE())
+        group by sub_company_name,member_name
+        order by commission_num desc,create_date desc ) a,
+        (select @rownum :=0)b
+        ) a
+        where rownum &lt;= 10
     </select>
 </mapper>
