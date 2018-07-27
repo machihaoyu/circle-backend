@@ -28,7 +28,8 @@ ul, ol { list-style: none; }
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-family: hiraginoSansGB W3; }
 img { border: none; }
 h1{
-    font-size: 2vh;
+    font-size: 1.8vh;
+    font-weight: normal;
 }
 
 /*@media screen and (min-width:1000px) and (max-width:2000px) {*/
@@ -60,7 +61,8 @@ h1{
         float: left;
         width: 50%;
         height: 100%;
-        padding-top: 3%
+        padding-top: 3%;
+        position: relative;
     }
     .bigThird {
         float: left;
@@ -83,16 +85,17 @@ h1{
         background-size: 100% 100%;
         position: relative;
     }
+    
     .list5 {
         width: 100%;
-        height: 22%;
-        margin-top:5%;
+        height: 30%;
+        margin-top:1.5%;
         /*height: 22%;*/
     }
     .list6, .list7, .list8, .list9 {
         width: 100%;
         height: 18%;
-        padding-top: 3%;
+        padding-top: 5%;
         padding-left: 5%;
         /*background: blue;*/
         color: aliceblue;
@@ -120,7 +123,22 @@ h1{
         top: 63%;
     }
     /* 第二部分 */
+    .centerTitle{
+        width: 100%;
+        height: 3vh;
+        line-height: 3vh;
+        text-align: center;
+        position: absolute;
+        top: 2vh;
+        font-size: 2.5vh;
+        color: #FFF;
+    }
     /* 4 中心--  地图 */
+    .only{
+        text-shadow: #00e2e3 -2px 1px 0px;
+
+    }
+
     .centerOne {
         width: 100%;
         /*height: 100%;*/
@@ -163,78 +181,40 @@ h1{
     }
     .cityOne {
         left: 0;
-        background: #ff8714;
+        background: #f25e52;
+
     }
     .cityTwo {
+        height: 5vh;
         left: 1.1vh;
-        background: #f25e52;
+        background: #ff8714;
     }
 
     .Beijing {
         top: 4%;
         right: 24%;
     }
-    .BeiList1 {
-        height: 60%;
-    }
-    .BeiList2 {
-        height: 51%;
-    }
-
     .Zhengzhou {
         top: 22%;
         right: 28%;
     }
-    .ZhengList1 {
-        height: 66%;
-    }
-    .ZhengList2 {
-        height: 33%;
-    }
-
     .Shanghai {
         top: 30%;
         right: 12%;
     }
-    .ShangList1 {
-        height: 21%;
-    }
-    .ShangList2 {
-        height: 39%;
-    }
-
     .Hangzhou {
         top: 37%;
         right: 15%;
     }
-    .HangList1 {
-        height: 12%;
-    }
-    .HangList2 {
-        height: 34%;
-    }
-
     .Guangzhou {
         top: 59%;
         right: 28%;
     }
-    .GuangList1 {
-        height: 14%;
-    }
-    .GuangList2 {
-        height: 54%;
-    }
-
     .Shenzhen {
         top: 62%;
         right: 24%;
     }
-    .ShenList1 {
-        height: 55%;
-    }
-    .ShenList2 {
-        height: 55%;
-    }
+
 
     /* 动画 */
     @keyframes animate-height {
@@ -245,50 +225,67 @@ h1{
             visibility: visible;
         }
     }
-    .totalData{
+
+    .centerFont{
+        width: 60%;
+        height: 100%;
+        /*background: red;*/
+        /*background: rgba(255,0,0,0.5);*/
         position: absolute;
-        top:5%;
-        left: 8%;
+        top:2.5%;
+        left: 9%;
+    }
+    .totalData{
+        /*position: absolute;*/
+        /*top:5%;*/
+        /*left: 8%;*/
     }
     .totalSize>li{
-        font-size: 2.2vh;
+        font-size: 2vh;
     }
     .playFont1{
         display: inline-block;
-        width: 1.3vh;
-        height: 1.3vh;
+        width: 1.5vh;
+        height: 1.5vh;
         border-radius: 50%;
-        background: #f25e52;
-
+        /*background: #f25e52;*/
+        background: url("../image/customer.png") center;
+        background-size: cover;
     }
     .playFont2{
         display: inline-block;
-        width: 1.3vh;
-        height: 1.3vh;
+        width: 1.5vh;
+        height: 1.5vh;
         border-radius: 50%;
-        background: #ff8714;
+        /*background: #ff8714;*/
+        background: url("../image/money.png") center;
+        background-size: cover;
+
     }
     .playMoney{
         font-size: 3vh;
         color: #00e2e3;
         font-weight: bold;
     }
-    .playMoney>span{
-        text-align: center;
-        display: inline-block;
-        width: 4vh;
-        height:5vh;
-        line-height: 5vh;
-        background: rgba(255,255,255,0.3);
-        font-weight: bold;
+
+     .regNumber{
+         letter-spacing: 10px;
+         padding: 0 1vh;
+         background: rgba(255,255,255,0.2);
+     }
+    .regMoney{
+        letter-spacing: 10px;
+        padding: 0 1vh;
+        background: rgba(255,255,255,0.2);
     }
 
     .message {
-        width: 50%;
+        /*width: 50%;*/
         /*background: red;*/
-        position: absolute;
-        top: 38%;
-        left: 8%;
+        /*position: absolute;*/
+        /*top: 38%;*/
+        /*left: 8%;*/
+        /*margin-top: 3%;*/
     }
 
     .countSpan {
@@ -297,17 +294,23 @@ h1{
     }
     .importDiv {
         /*margin-top: 50px;*/
-        width:40%;
+        width:30%;
         background: rgba(255,255,255,0.1);
         border-top: 1px solid white;
         display: inline-block;
-        margin: 1.5%;
+        /*margin: 3% 3% 0 0;*/
         padding-left: 5%;
         padding-bottom: 0.2%;
+        margin: 2vh 3vh 0 0 ;
         font-size: 2vh;
     }
+    .bigSecond li {
+        list-style: none;
+        padding: 5px 0;
+        font-size: 1.6vh;
+    }
     .importDiv  span{
-        font-size: 1.8vh;
+        /*font-size: 1.6vh;*/
     }
 
 
@@ -318,18 +321,51 @@ h1{
         height: 100%;
     }
     /* 第三部分 */
-    .p4 {
-        width: 13%;
-        position: absolute;
-        top: 12%;
-    }
     .importantH1{
-        color: white;
-        font-size: 2.3vh;
+    color: white;
+    font-size: 2.2vh;
+}
+    .p4 {
+        width:70%;
+        height:1vh;
+        margin-top: 2%;
     }
+    .lastMoment{
+        /*background: red;*/
+        width: 100%;
+        height: 78%;
+        position: relative;
+        overflow: hidden;
+        color: #00e2e3;
+    }
+    #ul{
+        width: 600%;
+        /*overflow: hidden;*/
+        position: absolute;
+        /*left: 0;*/
+        /*top: 0;*/
+    }
+    #ul>li{
+        padding: 2vh ;
+        float: left;
+    }
+    .oneLi{
+        width: 30vh;
+    }
+    .oneLi>h1{
+        font-size: 2vh;
+        color: white;
+    }
+    .bangUl{
+        margin: 2vh 0;
+    }
+
+
+
+
     .list6 {
         /*padding-left: 5%;*/
-        margin-top: 10%;
+        margin-top: 6%;
         /*border-top: 1.5px dotted #00e2e3;*/
         overflow: hidden;
     }
@@ -346,26 +382,26 @@ h1{
     #content7 {
         margin-top: 6%;
         padding: 1vh 0;
-        height: 50%;
+        height: 60%;
         overflow: hidden;
     }
     #content8 {
         margin-top: 6%;
         padding: 10px 0;
-        height: 50%;
+        height: 60%;
         overflow: hidden;
     }
     #content9 {
         margin-top: 6%;
-        padding: 10px 0;
+        padding: 5px 0;
         height: 50%;
         overflow: hidden;
     }
 
-    li {
+    .bigThird li {
         list-style: none;
         padding: 5px 0;
-        font-size: 1.9vh;
+        font-size: 1.8vh;
     }
     .listSpan {
         display: inline-block;
