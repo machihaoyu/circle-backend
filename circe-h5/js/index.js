@@ -118,7 +118,7 @@ function MyAnimate() {
     to: 0,                 // the number the element should end at
     speed: 2000,           // how long it should take to count between the target numbers
     refreshInterval: 100,  // how often the element should be updated
-    decimals: 3,           // the number of decimal places to show
+    decimals: 2,           // the number of decimal places to show
     formatter: formatter,  // handler for formatting the value before rendering
     onUpdate: null,        // callback method for every time the element is updated
     onComplete: null       // callback method for when the element finishes updating
@@ -226,7 +226,7 @@ function myContrast(first,data,flag) {
         type:'pie',
         selectedMode: 'single',
         radius: [0, '30%'],
-        center : ['39%','50%'],
+        center : ['45%','50%'],
         label: {
           normal: {
             position: 'inner'
@@ -247,7 +247,7 @@ function myContrast(first,data,flag) {
       {
         name:'访问来源',
         type:'pie',
-        center : ['39%','50%'],
+        center : ['45%','50%'],
         radius: ['40%', '55%'],
        /* label: {
           normal: {
@@ -380,8 +380,9 @@ function myRadar(data,xin,di,qi) {
       boundaryGap: [0, 0.01],
       axisLabel: {
         show: true,
+        formatter: '{value}亿',
         interval:0,
-        rotate:40,
+        // rotate:40,
         textStyle: {
           color: '#fff',
           fontSize:8
@@ -591,31 +592,31 @@ function week(data,list2) {
             value: '2016',
             tooltip: {
               formatter: function (params) {
-                return params.name + 'GDP达到又一个高度';
+                return params.name + '达到又一个高度';
               }
             },
             symbol: 'diamond',
-            symbolSize: 18
+            symbolSize: 8
           },
           {
             value: '2017',
             tooltip: {
               formatter: function (params) {
-                return params.name + 'GDP达到又一个高度';
+                return params.name + '达到又一个高度';
               }
             },
             symbol: 'diamond',
-            symbolSize: 18
+            symbolSize: 8
           },
           {
             value: '2018',
             tooltip: {
               formatter: function (params) {
-                return params.name + 'GDP达到又一个高度';
+                return params.name + '达到又一个高度';
               }
             },
             symbol: 'diamond',
-            symbolSize: 18
+            symbolSize: 8
           },
         ],
         label: {
@@ -643,9 +644,13 @@ function week(data,list2) {
       //   },
       // },
       calculable : true,
-     /* grid: {
-        top: 80,
-        bottom: 100,
+      grid: {
+        textStyle:{
+          fontSize:4,
+          color:"#FFF"
+        },
+        // top: 20,
+        bottom: 80,
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -658,7 +663,7 @@ function week(data,list2) {
             }
           }
         }
-      },*/
+      },
       xAxis: [
         {
           type:'category',
@@ -680,15 +685,17 @@ function week(data,list2) {
           name: '放款额（亿元）',
           nameTextStyle:{
             fontSize : 8,
-            color: '#fff',
+            color: '#fff'
           },
+          nameLocation:'middle',
           axisLabel: {
+            inside: true,
             textStyle: {
               color: '#fff',
               fontSize:8
             }
           },
-          splitLine:{show: false},//去除网格线
+          splitLine:{show: false}//去除网格线
         }
       ],
       series: [
@@ -714,7 +721,6 @@ function week(data,list2) {
             fontSize:12
           },
         },
-
         series : [
           {data: dataMap.dataXI['2016']},
           {data: dataMap.dataDI['2016']},
@@ -766,7 +772,7 @@ function week(data,list2) {
 
 // 模块4----  地图+ 设计
 function MyFourth() {
-  var fourthTimer  =setInterval(fourthData,360000);
+  var fourthTimer  =setInterval(fourthData,5000);
 }
 function fourthData() {
     allMoney();
@@ -1137,7 +1143,7 @@ function yearCommissionTop() {
         for(var i =0;i<sixedList.length;i++){
           var yearLi   = document.createElement('li');
           yearLi.className = 'yearLi';
-          yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].commissionTotal +'万' ;
+          yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'  '+ sixedList[i].commissionTotal +'万' ;
           $('.yearCommission').append(yearLi);
         }
       }
@@ -1159,7 +1165,7 @@ function yearContractTop() {
       for(var i =0;i<sixedList.length;i++){
         var yearLi   = document.createElement('li');
         yearLi.className = 'yearLi';
-        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].giveMoney  +'亿';
+        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'  '+ sixedList[i].giveMoney  +'亿';
         $('.yearContract').append(yearLi);
       }
     }
@@ -1181,7 +1187,7 @@ function yearServiceTop() {
       for(var i =0;i<sixedList.length;i++){
         var yearLi   = document.createElement('li');
         yearLi.className = 'yearLi';
-        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].serviceContractNum  +'个' ;
+        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'  '+ sixedList[i].serviceContractNum  +'个' ;
         $('.yearService').append(yearLi);
       }
     }
@@ -1204,7 +1210,7 @@ function seasonCommissionTop() {
       for(var i =0;i<sixedList.length;i++){
         var yearLi   = document.createElement('li');
         yearLi.className = 'yearLi';
-        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].commissionTotal +'万' ;
+        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'  '+ sixedList[i].commissionTotal +'万' ;
         $('#seasonCommission').append(yearLi);
       }
     }
@@ -1226,7 +1232,7 @@ function seasonContractTop() {
       for(var i =0;i<sixedList.length;i++){
         var yearLi   = document.createElement('li');
         yearLi.className = 'yearLi';
-        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].giveMoney +'亿' ;
+        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'  '+ sixedList[i].giveMoney +'亿' ;
         $('#seasonContract').append(yearLi);
       }
     }
@@ -1248,7 +1254,7 @@ function seasonServiceTop() {
       for(var i =0;i<sixedList.length;i++){
         var yearLi   = document.createElement('li');
         yearLi.className = 'yearLi';
-        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].serviceContractNum  +'个';
+        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'  '+ sixedList[i].serviceContractNum  +'个';
         $('#seasonService').append(yearLi);
       }
     }
@@ -1271,7 +1277,7 @@ function monthCommissionTop() {
       for(var i =0;i<sixedList.length;i++){
         var yearLi   = document.createElement('li');
         yearLi.className = 'yearLi';
-        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].commissionTotal  +'万';
+        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'  '+ sixedList[i].commissionTotal  +'万';
         $('#monthCommission').append(yearLi);
       }
     }
@@ -1293,7 +1299,7 @@ function monthContractTop() {
       for(var i =0;i<sixedList.length;i++){
         var yearLi   = document.createElement('li');
         yearLi.className = 'yearLi';
-        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].giveMoney  +'亿';
+        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'  '+ sixedList[i].giveMoney  +'亿';
         $('#monthContract').append(yearLi);
       }
     }
@@ -1315,7 +1321,7 @@ function monthServiceTop() {
       for(var i =0;i<sixedList.length;i++){
         var yearLi   = document.createElement('li');
         yearLi.className = 'yearLi';
-        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].serviceContractNum  +'个';
+        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'  '+ sixedList[i].serviceContractNum  +'个';
         $('#monthService').append(yearLi);
       }
     }
