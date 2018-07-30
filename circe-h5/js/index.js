@@ -209,7 +209,7 @@ function myContrast(first,data,flag) {
       formatter: "{a} <br/>{b}: {c} ({d}%)"
     },
     textStyle:{
-      fontSize:8
+      fontSize: 6
     },
     // legend: {
     //   orient: 'vertical',
@@ -226,7 +226,7 @@ function myContrast(first,data,flag) {
         type:'pie',
         selectedMode: 'single',
         radius: [0, '30%'],
-        center : ['45%','50%'],
+        center : ['48%','50%'],
         label: {
           normal: {
             position: 'inner'
@@ -247,7 +247,7 @@ function myContrast(first,data,flag) {
       {
         name:'访问来源',
         type:'pie',
-        center : ['45%','50%'],
+        center : ['48%','50%'],
         radius: ['40%', '55%'],
        /* label: {
           normal: {
@@ -577,6 +577,7 @@ function week(data,list2) {
   var  coordinates = {
     baseOption: {
       timeline: {
+        show:false,
         // y: 0,
         axisType: 'category',
         // realtime: false,
@@ -644,26 +645,7 @@ function week(data,list2) {
       //   },
       // },
       calculable : true,
-      grid: {
-        textStyle:{
-          fontSize:4,
-          color:"#FFF"
-        },
-        // top: 20,
-        bottom: 80,
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow',
-            label: {
-              show: true,
-              formatter: function (params) {
-                return params.value.replace('\n', '');
-              }
-            }
-          }
-        }
-      },
+
       xAxis: [
         {
           type:'category',
@@ -682,14 +664,15 @@ function week(data,list2) {
       yAxis: [
         {
           type: 'value',
+          // position: 'right',
           name: '放款额（亿元）',
           nameTextStyle:{
-            fontSize : 8,
+            fontSize : 4,
             color: '#fff'
           },
-          nameLocation:'middle',
+          // nameLocation:'middle',
           axisLabel: {
-            inside: true,
+            // inside: true,
             textStyle: {
               color: '#fff',
               fontSize:8
@@ -699,16 +682,43 @@ function week(data,list2) {
         }
       ],
       series: [
-        // {name: 'GDP', type: 'bar'},
-        // {name: '金融', type: 'bar'},
-        // {name: '房地产', type: 'bar'},
-        {name: '信用', type: 'bar'},
-        {name: '抵押', type: 'bar'},
+        {
+          name: '信用',
+          type: 'bar',
+          label : {
+            normal : {
+              // formatter: '{b}:{c}: ({d}%)',
+              textStyle : {
+                fontSize : 6
+              }
+            }
+          }
+        },
+        {name: '抵押',
+          type: 'bar',
+          label : {
+            normal : {
+              // formatter: '{b}:{c}: ({d}%)',
+              textStyle : {
+                fontSize : 6
+              }
+            }
+          },
+        },
         {
           name: '放款占比',
           type: 'pie',
           center: ['70%', '35%'],
           radius: '28%',
+          label : {
+            normal : {
+              // formatter: '{b}:{c}: ({d}%)',
+              textStyle : {
+                fontSize : 6
+              }
+            }
+          },
+
           z: 100
         }
       ]
@@ -726,7 +736,7 @@ function week(data,list2) {
           {data: dataMap.dataDI['2016']},
           {data: [
             {name:L16[0].productType, value:L16[0].giveMoney },
-            {name:L16[1].productType, value:L16[1].giveMoney },
+            {name:L16[1].productType, value:L16[1].giveMoney }
           ]}
         ]
       },
@@ -742,7 +752,7 @@ function week(data,list2) {
           {data: dataMap.dataDI['2017']}, 
           {data: [
             {name:L17[0].productType, value:L17[0].giveMoney },
-            {name:L17[1].productType, value:L17[1].giveMoney },
+            {name:L17[1].productType, value:L17[1].giveMoney }
           ]}
         ]
       },
@@ -759,9 +769,7 @@ function week(data,list2) {
           // {data: [y18Q[0].giveMoney,y18Q[1].giveMoney]},
           {data: [
             {name:L18[0].productType, value:L18[0].giveMoney },
-            {name:L18[2].productType, value:L18[2].giveMoney },
-            // {name:L18[1].productType, value:L18[1].giveMoney },
-            // {name: '其他', value: dataMap.dataQI['2018sum']},
+            {name:L18[2].productType, value:L18[2].giveMoney }
           ]}
         ]
       }
@@ -1053,7 +1061,6 @@ function quarter(data) {
   };
   column.setOption(line);
 }
-
 
 // 第六部分
 function MySixth() {

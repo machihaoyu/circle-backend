@@ -269,14 +269,14 @@ h1{
         font-weight: bold;
     }
     .regNumber{
-         font-size: 5vh;
+         font-size: 6vh;
          letter-spacing: 10px;
          padding: 0 1vh;
          background: rgba(255,255,255,0.2);
         color: #ffcc3f!important;
      }
     .regMoney{
-        font-size: 7vh;
+        font-size: 6vh;
         letter-spacing: 10px;
         padding: 0 1vh;
         background: rgba(255,255,255,0.2);
