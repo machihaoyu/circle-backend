@@ -136,9 +136,8 @@ function MyAnimate() {
 }
 //  第一部分
 function MyFirst() {
-  // 三个小时
-  var firstTimer  =setInterval(firstData1,10800000);
-
+  //  1个小时
+  var firstTimer  =setInterval(firstData1,3600000);
 }
 
 function firstAll() {
@@ -305,7 +304,7 @@ function myContrast(first,data,flag) {
 
 
 function MySecond() {
-  // var timer2  =setInterval(queryData,18000)
+  var timer2  =setInterval(queryData,360000)
   // myRadar();
   queryData();
 }
@@ -368,7 +367,7 @@ function myRadar(data,xin,di,qi) {
         fontSize:4,
         color:'#fff'
       },
-      data: ['信用','抵押','其他']
+      data: ['抵押','信用']
     },
     grid: {
       left: '3%',
@@ -403,20 +402,16 @@ function myRadar(data,xin,di,qi) {
     },
     series: [
       {
-        name: '信用',
-        type: 'bar',
-        data: [xin[0].giveMoney,xin[1].giveMoney,xin[2].giveMoney,xin[3].giveMoney]
-      },
-      {
         name: '抵押',
         type: 'bar',
         data: [di[0].giveMoney,di[1].giveMoney,di[2].giveMoney,di[3].giveMoney]
       },
       {
-        name: '其他',
+        name: '信用',
         type: 'bar',
-        data: [qi[0].giveMoney,qi[1].giveMoney,qi[2].giveMoney]
-      }
+        data: [xin[0].giveMoney,xin[1].giveMoney,xin[2].giveMoney,xin[3].giveMoney]
+      },
+
     ]
   };
   radar.setOption(radarOption);
@@ -771,8 +766,7 @@ function week(data,list2) {
 
 // 模块4----  地图+ 设计
 function MyFourth() {
-  var fourthTimer  =setInterval(fourthData,1000);
-
+  var fourthTimer  =setInterval(fourthData,360000);
 }
 function fourthData() {
     allMoney();
@@ -819,67 +813,124 @@ function playMoney() {
         if(moneyCity[i].city=="北京"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
-          var log = parseInt( planMoney /  registerNum);
           $('.beiSpan')[0].setAttribute ( 'data-to', registerNum);
           $('.beiSpan')[1].setAttribute ( 'data-to', planMoney);
-          if(log >= 5 ){
-            $('.BeiList1')[0].style.height =  6 * 0.6 +'vh';
+          if(planMoney >=  100 ){
             $('.BeiList2')[0].style.height =  7 * 0.6 +'vh';
+          }else if(planMoney> 200){
+            $('.BeiList2')[0].style.height = 7 * 0.8+'vh';
           }
-
+          if( registerNum >20){
+            $('.BeiList1')[0].style.height =  6 * 0.6 +'vh';
+          }else if( registerNum >25){
+            $('.BeiList1')[0].style.height =  6 * 0.8 +'vh';
+          }
         }else if(moneyCity[i].city=="上海"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
-          var log = parseInt( planMoney /  registerNum);
           $('.shangSpan')[0].setAttribute ( 'data-to', registerNum) ;
           $('.shangSpan')[1].setAttribute ( 'data-to', planMoney) ;
-          if(log > 10 ){
-              $('.ShangList1')[0].style.height = 6 * 1 +'vh';
-              $('.ShangList2')[0].style.height = 7 * 1 +'vh';
+          if(planMoney > 230 ){
+              $('.ShangList2')[0].style.height = 7 * 0.8+'vh';
           }
+          if(registerNum > 25){
+            $('.ShangList1')[0].style.height =  6 * 0.8 +'vh';
+          }
+
         }else if(moneyCity[i].city=="广州"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
-          var log =   planMoney /  registerNum;
           $('.guangSpan')[0].setAttribute ( 'data-to', moneyCity[i].registerNum) ;
           $('.guangSpan')[1].setAttribute ( 'data-to', moneyCity[i].planMoney) ;
-          if(log > 0 ){
-            $('.GuangList1')[0].style.height = 6 * 0.25+'vh';
+          if(planMoney > 2 ){
             $('.GuangList2')[0].style.height = 7 * 0.3  +'vh';
+          }else if(planMoney >20 ){
+            $('.GuangList2')[0].style.height = 7 * 0.4  +'vh';
+          }else if(planMoney > 50 ){
+            $('.GuangList2')[0].style.height = 7 * 0.5  +'vh';
+          }else if(planMoney > 100){
+            $('.GuangList2')[0].style.height = 7 * 0.6  +'vh';
+          }else if(planMoney > 200){
+            $('.GuangList2')[0].style.height = 7 * 0.8 +'vh';
           }
-
+          if(registerNum > 5){
+            $('.GuangList1')[0].style.height = 6 * 0.25+'vh';
+          }else if(registerNum > 10){
+            $('.GuangList1')[0].style.height = 6 * 0.3+'vh';
+          }else if(registerNum > 20){
+            $('.GuangList1')[0].style.height = 6 * 0.6+'vh';
+          }else if(registerNum > 25) {
+            $('.GuangList1')[0].style.height =  6 * 0.8+'vh';
+          }
         }else if(moneyCity[i].city=="深圳"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
-          var log =   planMoney /  registerNum;
           $('.shenSpan')[0].setAttribute ( 'data-to', moneyCity[i].registerNum) ;
           $('.shenSpan')[1].setAttribute ( 'data-to', moneyCity[i].planMoney) ;
-          if(log > 5 ){
-            $('.ShenList1')[0].style.height = 6 * 0.3 +'vh';
+          if(planMoney >50){
             $('.ShenList2')[0].style.height = 7 * 0.5 +'vh';
+          }else if(planMoney >100){
+            $('.ShenList2')[0].style.height = 7 * 0.6 +'vh';
+          }else if(planMoney >200){
+            $('.ShenList2')[0].style.height = 7 * 0.8+'vh';
           }
-
+          if(registerNum >10 ){
+            $('.ShenList1')[0].style.height = 6 * 0.3 +'vh';
+          }else if(registerNum >10) {
+            $('.ShenList1')[0].style.height = 6 * 0.4 +'vh';
+          }else if(registerNum >20){
+            $('.ShenList1')[0].style.height = 6 * 0.6 +'vh';
+          }else if(registerNum >25){
+            $('.ShenList1')[0].style.height =  6 * 0.8 +'vh';
+          }
         }else if(moneyCity[i].city=="杭州"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
-          var log =   planMoney /  registerNum;
           $('.hangSpan')[0].setAttribute ( 'data-to', moneyCity[i].registerNum) ;
           $('.hangSpan')[1].setAttribute ( 'data-to', moneyCity[i].planMoney) ;
-          if(log > 10 ){
+          if(registerNum > 5 ){
             $('.HangList1')[0].style.height = 6 * 0.28 +'vh';
+          }else if(registerNum > 10 ){
+            $('.HangList1')[0].style.height = 6 * 0.4 +'vh';
+          }else if(registerNum > 20 ){
+            $('.HangList1')[0].style.height = 6 * 0.6 +'vh';
+          }else if(registerNum > 25 ){
+            $('.HangList1')[0].style.height =  6 * 0.8 +'vh';
+          }
+          if(planMoney > 20){
+            $('.HangList2')[0].style.height = 7 * 0.4 +'vh';
+          }else if(planMoney > 50){
+            $('.HangList2')[0].style.height = 7 * 0.5 +'vh';
+          }else if(planMoney > 100){
             $('.HangList2')[0].style.height = 7 * 0.6 +'vh';
+          }else if(planMoney > 200){
+            $('.HangList2')[0].style.height = 7 * 0.8+'vh';
           }
         }else if(moneyCity[i].city=="郑州"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
-          var log =   planMoney /  registerNum;
           $('.zhengSpan')[0].setAttribute ( 'data-to', moneyCity[i].registerNum) ;
           $('.zhengSpan')[1].setAttribute ( 'data-to', moneyCity[i].planMoney) ;
-          if(log > 0.5 ){
+          if(registerNum > 5 ){
             $('.ZhengList1')[0].style.height = 6 * 0.27 +'vh';
-            $('.ZhengList2')[0].style.height = 7 * 0.35 +'vh';
+          }else if(registerNum > 10){
+            $('.ZhengList1')[0].style.height = 6 * 0.4 +'vh';
+          }else if(registerNum > 20){
+            $('.ZhengList1')[0].style.height = 6 * 0.6 +'vh';
+          }else if(registerNum > 25){
+            $('.ZhengList1')[0].style.height =  6 * 0.8 +'vh';
           }
-
+          if(planMoney > 2){
+            $('.ZhengList2')[0].style.height = 7 * 0.35 +'vh';
+          }else if(planMoney > 20){
+            $('.ZhengList2')[0].style.height = 7 * 0.4 +'vh';
+          }else if(planMoney > 50){
+            $('.ZhengList2')[0].style.height = 7 * 0.5 +'vh';
+          }else if(planMoney > 100){
+            $('.ZhengList2')[0].style.height = 7 * 0.6 +'vh';
+          }else if(planMoney > 200){
+            $('.ZhengList2')[0].style.height = 7 * 0.8+'vh';
+          }
         } else {
           // console.log(moneyCity,'----=-==-')
         }
@@ -891,7 +942,7 @@ function playMoney() {
 
 
 function MyFifth() {
-  var fifthTimer  =setInterval(fifthData,5000);
+  var fifthTimer  =setInterval(fifthData,360000);
 }
 function fifthData() {
   $.ajax({
@@ -937,7 +988,7 @@ function quarter(data) {
       itemGap:5,                                  //图例每项之间的间隔
       itemWidth:15,                               //图例标记的图形宽度
       itemHeight:10,
-      data:['服务客户数','协议放款额'],
+      data:['服务客户数','协议贷款额'],
       textStyle: {
         fontSize:8,
         color: '#FFF'
@@ -987,7 +1038,7 @@ function quarter(data) {
         data:[data[0].serviceNum,data[1].serviceNum,data[2].serviceNum,data[3].serviceNum,data[4].serviceNum,data[5].serviceNum,data[6].serviceNum,data[7].serviceNum,data[8].serviceNum,data[9].serviceNum,]
       },
       {
-        name:'协议放款额',
+        name:'协议贷款额',
         type:'line',
         yAxisIndex: 1,
         data:[data[0].serviceCommission,data[1].serviceCommission,data[2].serviceCommission,data[3].serviceCommission,data[4].serviceCommission,data[5].serviceCommission,data[6].serviceCommission,data[7].serviceCommission,data[8].serviceCommission,data[9].serviceCommission,]
@@ -1001,7 +1052,7 @@ function quarter(data) {
 // 第六部分
 function MySixth() {
   lastData();
-  var  lastTimer =  setInterval(myLast,10000);
+  var  lastTimer =  setInterval(myLast,360000);
 //  定时器   有问题   --
 }
 
@@ -1050,10 +1101,10 @@ function lastData() {
         clearInterval(obj.timer);
         obj.style.left = target + "px";
       }
-    },10);
+    },100);
   }
 
-  var timer = setInterval(autoplay,3000);// 自动轮播
+  var timer = setInterval(autoplay,15000);// 自动轮播
 
   function autoplay(){
     /*自动轮播时,要对播放的张数key进行一个判断,如果播放的张数超过ulLis.length-1,
@@ -1086,7 +1137,7 @@ function yearCommissionTop() {
         for(var i =0;i<sixedList.length;i++){
           var yearLi   = document.createElement('li');
           yearLi.className = 'yearLi';
-          yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].commissionTotal +'亿' ;
+          yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].commissionTotal +'万' ;
           $('.yearCommission').append(yearLi);
         }
       }
@@ -1153,7 +1204,7 @@ function seasonCommissionTop() {
       for(var i =0;i<sixedList.length;i++){
         var yearLi   = document.createElement('li');
         yearLi.className = 'yearLi';
-        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].commissionTotal +'亿' ;
+        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].commissionTotal +'万' ;
         $('#seasonCommission').append(yearLi);
       }
     }
@@ -1220,7 +1271,7 @@ function monthCommissionTop() {
       for(var i =0;i<sixedList.length;i++){
         var yearLi   = document.createElement('li');
         yearLi.className = 'yearLi';
-        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].commissionTotal  +'亿';
+        yearLi.innerHTML = sixedList[i].rownum+'、'+ sixedList[i].subCompanyName+'、'+ sixedList[i].commissionTotal  +'万';
         $('#monthCommission').append(yearLi);
       }
     }

@@ -334,6 +334,7 @@ h1{
         /*background: red;*/
         width: 100%;
         height: 78%;
+        margin-top: 5%;
         position: relative;
         overflow: hidden;
         color: #00e2e3;
@@ -346,7 +347,7 @@ h1{
         /*top: 0;*/
     }
     #ul>li{
-        padding: 2vh ;
+        padding: 3vh ;
         float: left;
     }
     .oneLi{
@@ -359,62 +360,18 @@ h1{
     .bangUl{
         margin: 2vh 0;
     }
+    .bangUl>li{
+        margin: 1%;
+    }
+
 
 
 
-
-    .list6 {
-        /*padding-left: 5%;*/
-        margin-top: 6%;
-        /*border-top: 1.5px dotted #00e2e3;*/
-        overflow: hidden;
-    }
-
-    .title{
-        font-family: hiraginoSansGB W3;
-        font-size: 2vh;
-    }
-    #content6 {
-        margin-top: 5%;
-        height: 70%;
-        overflow: hidden;
-    }
-    #content7 {
-        margin-top: 6%;
-        padding: 1vh 0;
-        height: 60%;
-        overflow: hidden;
-    }
-    #content8 {
-        margin-top: 6%;
-        padding: 10px 0;
-        height: 60%;
-        overflow: hidden;
-    }
-    #content9 {
-        margin-top: 6%;
-        padding: 5px 0;
-        height: 50%;
-        overflow: hidden;
-    }
 
     .bigThird li {
         list-style: none;
         padding: 5px 0;
         font-size: 1.8vh;
-    }
-    .listSpan {
-        display: inline-block;
-        width: 1.3vh;
-        height: 1.3vh;
-        border-radius: 50%;
-        /*background: red;*/
-    }
-    li:nth-child(odd) .listSpan {
-        background: #ff8714;
-    }
-    li:nth-child(even) .listSpan {
-        background: #f25e52;
     }
 
     li span {
