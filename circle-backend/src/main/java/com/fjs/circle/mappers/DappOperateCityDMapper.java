@@ -45,4 +45,13 @@ public interface DappOperateCityDMapper extends MyMapper<DappOperateCityD> {
     public List<Top22DTO> top22(Map<String, Object> paramsMap);
 
     public List<Top5DTO> top5(Map<String, Object> paramsMap);
+
+    //模块五二版
+    List<DTO5V2> selectDTO5V2(Map<String, Object> paramsMap);
+
+    //不区分城市
+    List<NotCityDTO> selectNOTCity(Map<String, Object> paramsMap);
+
+    //区分城市
+    List<CityDTO> selectONCity(Map<String, Object> paramsMap);
 }

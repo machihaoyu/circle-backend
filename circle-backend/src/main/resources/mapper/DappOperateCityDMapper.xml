@@ -375,4 +375,75 @@
         ) a
         where rownum &lt;= 10
     </select>
+
+    <resultMap id="DTO5V2ResultMap" type="com.fjs.circle.dto.DTO5V2">
+        <result column="qu" property="qu" jdbcType="VARCHAR" />
+        <result column="service_num" property="serviceNum" jdbcType="VARCHAR" />
+        <result column="plan_money" property="planMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!--模块五二版-180730-->
+    <select id="selectDTO5V2" resultMap="DTO5V2ResultMap" parameterType="java.util.Map">
+        select  CONCAT(YEAR(create_date),'年第',quarter(create_date),'季度') as qu -- 分季度
+        ,sum(service_num)/10000           as service_num           -- 服务客户数(万)
+        ,sum(plan_money)/10000    as plan_money    -- 协议贷款额(亿)
+        from fangdb.dapp_operate_d
+        where create_date>='2016-04-01'
+        and not( quarter(create_date) = quarter( curdate( )) and year(create_date)=year(CURDATE()))
+        GROUP BY qu
+    </select>
+
+    <resultMap id="NotCityDTOResultMap" type="com.fjs.circle.dto.NotCityDTO">
+        <result column="register_num" property="registerNum" jdbcType="VARCHAR" />
+        <result column="plan_money" property="planMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!--模块4(实时)-->
+    <select id="selectNOTCity" resultMap="NotCityDTOResultMap" parameterType="java.util.Map">
+        select sum(register_num) as register_num,
+        sum(plan_money)  as plan_money
+        from (
+        select 0               as register_num ,
+        sum(plan_money) as plan_money
+        from crm_thea.service_contract  a
+        where a.is_deleted != 1 and  exists(select 1 from  fangdb.base_user b where a.create_user=b.user_id   and b.sub_company_id not in (42,811,0) )
+        union all
+        select count(*)  as register_num,
+        0         as plan_money
+        from crm_cronus.customer_info
+        where is_deleted != 1
+        ) a
+    </select>
+
+    <resultMap id="CityDTOResultMap" type="com.fjs.circle.dto.CityDTO">
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="register_num" property="registerNum" jdbcType="VARCHAR" />
+        <result column="plan_money" property="planMoney" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectONCity" resultMap="CityDTOResultMap" parameterType="java.util.Map">
+        select city,
+        sum(register_num) as register_num,
+        sum(plan_money)  as plan_money
+        from (
+        select b.city          as city,
+        0               as register_num ,
+        sum(plan_money) as plan_money
+        from  crm_thea.service_contract a
+        join fangdb.base_user b on a.create_user=b.user_id   and b.sub_company_id not in (42,811,0)  and b.city  in ('上海','郑州','杭州','深圳','北京','广州')
+        where
+        a.is_deleted != 1
+        group by b.city
+        union all
+        select a.city  as city,
+        count(*) as register_num,
+        0        as plan_money
+        from crm_cronus.customer_info a
+        where
+        a.is_deleted != 1 and a.city  in ('上海','郑州','杭州','深圳','北京','广州')
+        group by a.city
+        ) a
+        group by city
+    </select>
+
 </mapper>
