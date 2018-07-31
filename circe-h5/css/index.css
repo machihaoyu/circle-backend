@@ -160,19 +160,33 @@ h1{
         position: absolute;
     }
     .exampleLine {
+        /*background: url("../image/logo.png");*/
         width: 1.1vh;
+        height: 1.1vh;
         border-radius: 5px 5px 0 0;
         display: inline-flex;
-        visibility: hidden;
-        animation: animate-height 2s;
-        animation-fill-mode: forwards;
+        /*visibility: hidden;*/
+        /*animation: animate-height 2s;*/
+        /*animation-fill-mode: forwards;*/
+
     }
+    .cityT{
+        background: url("../image/logo.png") ;
+        background-position: center;
+        background-size: cover;
+        width: 3vh;
+        height: 3vh;
+    }
+
+
+
     .AllName {
         width: 3vh;
         position: absolute;
         bottom: -1.5vh;
         color: white;
         font-size: 1.3vh;
+        text-align: center;
 
     }
     .City > div {
@@ -181,7 +195,7 @@ h1{
     }
     .cityOne {
         left: 0;
-        background: #f25e52;
+        background: url("../image/logo.png");
 
     }
     .cityTwo {
@@ -264,10 +278,17 @@ h1{
 
     }
     .playMoney{
-        font-size: 3vh;
-        color: #00e2e3;
+        /*font-size: 3vh;*/
+        /*color: #00e2e3;*/
+        display: inline-block;
         font-weight: bold;
+        font-size: 4vh;
+        letter-spacing: 10px;
+        /*padding: 0 1vh;*/
+        background: rgba(255,255,255,0.2);
+        color: #ffcc3f!important;
     }
+
     .regNumber{
          font-size: 6vh;
          letter-spacing: 10px;
@@ -379,8 +400,25 @@ h1{
         color: #00e2e3;
     }
 
+.beiSpan{
+    display: inline-block;
+}
 
 
+/* 数字  滚动 。。。。。 */
 
+.clearfix:after {visibility: hidden;display: block;font-size: 0;content: ".";clear: both;height: 0;}
+* html .clearfix {zoom: 1;}
+*:first-child + html .clearfix {zoom: 1;}
+.fl {	float:left;}
+.fr {	float:right;}
+.none{	display:none;}
 
+.inrow{font-size:0;[;font-size:12px;];*font-size:0;font-family:arial;[;letter-spacing:-3px;];*letter-spacing:normal;*word-spacing:-1px;}
+.inrow>li,.inrow span{display:inline-block;*display:inline;*zoom:1;font-size:14px;letter-spacing:normal;word-spacing:normal; }
+.dataNums{  }
+.dataNums .dataOne{ width:61px; height:75px; margin: 0px 3px; text-align: center!important; background: url(../image/num-bg.png) no-repeat;}
+.dataNums .dataBoc {position: relative; width: 100%; height: 100%; overflow: hidden;}
+.dataNums .dataBoc .tt {position: absolute; top: 0;  left: 0; width: 100%;  height: 100%;}
+.dataNums .tt span{width:100%;height:100%; font:bold 54px/75px "Arial";color:#ddf0ff;text-align: center}
 

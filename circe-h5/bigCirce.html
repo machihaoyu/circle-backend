@@ -7,9 +7,13 @@
     <!--<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>-->
     <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>-->
     <!--<script src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>-->
-    <script src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!--<script type="text/javascript" src="js/number.js"></script>-->
+    <script type="text/javascript" src="js/jquery.countup.js"></script>
+    <script type="text/javascript" src="js/jquery.waypoints.min.js"></script>
+
     <script type="text/javascript" src="js/index.js"></script>
-    <script src="./js/echarts.js"></script>
+    <script type="text/javascript" src="./js/echarts.js"></script>
 </head>
 <body>
 <div class='all'>
@@ -41,33 +45,27 @@
 
                 </div>
                 <div class="Beijing City">
-                    <div class="exampleLine cityOne BeiList1"></div>
-                    <div class="exampleLine cityTwo BeiList2"></div>
+                    <div class="cityT"></div>
                     <p class="AllName">北京</p>
                 </div>
                 <div class="Zhengzhou City">
-                    <div class="exampleLine cityOne ZhengList1"></div>
-                    <div class="exampleLine cityTwo ZhengList2"></div>
+                    <div class="cityT"></div>
                     <p class="AllName">郑州</p>
                 </div>
                 <div class="Shanghai City">
-                    <div class="exampleLine cityOne ShangList1"></div>
-                    <div class="exampleLine cityTwo ShangList2"></div>
+                    <div class="cityT"></div>
                     <p class="AllName">上海</p>
                 </div>
                 <div class="Hangzhou City">
-                    <div class="exampleLine cityOne HangList1"></div>
-                    <div class="exampleLine cityTwo HangList2"></div>
+                    <div class="cityT"></div>
                     <p class="AllName">杭州</p>
                 </div>
                 <div class="Guangzhou City">
-                    <div class="exampleLine cityOne GuangList1"></div>
-                    <div class="exampleLine cityTwo GuangList2"></div>
+                    <div class="cityT"></div>
                     <p class="AllName">广州</p>
                 </div>
                 <div class="Shenzhen City">
-                    <div class="exampleLine cityOne ShenList1"></div>
-                    <div class="exampleLine cityTwo ShenList2"></div>
+                    <div class="cityT"></div>
                     <p class="AllName">深圳</p>
                 </div>
             </div>
@@ -76,19 +74,17 @@
                     <div class="totalSize">
                         <li>
                             <span class="playFont1"></span>
-                            <span>服务客户数(万)</span>
+                            <span>服务客户数(个)</span>
                         </li>
                         <div class="playMoney" id="regNum">
-                            <sapn class="countSpan regNumber" data-decimals="3"></sapn>
-                            <!--<span> 万</span>-->
+                            <div id="dataNums" class=""></div>
                         </div>
                         <li>
                             <span class="playFont2"></span>
-                            <span>协议贷款额(亿)</span>
+                            <span>协议贷款额(万)</span>
                         </li>
                         <div class="playMoney" id="moneyNum">
-                            <sapn class="countSpan regMoney" data-decimals="4"></sapn>
-                            <!--<span> 亿</span>-->
+                            <div id="dataNums2"></div>
                         </div>
                     </div>
                 </div>
@@ -98,12 +94,14 @@
                             <h1 style="color: white">北京</h1>
                             <li>
                                 <span class="playFont1"></span>
-                                <span class="countSpan beiSpan"></span>
+                                <span class="countSpan beiSpan" id="beiSpan1"></span>
+                                <!--<div class="beiSpan" id="beiSpan1"></div>-->
                                 <!--<span>万</span>-->
                             </li>
                             <li>
                                 <span class="playFont2"></span>
-                                <sapn class="countSpan beiSpan" data-speed="2000"></sapn>
+                                <sapn class="countSpan beiSpan" id="beiSpan2"></sapn>
+                                <!--<div class="beiSpan"></div>-->
                                 <!--<span>亿</span>-->
                             </li>
                         </div>

@@ -9,7 +9,7 @@ window.onload =function () {
   queryData(true);
   //  第三部分 ----
   var weekList = [];
-  thirdData();
+  // thirdData();
   // 第四部分  ----
   fourthData(true);
   // 第五部分  -----
@@ -21,7 +21,7 @@ window.onload =function () {
 
   //  所有数据 定时刷新
   ALL();
-  MyAnimate();
+  // MyAnimate();
 
 }
 
@@ -38,14 +38,12 @@ window.onload =function () {
 // });
 
 function ALL() {
-
   MyFirst();
   MySecond();
-  MyThird();
+  // MyThird();
   MyFourth();
   MyFifth();
   MySixth();
-
 }
 
 //  数字滚动
@@ -392,7 +390,7 @@ function myRadar(data,xin,di,qi) {
     },
     yAxis: {
       type: 'category',
-      data: ['其他','小贷','民间','银行'],
+      data: ['小贷','银行'],
       axisLabel: {
         interval:0,
         textStyle: {
@@ -405,13 +403,18 @@ function myRadar(data,xin,di,qi) {
       {
         name: '抵押',
         type: 'bar',
-        data: [di[0].giveMoney,di[1].giveMoney,di[2].giveMoney,di[3].giveMoney]
+        data: [di[0].giveMoney,di[1].giveMoney,]
       },
       {
         name: '信用',
         type: 'bar',
-        data: [xin[0].giveMoney,xin[1].giveMoney,xin[2].giveMoney,xin[3].giveMoney]
+        data: [xin[0].giveMoney,xin[1].giveMoney,]
       },
+      // {
+      //   name: '其他',
+      //   type: 'bar',
+      //   data: [qi[0].giveMoney,qi[1].giveMoney]
+      // },
 
     ]
   };
@@ -451,49 +454,51 @@ function thirdData2() {
     success: function (data) {
       var list2 = data.data;
       week(weekList,list2);
-
     }
-
   })
 }
 function week(data,list2) {
   //  柱形图
-  var y16 = [],y17 =[] ,y18 =[] , y16X =[] ,y16D =[],y17X =[] ,y17D =[],y18X =[] ,y18D =[] ,y18Q =[];
+  var yShang = [],yBei =[] ,yGuang =[] , yShen =[] ,yHang =[],yZheng =[] ;
   for(var i=0;i<data.length;i++){
-    if(data[i].createYear =='2016'){
-      y16.push(data[i]);
-    }else if(data[i].createYear =='2017'){
-      y17.push(data[i]);
-    }else if(data[i].createYear =='2018'){
-      y18.push(data[i]);
+    if(data[i].city =='上海'){
+      yShang.push(data[i]);
+    }else if(data[i].city =='北京'){
+      yBei.push(data[i]);
+    }else if(data[i].city =='广州'){
+      yGuang.push(data[i]);
+    }else if(data[i].city =='深圳'){
+      yShen.push(data[i]);
+    }else if(data[i].city =='杭州'){
+      yHang.push(data[i]);
+    }else if(data[i].city =='郑州'){
+      yZheng.push(data[i]);
     }else {
       console.log(data[i]);
     }
   }
+ var yShangX = [],yShangD =[], yBeiX=[],yBeiD=[] , yGuangX=[],yGuang=[], yShenX=[],yShenD=[],yHangX=[] ,yHangX=[],yZhengX=[],yZheng=[];
 
-  for(var j=0;j<y16.length;j++){
-    if(y16[j].productType == '信用'){
-      y16X.push(y16[j]);
+  for(var j=0;j<yShang.length;j++){
+    if(yShang[j].productType == '信用'){
+      yShangX.push(yShang[j]);
     }else {
-      y16D.push(y16[j]);
+      yShangD.push(yShang[j]);
     }
   }
-  for(var j=0;j<y17.length;j++){
-    if(y17[j].productType == '信用'){
-      y17X.push(y17[j]);
+  console.log(yShangX,'-=-=-=',yShangD);
+
+   for(var j=0;j<yBei.length;j++){
+    if(yBei[j].productType == '信用'){
+      yBeiX.push(yBei[j]);
     }else {
-      y17D.push(y17[j]);
+      yBeiD.push(yBei[j]);
     }
   }
-  for(var j=0;j<y18.length;j++){
-    if(y18[j].productType == '信用'){
-      y18X.push(y18[j]);
-    }else if(y18[j].productType == '其他'){
-      y18Q.push(y18[j]);
-    }else {
-      y18D.push(y18[j]);
-    }
-  }
+  console.log(yBeiX,'=',yBeiX)
+
+
+
   //   饼图 --部分
   var L16 =[], L17 =[], L18 =[];
   for(var i=0;i<list2.length;i++){
@@ -512,7 +517,8 @@ function week(data,list2) {
   var polarp = echarts.init(document.getElementById('polarp'));
   var dataMap = {};
   function dataFormatter(obj) {
-    var pList = ['上海','北京','广州','杭州','深圳','郑州'];
+    // var pList = ['上海','北京','广州','杭州','深圳','郑州'];
+    var pList = ['2016','2017','2018'];
     var temp;
     for (var year = 2016; year <= 2018; year++) {
       var max = 0;
@@ -539,9 +545,12 @@ function week(data,list2) {
   // });
   dataMap.dataXI = dataFormatter({
     //max : 4000,
-    2016:[y16X[0].giveMoney,y16X[1].giveMoney,y16X[2].giveMoney,y16X[3].giveMoney,y16X[4].giveMoney,y16X[5].giveMoney],
-    2017:[y17X[0].giveMoney,y17X[1].giveMoney,y17X[2].giveMoney,y17X[3].giveMoney,y17X[4].giveMoney,y17X[5].giveMoney],
-    2018:[y18X[0].giveMoney,y18X[1].giveMoney,y18X[2].giveMoney,y18X[3].giveMoney,y18X[4].giveMoney,y18X[5].giveMoney]
+    // 2016:[yShangD[0].giveMoney,yShangX[0].giveMoney,yShangD[1].giveMoney,yShangX[1].giveMoney,yShangD[2].giveMoney,yShangX[2].giveMoney ],
+    // 2017:[yBeiD[0].giveMoney,yBeiX[0].giveMoney,yBeiD[1].giveMoney,yBeiX[1].giveMoney,yBeiD[2].giveMoney,yBeiX[2].giveMoney, ]
+
+    // 2016:[y16X[0].giveMoney,y16X[1].giveMoney,y16X[2].giveMoney,y16X[3].giveMoney,y16X[4].giveMoney,y16X[5].giveMoney],
+    // 2017:[y17X[0].giveMoney,y17X[1].giveMoney,y17X[2].giveMoney,y17X[3].giveMoney,y17X[4].giveMoney,y17X[5].giveMoney],
+    // 2018:[y18X[0].giveMoney,y18X[1].giveMoney,y18X[2].giveMoney,y18X[3].giveMoney,y18X[4].giveMoney,y18X[5].giveMoney]
   });
   dataMap.dataDI = dataFormatter({
     //max : 26600,
@@ -667,7 +676,8 @@ function week(data,list2) {
           // position: 'right',
           name: '放款额（亿元）',
           nameTextStyle:{
-            fontSize : 4,
+            fontSize :3,
+            margin:10,
             color: '#fff'
           },
           // nameLocation:'middle',
@@ -726,53 +736,53 @@ function week(data,list2) {
     options: [
       {
         title : {
-          text: '2016年 放款机构对比',
+          text: '上海 放款机构对比',
           textStyle:{
             fontSize:12
           },
         },
         series : [
           {data: dataMap.dataXI['2016']},
-          {data: dataMap.dataDI['2016']},
-          {data: [
-            {name:L16[0].productType, value:L16[0].giveMoney },
-            {name:L16[1].productType, value:L16[1].giveMoney }
-          ]}
+          // {data: dataMap.dataDI['2016']},
+          // {data: [
+          //   {name:L16[0].productType, value:L16[0].giveMoney },
+          //   {name:L16[1].productType, value:L16[1].giveMoney }
+          // ]}
         ]
       },
-      {
-        title : {
-          text: '2017年 放款机构对比',
-          textStyle:{
-            fontSize:12
-          },
-        },
-        series : [ 
-          {data: dataMap.dataXI['2017']},
-          {data: dataMap.dataDI['2017']}, 
-          {data: [
-            {name:L17[0].productType, value:L17[0].giveMoney },
-            {name:L17[1].productType, value:L17[1].giveMoney }
-          ]}
-        ]
-      },
-      {
-        title : {
-          text: '2018年 放款机构对比',
-          textStyle:{
-            fontSize:12
-          },
-        },
-        series : [
-          {data: dataMap.dataXI['2018']},
-          {data: dataMap.dataDI['2018']},
-          // {data: [y18Q[0].giveMoney,y18Q[1].giveMoney]},
-          {data: [
-            {name:L18[0].productType, value:L18[0].giveMoney },
-            {name:L18[2].productType, value:L18[2].giveMoney }
-          ]}
-        ]
-      }
+      // {
+      //   title : {
+      //     text: '北京 放款机构对比',
+      //     textStyle:{
+      //       fontSize:12
+      //     },
+      //   },
+      //   series : [
+      //     {data: dataMap.dataXI['2017']},
+      //     {data: dataMap.dataDI['2017']},
+      //     {data: [
+      //       {name:L17[0].productType, value:L17[0].giveMoney },
+      //       {name:L17[1].productType, value:L17[1].giveMoney }
+      //     ]}
+      //   ]
+      // },
+      // {
+      //   title : {
+      //     text: '广州 放款机构对比',
+      //     textStyle:{
+      //       fontSize:12
+      //     },
+      //   },
+      //   series : [
+      //     {data: dataMap.dataXI['2018']},
+      //     {data: dataMap.dataDI['2018']},
+      //     // {data: [y18Q[0].giveMoney,y18Q[1].giveMoney]},
+      //     {data: [
+      //       {name:L18[0].productType, value:L18[0].giveMoney },
+      //       {name:L18[2].productType, value:L18[2].giveMoney }
+      //     ]}
+      //   ]
+      // }
     ]
   };
   polarp.setOption(coordinates);
@@ -780,7 +790,7 @@ function week(data,list2) {
 
 // 模块4----  地图+ 设计
 function MyFourth() {
-  var fourthTimer  =setInterval(fourthData,5000);
+  var fourthTimer  =setInterval(fourthData,1000000);
 }
 function fourthData() {
     allMoney();
@@ -788,7 +798,7 @@ function fourthData() {
 }
 function allMoney() {
   $.ajax({
-    url: 'http://192.168.1.124:1480/selectCity',
+    url: 'http://192.168.1.124:1480/queryNotCity',
     type: "GET",
     async:false,
     crossDomain: true,
@@ -800,12 +810,23 @@ function allMoney() {
       var moneyAnd = data.data;
       // planMoney  "817.672939"
       // registerNum "103.2066"
-      var  registerNum = moneyAnd[0].registerNum;
-      var  planMoney = moneyAnd[0].planMoney;
-      console.log(moneyAnd[0].registerNum,moneyAnd[0].planMoney)
-      $('.regNumber')[0].setAttribute( 'data-to',registerNum);
+      var  registerNum = moneyAnd[0].registerNum ;
+      var  planMoney = moneyAnd[0].planMoney ;
 
-      $('.regMoney')[0].setAttribute( 'data-to',planMoney);
+      var dataNums = document.getElementById('dataNums');
+      var dataNums2 = document.getElementById('dataNums2');
+      dataNums.innerHTML = formatCurrency(registerNum);
+      dataNums2.innerHTML = formatCurrency(planMoney);
+      $("#dataNums").countUp();
+      $("#dataNums2").countUp();
+
+      // $("#dataNums").rollNum({
+      //   deVal:registerNum
+      // });
+      // $("#dataNums2").rollNum({
+      //   deVal:planMoney
+      // });
+
 
     }
 
@@ -813,7 +834,7 @@ function allMoney() {
 }
 function playMoney() {
   $.ajax({
-    url: 'http://192.168.1.124:1480/selectAllCity',
+    url: 'http://192.168.1.124:1480/queryCity',
     type: "GET",
     crossDomain: true,
     async:false,
@@ -825,129 +846,72 @@ function playMoney() {
       var moneyCity = data.data;
       for(var i=0;i<moneyCity.length;i++){
         if(moneyCity[i].city=="北京"){
-          var registerNum =  moneyCity[i].registerNum;
-          var planMoney =  moneyCity[i].planMoney;
-          $('.beiSpan')[0].setAttribute ( 'data-to', registerNum);
-          $('.beiSpan')[1].setAttribute ( 'data-to', planMoney);
-          if(planMoney >=  100 ){
-            $('.BeiList2')[0].style.height =  7 * 0.6 +'vh';
-          }else if(planMoney> 200){
-            $('.BeiList2')[0].style.height = 7 * 0.8+'vh';
-          }
-          if( registerNum >20){
-            $('.BeiList1')[0].style.height =  6 * 0.6 +'vh';
-          }else if( registerNum >25){
-            $('.BeiList1')[0].style.height =  6 * 0.8 +'vh';
-          }
+          var registerNum =  moneyCity[i].registerNum ;
+          var planMoney =  moneyCity[i].planMoney ;
+          var beiSpan = document.getElementById('beiSpan1');
+          var beiSpan2 = document.getElementById('beiSpan2');
+          beiSpan.innerHTML = formatCurrency(registerNum);
+          beiSpan2.innerText = formatCurrency(planMoney);
+          // $("#beiSpan1").countUp();
+          // $("#beiSpan2").countUp();
+
+          // $('.beiSpan')[0].setAttribute ( 'data-to', registerNum);
+          // $('.beiSpan')[1].setAttribute ( 'data-to', planMoney);
+
+
         }else if(moneyCity[i].city=="上海"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
-          $('.shangSpan')[0].setAttribute ( 'data-to', registerNum) ;
-          $('.shangSpan')[1].setAttribute ( 'data-to', planMoney) ;
-          if(planMoney > 230 ){
-              $('.ShangList2')[0].style.height = 7 * 0.8+'vh';
-          }
-          if(registerNum > 25){
-            $('.ShangList1')[0].style.height =  6 * 0.8 +'vh';
-          }
+
+          var shangSpan = document.getElementsByClassName('shangSpan')[0];
+          var shangSpan2 = document.getElementsByClassName('shangSpan')[1];
+          shangSpan.innerHTML = formatCurrency(registerNum);
+          shangSpan2.innerHTML = formatCurrency(planMoney);
+          // $(".shangSpan").countUp();
 
         }else if(moneyCity[i].city=="广州"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
-          $('.guangSpan')[0].setAttribute ( 'data-to', moneyCity[i].registerNum) ;
-          $('.guangSpan')[1].setAttribute ( 'data-to', moneyCity[i].planMoney) ;
-          if(planMoney > 2 ){
-            $('.GuangList2')[0].style.height = 7 * 0.3  +'vh';
-          }else if(planMoney >20 ){
-            $('.GuangList2')[0].style.height = 7 * 0.4  +'vh';
-          }else if(planMoney > 50 ){
-            $('.GuangList2')[0].style.height = 7 * 0.5  +'vh';
-          }else if(planMoney > 100){
-            $('.GuangList2')[0].style.height = 7 * 0.6  +'vh';
-          }else if(planMoney > 200){
-            $('.GuangList2')[0].style.height = 7 * 0.8 +'vh';
-          }
-          if(registerNum > 5){
-            $('.GuangList1')[0].style.height = 6 * 0.25+'vh';
-          }else if(registerNum > 10){
-            $('.GuangList1')[0].style.height = 6 * 0.3+'vh';
-          }else if(registerNum > 20){
-            $('.GuangList1')[0].style.height = 6 * 0.6+'vh';
-          }else if(registerNum > 25) {
-            $('.GuangList1')[0].style.height =  6 * 0.8+'vh';
-          }
+          var guangSpan = document.getElementsByClassName('guangSpan')[0];
+          var guangSpan2 = document.getElementsByClassName('guangSpan')[1];
+          guangSpan.innerHTML = formatCurrency(registerNum);
+          guangSpan2.innerHTML = formatCurrency(planMoney);
+          // $(".guangSpan").countUp();
+
         }else if(moneyCity[i].city=="深圳"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
-          $('.shenSpan')[0].setAttribute ( 'data-to', moneyCity[i].registerNum) ;
-          $('.shenSpan')[1].setAttribute ( 'data-to', moneyCity[i].planMoney) ;
-          if(planMoney >50){
-            $('.ShenList2')[0].style.height = 7 * 0.5 +'vh';
-          }else if(planMoney >100){
-            $('.ShenList2')[0].style.height = 7 * 0.6 +'vh';
-          }else if(planMoney >200){
-            $('.ShenList2')[0].style.height = 7 * 0.8+'vh';
-          }
-          if(registerNum >10 ){
-            $('.ShenList1')[0].style.height = 6 * 0.3 +'vh';
-          }else if(registerNum >10) {
-            $('.ShenList1')[0].style.height = 6 * 0.4 +'vh';
-          }else if(registerNum >20){
-            $('.ShenList1')[0].style.height = 6 * 0.6 +'vh';
-          }else if(registerNum >25){
-            $('.ShenList1')[0].style.height =  6 * 0.8 +'vh';
-          }
+          var shenSpan = document.getElementsByClassName('shenSpan')[0];
+          var shenSpan2 = document.getElementsByClassName('shenSpan')[1];
+          shenSpan.innerHTML = formatCurrency(registerNum);
+          shenSpan2.innerHTML = formatCurrency(planMoney);
+          // $(".shenSpan").countUp();
+
         }else if(moneyCity[i].city=="杭州"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
-          $('.hangSpan')[0].setAttribute ( 'data-to', moneyCity[i].registerNum) ;
-          $('.hangSpan')[1].setAttribute ( 'data-to', moneyCity[i].planMoney) ;
-          if(registerNum > 5 ){
-            $('.HangList1')[0].style.height = 6 * 0.28 +'vh';
-          }else if(registerNum > 10 ){
-            $('.HangList1')[0].style.height = 6 * 0.4 +'vh';
-          }else if(registerNum > 20 ){
-            $('.HangList1')[0].style.height = 6 * 0.6 +'vh';
-          }else if(registerNum > 25 ){
-            $('.HangList1')[0].style.height =  6 * 0.8 +'vh';
-          }
-          if(planMoney > 20){
-            $('.HangList2')[0].style.height = 7 * 0.4 +'vh';
-          }else if(planMoney > 50){
-            $('.HangList2')[0].style.height = 7 * 0.5 +'vh';
-          }else if(planMoney > 100){
-            $('.HangList2')[0].style.height = 7 * 0.6 +'vh';
-          }else if(planMoney > 200){
-            $('.HangList2')[0].style.height = 7 * 0.8+'vh';
-          }
+          var hangSpan = document.getElementsByClassName('hangSpan')[0];
+          var hangSpan2 = document.getElementsByClassName('hangSpan')[1];
+          hangSpan.innerHTML = formatCurrency(registerNum);
+          hangSpan2.innerHTML = formatCurrency(planMoney);
+          // $(".hangSpan").countUp();
+
+
+
         }else if(moneyCity[i].city=="郑州"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
-          $('.zhengSpan')[0].setAttribute ( 'data-to', moneyCity[i].registerNum) ;
-          $('.zhengSpan')[1].setAttribute ( 'data-to', moneyCity[i].planMoney) ;
-          if(registerNum > 5 ){
-            $('.ZhengList1')[0].style.height = 6 * 0.27 +'vh';
-          }else if(registerNum > 10){
-            $('.ZhengList1')[0].style.height = 6 * 0.4 +'vh';
-          }else if(registerNum > 20){
-            $('.ZhengList1')[0].style.height = 6 * 0.6 +'vh';
-          }else if(registerNum > 25){
-            $('.ZhengList1')[0].style.height =  6 * 0.8 +'vh';
-          }
-          if(planMoney > 2){
-            $('.ZhengList2')[0].style.height = 7 * 0.35 +'vh';
-          }else if(planMoney > 20){
-            $('.ZhengList2')[0].style.height = 7 * 0.4 +'vh';
-          }else if(planMoney > 50){
-            $('.ZhengList2')[0].style.height = 7 * 0.5 +'vh';
-          }else if(planMoney > 100){
-            $('.ZhengList2')[0].style.height = 7 * 0.6 +'vh';
-          }else if(planMoney > 200){
-            $('.ZhengList2')[0].style.height = 7 * 0.8+'vh';
-          }
+          var zhengSpan = document.getElementsByClassName('zhengSpan')[0];
+          var zhengSpan2 = document.getElementsByClassName('zhengSpan')[1];
+          zhengSpan.innerHTML = formatCurrency(registerNum);
+          zhengSpan2.innerHTML = formatCurrency(planMoney);
+          // $(".hangSpan").countUp();
+
         } else {
           // console.log(moneyCity,'----=-==-')
         }
+
+        $(".countSpan").countUp();
       }
       // detailMoney(moneyCity);
     }
@@ -960,7 +924,7 @@ function MyFifth() {
 }
 function fifthData() {
   $.ajax({
-    url:'http://192.168.1.124:1480/getTrend',
+    url:'http://192.168.1.124:1480/queryV2Trend',
     type:"GET",
     crossDomain:true,
     dataType:"json",
@@ -1021,7 +985,7 @@ function quarter(data) {
         },
         // splitLine:{show: false},//去除网格线
         type : 'category',
-        data : [data[0].qu,data[1].qu,data[2].qu,data[3].qu,data[4].qu,data[5].qu,data[6].qu,data[7].qu,data[8].qu,data[9].qu]
+        data : [data[0].qu,data[1].qu,data[2].qu,data[3].qu,data[4].qu,data[5].qu,data[6].qu,data[7].qu,data[8].qu,]
       },
     ],
     yAxis : [
@@ -1049,13 +1013,13 @@ function quarter(data) {
         name:'服务客户数',
         type:'bar',
         barWidth : 30,//柱图宽度
-        data:[data[0].serviceNum,data[1].serviceNum,data[2].serviceNum,data[3].serviceNum,data[4].serviceNum,data[5].serviceNum,data[6].serviceNum,data[7].serviceNum,data[8].serviceNum,data[9].serviceNum,]
+        data:[data[0].serviceNum,data[1].serviceNum,data[2].serviceNum,data[3].serviceNum,data[4].serviceNum,data[5].serviceNum,data[6].serviceNum,data[7].serviceNum,data[8].serviceNum,]
       },
       {
         name:'协议贷款额',
         type:'line',
         yAxisIndex: 1,
-        data:[data[0].serviceCommission,data[1].serviceCommission,data[2].serviceCommission,data[3].serviceCommission,data[4].serviceCommission,data[5].serviceCommission,data[6].serviceCommission,data[7].serviceCommission,data[8].serviceCommission,data[9].serviceCommission,]
+        data:[data[0].planMoney,data[1].planMoney,data[2].planMoney,data[3].planMoney,data[4].planMoney,data[5].planMoney,data[6].planMoney,data[7].planMoney,data[8].planMoney]
       }
     ]
   };
@@ -1335,3 +1299,37 @@ function monthServiceTop() {
   });
 }
 
+
+
+//   千分位处理
+function formatCurrency(num) {
+  if(num) {
+    //将num中的$,去掉，将num变成一个纯粹的数据格式字符串
+    num = num.toString().replace(/\$|\,/g,'');
+    //如果num不是数字，则将num置0，并返回
+    if(''==num || isNaN(num)){return 'Not a Number ! ';}
+    //如果num是负数，则获取她的符号
+    var sign = num.indexOf("-")> 0 ? '-' : '';
+    //如果存在小数点，则获取数字的小数部分
+    var cents = num.indexOf(".")> 0 ? num.substr(num.indexOf(".")) : '';
+    cents = cents.length>1 ? cents : '' ;//注意：这里如果是使用change方法不断的调用，小数是输入不了的
+    //获取数字的整数数部分
+    num = num.indexOf(".")>0 ? num.substring(0,(num.indexOf("."))) : num ;
+    //如果没有小数点，整数部分不能以0开头
+    if('' == cents){ if(num.length>1 && '0' == num.substr(0,1)){return 'Not a Number ! ';}}
+    //如果有小数点，且整数的部分的长度大于1，则整数部分不能以0开头
+    else{if(num.length>1 && '0' == num.substr(0,1)){return 'Not a Number ! ';}}
+    //针对整数部分进行格式化处理，这是此方法的核心，也是稍难理解的一个地方，逆向的来思考或者采用简单的事例来实现就容易多了
+    /*
+      也可以这样想象，现在有一串数字字符串在你面前，如果让你给他家千分位的逗号的话，你是怎么来思考和操作的?
+      字符串长度为0/1/2/3时都不用添加
+      字符串长度大于3的时候，从右往左数，有三位字符就加一个逗号，然后继续往前数，直到不到往前数少于三位字符为止
+     */
+    for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++) {
+      num = num.substring(0,num.length-(4*i+3))+','+num.substring(num.length-(4*i+3));
+    }
+    //将数据（符号、整数部分、小数部分）整体组合返回
+    return (sign + num + cents);
+  }
+
+}
