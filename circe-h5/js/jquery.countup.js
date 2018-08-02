@@ -10,10 +10,9 @@
   "use strict";
 
   $.fn.countUp = function( options ) {
-
     // Defaults
     var settings = $.extend({
-        'time': 2000,
+        'time': 4000,
         'delay': 10
     }, options);
 

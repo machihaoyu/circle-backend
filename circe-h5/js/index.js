@@ -9,7 +9,7 @@ window.onload =function () {
   queryData(true);
   //  第三部分 ----
   var weekList = [];
-  // thirdData();
+  thirdData();
   // 第四部分  ----
   fourthData(true);
   // 第五部分  -----
@@ -40,7 +40,7 @@ window.onload =function () {
 function ALL() {
   MyFirst();
   MySecond();
-  // MyThird();
+  MyThird();
   MyFourth();
   MyFifth();
   MySixth();
@@ -424,7 +424,7 @@ function myRadar(data,xin,di,qi) {
 
 //  展示 三  --- -
 function MyThird() {
-  // var thirdTimer  =setInterval(thirdData,5000);
+  var thirdTimer  =setInterval(thirdData,60000);
 }
 function thirdData() {
   $.ajax({
@@ -457,6 +457,347 @@ function thirdData2() {
     }
   })
 }
+
+// function week(data,list2) {
+//   //  柱形图
+//   var y16 = [],y17 =[] ,y18 =[] , y16X =[] ,y16D =[],y17X =[] ,y17D =[],y18X =[] ,y18D =[] ,y18Q =[];
+//   for(var i=0;i<data.length;i++){
+//     if(data[i].createYear =='2016'){
+//       y16.push(data[i]);
+//     }else if(data[i].createYear =='2017'){
+//       y17.push(data[i]);
+//     }else if(data[i].createYear =='2018'){
+//       y18.push(data[i]);
+//     }else {
+//       console.log(data[i]);
+//     }
+//   }
+//
+//   for(var j=0;j<y16.length;j++){
+//     if(y16[j].productType == '信用'){
+//       y16X.push(y16[j]);
+//     }else {
+//       y16D.push(y16[j]);
+//     }
+//   }
+//   for(var j=0;j<y17.length;j++){
+//     if(y17[j].productType == '信用'){
+//       y17X.push(y17[j]);
+//     }else {
+//       y17D.push(y17[j]);
+//     }
+//   }
+//   for(var j=0;j<y18.length;j++){
+//     if(y18[j].productType == '信用'){
+//       y18X.push(y18[j]);
+//     }else if(y18[j].productType == '其他'){
+//       y18Q.push(y18[j]);
+//     }else {
+//       y18D.push(y18[j]);
+//     }
+//   }
+//   //   饼图 --部分
+//   var L16 =[], L17 =[], L18 =[];
+//   for(var i=0;i<list2.length;i++){
+//     if(list2[i].createYear =='2016'){
+//       L16.push(list2[i]);
+//     }else if(list2[i].createYear =='2017'){
+//       L17.push(list2[i]);
+//     }else if(list2[i].createYear =='2018'){
+//       L18.push(list2[i]);
+//     }else {
+//       console.log(list2[i]);
+//     }
+//   }
+//
+//   // 模块3 ------
+//   var polarp = echarts.init(document.getElementById('polarp'));
+//   var dataMap = {};
+//   function dataFormatter(obj) {
+//     var pList = ['上海','北京','广州','杭州','深圳','郑州'];
+//     var temp;
+//     for (var year = 2016; year <= 2018; year++) {
+//       var max = 0;
+//       var sum = 0;
+//       temp = obj[year];
+//       for (var i = 0, l = temp.length; i < l; i++) {
+//         max = Math.max(max, temp[i]);
+//         sum += temp[i];
+//         obj[year][i] = {
+//           name : pList[i],
+//           value : temp[i]
+//         }
+//       }
+//       obj[year + 'max'] = Math.floor(max / 100) * 100;
+//       obj[year + 'sum'] = sum;
+//     }
+//     return obj;
+//   }
+//   // dataMap.dataGDP = dataFormatter({
+//   //   //max : 60000,
+//   //   2016:[y16D[0].giveMoney,y16D[1].giveMoney,y16D[2].giveMoney,y16D[3].giveMoney,y16D[4].giveMoney,y16D[5].giveMoney],
+//   //   // 2017:[y17[0].giveMoney,y17[1].giveMoney,y17[2].giveMoney,y17[3].giveMoney,y17[4].giveMoney,y17[5].giveMoney],
+//   //   // 2018:[y18[0].giveMoney,y18[1].giveMoney,y18[2].giveMoney,y18[3].giveMoney,y18[4].giveMoney,y18[5].giveMoney]
+//   // });
+//   dataMap.dataXI = dataFormatter({
+//     //max : 4000,
+//     2016:[y16X[0].giveMoney,y16X[1].giveMoney,y16X[2].giveMoney,y16X[3].giveMoney,y16X[4].giveMoney,y16X[5].giveMoney],
+//     2017:[y17X[0].giveMoney,y17X[1].giveMoney,y17X[2].giveMoney,y17X[3].giveMoney,y17X[4].giveMoney,y17X[5].giveMoney],
+//     2018:[y18X[0].giveMoney,y18X[1].giveMoney,y18X[2].giveMoney,y18X[3].giveMoney,y18X[4].giveMoney,y18X[5].giveMoney]
+//   });
+//   dataMap.dataDI = dataFormatter({
+//     //max : 26600,
+//     2016:[y16D[0].giveMoney,y16D[1].giveMoney,y16D[2].giveMoney,y16D[3].giveMoney,y16D[4].giveMoney,y16D[5].giveMoney],
+//     2017:[y17D[0].giveMoney,y17D[1].giveMoney,y17D[2].giveMoney,y17D[3].giveMoney,y17D[4].giveMoney,y17D[5].giveMoney],
+//     2018:[y18D[0].giveMoney,y18D[1].giveMoney,y18D[2].giveMoney,y18D[3].giveMoney,y18D[4].giveMoney,y18D[5].giveMoney]
+//
+//   });
+//   dataMap.dataQI = dataFormatter({
+//     //max : 25000,
+//     2016:[],
+//     2017:[],
+//     2018:[y18Q[0].giveMoney,y18Q[1].giveMoney]
+//   });
+//   // dataMap.dataEstate = dataFormatter({
+//   //   //max : 3600,
+//   //   2011:[1074.93,411.46,918.02,224.91,384.76,],
+//   //   2010:[1006.52,377.59,697.79,192,309.25,733.37,],
+//   //   2009:[1062.47,308.73,612.4,173.31,286.65,605.27,],
+//   //   2008:[844.59,227.88,513.81,166.04,273.3,500.81,182.7,],
+//   //
+//   //
+//   // });
+//   // dataMap.dataFinancial = dataFormatter({
+//   //   //max : 3200,
+//   //   2011:[2215.41,756.5,746.01,519.32,447.46],
+//   //   2010:[1863.61,572.99,615.42,448.3,346.44],
+//   //   2009:[1603.63,461.2,525.67,361.64,291.1],
+//   //   2008:[1519.19,368.1,420.74,290.91,219.09],
+//   //
+//   // });
+//
+//   var  coordinates = {
+//     baseOption: {
+//       timeline: {
+//         show:false,
+//         // y: 0,
+//         axisType: 'category',
+//         // realtime: false,
+//         // loop: false,
+//         autoPlay: true,
+//         // currentIndex: 2,
+//         playInterval: 3000,
+//         // controlStyle: {
+//         //     position: 'left'
+//         // },
+//         data: [
+//           {
+//             value: '2016',
+//             tooltip: {
+//               formatter: function (params) {
+//                 return params.name + '达到又一个高度';
+//               }
+//             },
+//             symbol: 'diamond',
+//             symbolSize: 8
+//           },
+//           {
+//             value: '2017',
+//             tooltip: {
+//               formatter: function (params) {
+//                 return params.name + '达到又一个高度';
+//               }
+//             },
+//             symbol: 'diamond',
+//             symbolSize: 8
+//           },
+//           {
+//             value: '2018',
+//             tooltip: {
+//               formatter: function (params) {
+//                 return params.name + '达到又一个高度';
+//               }
+//             },
+//             symbol: 'diamond',
+//             symbolSize: 8
+//           },
+//         ],
+//         label: {
+//           formatter : function(s) {
+//             return (new Date(s)).getFullYear();
+//           }
+//         }
+//       },
+//       title: {
+//         y: 'top',
+//         textStyle:{
+//           color:"#fff",
+//           fontSize:12
+//         },
+//       },
+//       tooltip: { },
+//       color:['#ff8714','#ffcc3f'],
+//       // legend: {
+//       //   orient: 'vertical',
+//       //   x: 'right',
+//       //   data: ['信用', '抵押'],
+//       //   textStyle:{
+//       //     color:"#fff",
+//       //     fontSize:2
+//       //   },
+//       // },
+//       calculable : true,
+//       xAxis: [
+//         {
+//           type:'category',
+//           data:['上海','北京','广州','杭州','深圳','郑州'],
+//           axisLabel: {
+//             interval:0,
+//             textStyle: {
+//               color: '#fff',
+//               fontSize:8
+//             },
+//             splitLine:{show: false},//去除网格线
+//           },
+//           // splitLine: {show: true}
+//         }
+//       ],
+//       yAxis: [
+//         {
+//           type: 'value',
+//           name: '放款额',
+//           nameTextStyle:{
+//             fontSize : 4,
+//             color: '#fff'
+//           },
+//           axisLabel: {
+//             formatter: '{value}亿',
+//             textStyle: {
+//               color: '#fff',
+//               fontSize:8
+//             }
+//           },
+//           splitLine:{show: false}//去除网格线
+//         },
+//         {
+//           type: 'value',
+//           name: '信用额',
+//           nameTextStyle:{
+//             fontSize : 4,
+//             color: '#fff'
+//           },
+//           axisLabel: {
+//             formatter: '{value}亿',
+//             textStyle: {
+//               color: '#fff',
+//               fontSize:8
+//             }
+//           },
+//           splitLine:{show: false}//去除网格线
+//         },
+//
+//
+//       ],
+//       series: [
+//         {
+//           name: '信用',
+//           type: 'bar',
+//           label : {
+//             normal : {
+//               // formatter: '{b}:{c}: ({d}%)',
+//               textStyle : {
+//                 fontSize : 6
+//               }
+//             }
+//           }
+//         },
+//         {name: '抵押',
+//           type: 'line',
+//           yAxisIndex: 1,
+//           label : {
+//             normal : {
+//               // formatter: '{b}:{c}: ({d}%)',
+//               textStyle : {
+//                 fontSize : 6
+//               }
+//             }
+//           },
+//         },
+//         {
+//           name: '放款占比',
+//           type: 'pie',
+//           center: ['70%', '35%'],
+//           radius: '28%',
+//           label : {
+//             normal : {
+//               // formatter: '{b}:{c}: ({d}%)',
+//               textStyle : {
+//                 fontSize : 6
+//               }
+//             }
+//           },
+//
+//           z: 100
+//         }
+//       ]
+//     },
+//     options: [
+//       {
+//         title : {
+//           text: '2016年 放款机构对比',
+//           textStyle:{
+//             fontSize:12
+//           },
+//         },
+//         series : [
+//
+//           {data: dataMap.dataXI['2016']},
+//           {data: dataMap.dataDI['2016']},
+//           {data: [
+//
+//             {name:L16[0].productType, value:L16[0].giveMoney },
+//             {name:L16[1].productType, value:L16[1].giveMoney }
+//           ]}
+//         ]
+//       },
+//       {
+//         title : {
+//           text: '2017年 放款机构对比',
+//           textStyle:{
+//             fontSize:12
+//           },
+//         },
+//         series : [
+//           {data: dataMap.dataXI['2017']},
+//           {data: dataMap.dataDI['2017']},
+//           {data: [
+//             {name:L17[0].productType, value:L17[0].giveMoney },
+//             {name:L17[1].productType, value:L17[1].giveMoney }
+//           ]}
+//         ]
+//       },
+//       {
+//         title : {
+//           text: '2018年 放款机构对比',
+//           textStyle:{
+//             fontSize:12
+//           },
+//         },
+//         series : [
+//           {data: dataMap.dataXI['2018']},
+//           {data: dataMap.dataDI['2018']},
+//           // {data: [y18Q[0].giveMoney,y18Q[1].giveMoney]},
+//           {data: [
+//             {name:L18[0].productType, value:L18[0].giveMoney },
+//             {name:L18[2].productType, value:L18[2].giveMoney }
+//           ]}
+//         ]
+//       }
+//     ]
+//   };
+//   polarp.setOption(coordinates);
+// }
+
 function week(data,list2) {
   //  柱形图
   var yShang = [],yBei =[] ,yGuang =[] , yShen =[] ,yHang =[],yZheng =[] ;
@@ -477,26 +818,86 @@ function week(data,list2) {
       console.log(data[i]);
     }
   }
- var yShangX = [],yShangD =[], yBeiX=[],yBeiD=[] , yGuangX=[],yGuang=[], yShenX=[],yShenD=[],yHangX=[] ,yHangX=[],yZhengX=[],yZheng=[];
-
+ var yShangX = [],yShangD =[], yBeiX=[],yBeiD=[] , yGuangX=[],yGuangD=[], yShenX=[],yShenD=[],yHangX=[] ,yHangD=[],yZhengX=[],yZhengD=[];
+  //  上海
   for(var j=0;j<yShang.length;j++){
     if(yShang[j].productType == '信用'){
       yShangX.push(yShang[j]);
-    }else {
+    }else  if(yShang[j].productType == '抵押'){
       yShangD.push(yShang[j]);
+    }else {
+      // console.log('上海-其他',yShang[j])
     }
-  }
-  console.log(yShangX,'-=-=-=',yShangD);
 
+  }
+   //  北京 ---
    for(var j=0;j<yBei.length;j++){
     if(yBei[j].productType == '信用'){
       yBeiX.push(yBei[j]);
-    }else {
+    }else if(yBei[j].productType == '抵押'){
       yBeiD.push(yBei[j]);
+    }else {
+      // console.log('北京--其他',yShang[j])
     }
   }
-  console.log(yBeiX,'=',yBeiX)
+ //   广州---
+ for(var j=0;j<yGuang.length;j++){
+    if(yGuang[j].productType == '信用'){
+      yGuangX.push(yGuang[j]);
+    }else {
+      yGuangD.push(yGuang[j]);
+    }
+  }
+ //   深圳---
+ for(var j=0;j<yShen.length;j++){
+    if(yGuang[j].productType == '信用'){
+      yShenX.push(yShen[j]);
+    }else {
+      yShenD.push(yShen[j]);
+    }
+  }
+//   杭州---
+ for(var j=0;j<yHang.length;j++){
+    if(yHang[j].productType == '信用'){
+      yHangX.push(yHang[j]);
+    }else {
+      yHangD.push(yHang[j]);
+    }
+  }
+//   郑州---
+ for(var j=0;j<yZheng.length;j++){
+    if(yZheng[j].productType == '信用'){
+      yZhengX.push(yZheng[j]);
+    }else {
+      yZhengD.push(yZheng[j]);
+    }
+  }
 
+// console.log(yBeiX,'北京',yBeiD);
+// console.log(yGuangX,'广州',yGuangD);
+// console.log(yShenX,'深圳',yShenD);
+
+
+var allShangD =parseFloat(yShangD[0].giveMoney) +parseFloat(yShangD[1].giveMoney)+parseFloat(yShangD[2].giveMoney);
+var allShangX = parseFloat(yShangX[0].giveMoney)+parseFloat(yShangX[0].giveMoney)+parseFloat(yShangX[0].giveMoney);
+
+var allBeiD = parseFloat(yBeiD[0].giveMoney)+parseFloat(yBeiD[1].giveMoney)+parseFloat(yBeiD[2].giveMoney);
+var allBeiX = parseFloat(yBeiX[0].giveMoney)+parseFloat(yBeiX[1].giveMoney)+parseFloat(yBeiX[2].giveMoney);
+
+var allGuangD = parseFloat(yGuangD[0].giveMoney)+parseFloat(yGuangD[1].giveMoney)+parseFloat(yGuangD[2].giveMoney);
+var allGuangX = parseFloat(yGuangX[0].giveMoney)+parseFloat(yGuangX[1].giveMoney)+parseFloat(yGuangX[2].giveMoney);
+
+var allShenD = parseFloat(yShenD[0].giveMoney)+parseFloat(yShenD[1].giveMoney)+parseFloat(yShenD[2].giveMoney);
+var allShenX = parseFloat(yShenX[0].giveMoney)+parseFloat(yShenX[1].giveMoney)+parseFloat(yShenX[2].giveMoney);
+
+var allHangD = parseFloat(yHangD[0].giveMoney)+ parseFloat(yHangD[1].giveMoney)+ parseFloat(yHangD[2].giveMoney);
+var allHangX =  parseFloat(yHangX[0].giveMoney)+ parseFloat(yHangX[1].giveMoney)+ parseFloat(yHangX[2].giveMoney);
+
+var allZhengD = parseFloat( yZhengD[0].giveMoney)+parseFloat( yZhengD[1].giveMoney)+parseFloat( yZhengD[2].giveMoney);
+var allZhengX = parseFloat( yZhengX[0].giveMoney)+parseFloat( yZhengX[1].giveMoney)+parseFloat( yZhengX[2].giveMoney);
+
+
+  // console.log(yShangX,'上海',allShangD,allShangX);
 
 
   //   饼图 --部分
@@ -512,15 +913,16 @@ function week(data,list2) {
       console.log(list2[i]);
     }
   }
+  // console.log(list2,'--==-=');
 
   // 模块3 ------
   var polarp = echarts.init(document.getElementById('polarp'));
   var dataMap = {};
   function dataFormatter(obj) {
-    // var pList = ['上海','北京','广州','杭州','深圳','郑州'];
-    var pList = ['2016','2017','2018'];
+    var pList = ['上海','北京','广州','杭州','深圳','郑州'];
+    // var pList = ['0','1','2','3','4','5'];
     var temp;
-    for (var year = 2016; year <= 2018; year++) {
+    for (var year = 0; year <= 5; year++) {
       var max = 0;
       var sum = 0;
       temp = obj[year];
@@ -544,27 +946,45 @@ function week(data,list2) {
   //   // 2018:[y18[0].giveMoney,y18[1].giveMoney,y18[2].giveMoney,y18[3].giveMoney,y18[4].giveMoney,y18[5].giveMoney]
   // });
   dataMap.dataXI = dataFormatter({
-    //max : 4000,
-    // 2016:[yShangD[0].giveMoney,yShangX[0].giveMoney,yShangD[1].giveMoney,yShangX[1].giveMoney,yShangD[2].giveMoney,yShangX[2].giveMoney ],
-    // 2017:[yBeiD[0].giveMoney,yBeiX[0].giveMoney,yBeiD[1].giveMoney,yBeiX[1].giveMoney,yBeiD[2].giveMoney,yBeiX[2].giveMoney, ]
-
-    // 2016:[y16X[0].giveMoney,y16X[1].giveMoney,y16X[2].giveMoney,y16X[3].giveMoney,y16X[4].giveMoney,y16X[5].giveMoney],
-    // 2017:[y17X[0].giveMoney,y17X[1].giveMoney,y17X[2].giveMoney,y17X[3].giveMoney,y17X[4].giveMoney,y17X[5].giveMoney],
-    // 2018:[y18X[0].giveMoney,y18X[1].giveMoney,y18X[2].giveMoney,y18X[3].giveMoney,y18X[4].giveMoney,y18X[5].giveMoney]
+    //max : 25000,
+    0:[yShangX[0].giveMoney,yShangX[1].giveMoney,yShangX[2].giveMoney ],
+    1:[yBeiX[0].giveMoney,yBeiX[1].giveMoney,yBeiX[2].giveMoney, ],
+    2:[yGuangX[0].giveMoney,yGuangX[0].giveMoney,yGuangX[2].giveMoney],
+    3:[yShenX[0].giveMoney,yShenX[1].giveMoney,yShenX[2].giveMoney],
+    4:[yHangX[0].giveMoney,yHangX[1].giveMoney,yHangX[2].giveMoney],
+    5:[yZhengX[0].giveMoney,yZhengX[1].giveMoney,yZhengX[2].giveMoney],
+    // 0:[yShangD[1].giveMoney,yShangX[1].giveMoney ],
+    // 1:[yBeiD[1].giveMoney,yBeiX[1].giveMoney, ],
+    // 2:[yGuangD[1].giveMoney,yGuangX[1].giveMoney],
+    // 3:[yShenD[1].giveMoney,yShenX[1].giveMoney],
+    // 4:[yHangD[1].giveMoney,yHangX[1].giveMoney],
+    // 5:[yZhengD[1].giveMoney,yZhengX[1].giveMoney],
   });
   dataMap.dataDI = dataFormatter({
-    //max : 26600,
-    2016:[y16D[0].giveMoney,y16D[1].giveMoney,y16D[2].giveMoney,y16D[3].giveMoney,y16D[4].giveMoney,y16D[5].giveMoney],
-    2017:[y17D[0].giveMoney,y17D[1].giveMoney,y17D[2].giveMoney,y17D[3].giveMoney,y17D[4].giveMoney,y17D[5].giveMoney],
-    2018:[y18D[0].giveMoney,y18D[1].giveMoney,y18D[2].giveMoney,y18D[3].giveMoney,y18D[4].giveMoney,y18D[5].giveMoney]
+    //max : 4000,
+    0:[yShangD[0].giveMoney,yShangD[1].giveMoney,yShangD[2].giveMoney],
+    1:[yBeiD[0].giveMoney,yBeiD[1].giveMoney,yBeiD[2].giveMoney,],
+    2:[yGuangD[0].giveMoney,yGuangD[1].giveMoney,yGuangD[2].giveMoney],
+    3:[yShenD[0].giveMoney,yShenD[1].giveMoney,yShenD[2].giveMoney],
+    4:[yHangD[0].giveMoney,yHangD[1].giveMoney,yHangD[2].giveMoney],
+    5:[yZhengD[0].giveMoney,yZhengX[0].giveMoney,yZhengD[1].giveMoney],
+    // 0:[yShangD[0].giveMoney,yShangX[0].giveMoney,yShangD[1].giveMoney,yShangX[1].giveMoney,yShangD[2].giveMoney,yShangX[2].giveMoney ],
+    // 1:[yBeiD[0].giveMoney,yBeiX[0].giveMoney,yBeiD[1].giveMoney,yBeiX[1].giveMoney,yBeiD[2].giveMoney,yBeiX[2].giveMoney, ],
+    // 2:[yGuangD[0].giveMoney,yGuangX[0].giveMoney,yGuangD[1].giveMoney,yGuangX[1].giveMoney,yGuangD[2].giveMoney,yGuangX[2].giveMoney],
+    // 3:[yShenD[0].giveMoney,yShenX[0].giveMoney,yShenD[1].giveMoney,yShenX[1].giveMoney,yShenD[2].giveMoney,yShenX[2].giveMoney],
+    // 4:[yHangD[0].giveMoney,yHangX[0].giveMoney,yHangD[1].giveMoney,yHangX[1].giveMoney,yHangD[2].giveMoney,yHangX[2].giveMoney],
+    // 5:[yZhengD[0].giveMoney,yZhengX[0].giveMoney,yZhengD[1].giveMoney,yZhengX[1].giveMoney,yZhengD[2].giveMoney,yZhengX[2].giveMoney],
+  });
 
-  });
-  dataMap.dataQI = dataFormatter({
-    //max : 25000,
-    2016:[],
-    2017:[],
-    2018:[y18Q[0].giveMoney,y18Q[1].giveMoney]
-  });
+  // dataMap.dataAI = dataFormatter({
+  //   0:[allShangD,allShangX],
+  //   1:[allBeiD,allBeiX],
+  //   2:[allGuangD,allGuangX],
+  //   3:[allShenD,allShenX],
+  //   4:[allHangD,allHangX],
+  //   5:[allZhengD,allZhengX],
+  // });
+
   // dataMap.dataEstate = dataFormatter({
   //   //max : 3600,
   //   2011:[1074.93,411.46,918.02,224.91,384.76,],
@@ -593,13 +1013,13 @@ function week(data,list2) {
         // loop: false,
         autoPlay: true,
         // currentIndex: 2,
-        playInterval: 3000,
+        playInterval: 5000,
         // controlStyle: {
         //     position: 'left'
         // },
         data: [
           {
-            value: '2016',
+            value: '0',
             tooltip: {
               formatter: function (params) {
                 return params.name + '达到又一个高度';
@@ -609,7 +1029,7 @@ function week(data,list2) {
             symbolSize: 8
           },
           {
-            value: '2017',
+            value: '1',
             tooltip: {
               formatter: function (params) {
                 return params.name + '达到又一个高度';
@@ -619,7 +1039,37 @@ function week(data,list2) {
             symbolSize: 8
           },
           {
-            value: '2018',
+            value: '2',
+            tooltip: {
+              formatter: function (params) {
+                return params.name + '达到又一个高度';
+              }
+            },
+            symbol: 'diamond',
+            symbolSize: 8
+          },
+          {
+            value: '3',
+            tooltip: {
+              formatter: function (params) {
+                return params.name + '达到又一个高度';
+              }
+            },
+            symbol: 'diamond',
+            symbolSize: 8
+          },
+          {
+            value: '4',
+            tooltip: {
+              formatter: function (params) {
+                return params.name + '达到又一个高度';
+              }
+            },
+            symbol: 'diamond',
+            symbolSize: 8
+          },
+          {
+            value: '5',
             tooltip: {
               formatter: function (params) {
                 return params.name + '达到又一个高度';
@@ -643,7 +1093,8 @@ function week(data,list2) {
         },
       },
       tooltip: { },
-      color:['#ff8714','#ffcc3f'],
+      color:['#ffcc3f','#ff8714'],
+      // color:['#ff8714','blue'],
       // legend: {
       //   orient: 'vertical',
       //   x: 'right',
@@ -654,11 +1105,10 @@ function week(data,list2) {
       //   },
       // },
       calculable : true,
-
       xAxis: [
         {
           type:'category',
-          data:['上海','北京','广州','杭州','深圳','郑州'],
+          data:['2016','2017','2018'],
           axisLabel: {
             interval:0,
             textStyle: {
@@ -689,15 +1139,34 @@ function week(data,list2) {
             }
           },
           splitLine:{show: false}//去除网格线
-        }
+        },
+        // {
+        //   type: 'value',
+        //   // position: 'right',
+        //   name: '放款额（亿元）',
+        //   nameTextStyle:{
+        //     fontSize :3,
+        //     margin:10,
+        //     color: '#fff'
+        //   },
+        //   // nameLocation:'middle',
+        //   axisLabel: {
+        //     // inside: true,
+        //     textStyle: {
+        //       color: '#fff',
+        //       fontSize:8
+        //     }
+        //   },
+        //   splitLine:{show: false}//去除网格线
+        // }
       ],
       series: [
         {
           name: '信用',
-          type: 'bar',
+          type: 'line',
+          // barWidth : 30,//柱图宽度
           label : {
             normal : {
-              // formatter: '{b}:{c}: ({d}%)',
               textStyle : {
                 fontSize : 6
               }
@@ -706,6 +1175,8 @@ function week(data,list2) {
         },
         {name: '抵押',
           type: 'bar',
+          // yAxisIndex: 1,
+          barWidth : 30,//柱图宽度
           label : {
             normal : {
               // formatter: '{b}:{c}: ({d}%)',
@@ -718,8 +1189,8 @@ function week(data,list2) {
         {
           name: '放款占比',
           type: 'pie',
-          center: ['70%', '35%'],
-          radius: '28%',
+          center: ['75%', '35%'],
+          radius: '25%',
           label : {
             normal : {
               // formatter: '{b}:{c}: ({d}%)',
@@ -742,47 +1213,108 @@ function week(data,list2) {
           },
         },
         series : [
-          {data: dataMap.dataXI['2016']},
-          // {data: dataMap.dataDI['2016']},
+          {data: dataMap.dataXI['0']},
+          {data: dataMap.dataDI['0']},
+          // {data: dataMap.dataAI['0']},
           // {data: [
-          //   {name:L16[0].productType, value:L16[0].giveMoney },
-          //   {name:L16[1].productType, value:L16[1].giveMoney }
+          //   {name:L17[0].productType, value:allShangD },
+          //   {name:L17[1].productType, value:allShangX },
+          // ]},
+          {data: [
+            {name:'信用', value: allShangX},
+            {name:'抵押', value:allShangD  },
+
+          ]}
+        ]
+      },
+      {
+        title : {
+          text: '北京 放款机构对比',
+          textStyle:{
+            fontSize:12
+          },
+        },
+        series : [
+          {data: dataMap.dataXI['1']},
+          {data: dataMap.dataDI['1']},
+          {data: [
+            {name:'信用', value: allBeiX},
+            {name:'抵押', value:allBeiD },
+          ]},
+          // {data: [
+          //   {name:L17[0].productType, value:allBeiD },
+          //   {name:L17[1].productType, value:allBeiX },
           // ]}
         ]
       },
-      // {
-      //   title : {
-      //     text: '北京 放款机构对比',
-      //     textStyle:{
-      //       fontSize:12
-      //     },
-      //   },
-      //   series : [
-      //     {data: dataMap.dataXI['2017']},
-      //     {data: dataMap.dataDI['2017']},
-      //     {data: [
-      //       {name:L17[0].productType, value:L17[0].giveMoney },
-      //       {name:L17[1].productType, value:L17[1].giveMoney }
-      //     ]}
-      //   ]
-      // },
-      // {
-      //   title : {
-      //     text: '广州 放款机构对比',
-      //     textStyle:{
-      //       fontSize:12
-      //     },
-      //   },
-      //   series : [
-      //     {data: dataMap.dataXI['2018']},
-      //     {data: dataMap.dataDI['2018']},
-      //     // {data: [y18Q[0].giveMoney,y18Q[1].giveMoney]},
-      //     {data: [
-      //       {name:L18[0].productType, value:L18[0].giveMoney },
-      //       {name:L18[2].productType, value:L18[2].giveMoney }
-      //     ]}
-      //   ]
-      // }
+      {
+        title : {
+          text: '广州 放款机构对比',
+          textStyle:{
+            fontSize:12
+          },
+        },
+        series : [
+          {data: dataMap.dataXI['2']},
+          {data: dataMap.dataDI['2']},
+          {data: [
+            {name:'信用', value: allGuangX},
+            {name:'抵押', value:allGuangD }
+          ]},
+        ]
+      },
+      {
+        title : {
+          text: '深圳 放款机构对比',
+          textStyle:{
+            fontSize:12
+          },
+        },
+        series : [
+          {data: dataMap.dataXI['3']},
+          {data: dataMap.dataDI['3']},
+          {data: [
+            {name:'信用', value: allShenX},
+            {name:'抵押', value:allShenD },
+
+          ]},
+        ]
+      },
+      {
+        title : {
+          text: '杭州 放款机构对比',
+          textStyle:{
+            fontSize:12
+          },
+        },
+        series : [
+          {data: dataMap.dataXI['4']},
+          {data: dataMap.dataDI['4']},
+          {data: [
+            {name:'信用', value: allHangX},
+            {name:'抵押', value:allHangD },
+
+          ]},
+        ]
+      },
+      {
+        title : {
+          text: '郑州 放款机构对比',
+          textStyle:{
+            fontSize:12
+          },
+        },
+        series : [
+          {data: dataMap.dataXI['5']},
+          {data: dataMap.dataDI['5']},
+          {data: [
+            {name:'信用', value: allZhengX},
+            {name:'抵押', value:allZhengD },
+
+          ]},
+        ]
+      }
+
     ]
   };
   polarp.setOption(coordinates);
@@ -790,7 +1322,9 @@ function week(data,list2) {
 
 // 模块4----  地图+ 设计
 function MyFourth() {
-  var fourthTimer  =setInterval(fourthData,1000000);
+  var fourthTimer1  =setInterval(allMoney,1000);
+  var fourthTimer2  =setInterval(playMoney,100000);
+
 }
 function fourthData() {
     allMoney();
@@ -808,25 +1342,18 @@ function allMoney() {
     },
     success: function (data) {
       var moneyAnd = data.data;
-      // planMoney  "817.672939"
-      // registerNum "103.2066"
-      var  registerNum = moneyAnd[0].registerNum ;
-      var  planMoney = moneyAnd[0].planMoney ;
+      var  registerNum = moneyAnd[0].registerNum;
+      var  planMoney = parseInt(moneyAnd[0].planMoney) ;
+      // console.log(moneyAnd[0].planMoney,'----',moneyAnd[0].registerNum );
+      // var dataNums = document.getElementById('dataNums');
+      // var dataNums2 = document.getElementById('dataNums2');
+      // dataNums.innerHTML = formatCurrency(registerNum);
+      // dataNums2.innerHTML = formatCurrency(planMoney);
+      show_num1(registerNum);
+      show_num2(planMoney);
 
-      var dataNums = document.getElementById('dataNums');
-      var dataNums2 = document.getElementById('dataNums2');
-      dataNums.innerHTML = formatCurrency(registerNum);
-      dataNums2.innerHTML = formatCurrency(planMoney);
-      $("#dataNums").countUp();
-      $("#dataNums2").countUp();
-
-      // $("#dataNums").rollNum({
-      //   deVal:registerNum
-      // });
-      // $("#dataNums2").rollNum({
-      //   deVal:planMoney
-      // });
-
+      // $("#dataNums").countUp();
+      // $("#dataNums2").countUp();
 
     }
 
@@ -917,6 +1444,44 @@ function playMoney() {
     }
   })
 }
+
+function show_num1(n) {
+  var it = $(".t_num1 i");
+  var len = String(n).length;
+  for(var i = 0; i < len; i++) {
+    if(it.length <= i) {
+      $(".t_num1").append("<i></i>");
+    }
+    var num = String(n).charAt(i);
+    //根据数字图片的高度设置相应的值
+    var y = -parseInt(num) * 58;
+    var obj = $(".t_num1 i").eq(i);
+    obj.animate({
+      backgroundPosition: '(0 ' + String(y) + 'px)'
+    }, 'slow', 'swing', function() {});
+  }
+  // $("#cur_num").val(n);
+}
+function show_num2(m) {
+  var it = $(".t_num2 i");
+  var len = String(m).length;
+  for(var i = 0; i < len; i++) {
+    if(it.length <= i) {
+      $(".t_num2").append("<i></i>");
+    }
+    var num = String(m).charAt(i);
+    //根据数字图片的高度设置相应的值
+    var y = -parseInt(num) * 58;
+    var obj = $(".t_num2 i").eq(i);
+    obj.animate({
+      backgroundPosition: '(0 ' + String(y) + 'px)'
+    }, 'slow', 'swing', function() {});
+  }
+  // $("#cur_num").val(n);
+}
+
+
+
 
 
 function MyFifth() {
@@ -1029,8 +1594,7 @@ function quarter(data) {
 // 第六部分
 function MySixth() {
   lastData();
-  var  lastTimer =  setInterval(myLast,360000);
-//  定时器   有问题   --
+  var  lastTimer =  setInterval(myLast,500000);
 }
 
 
@@ -1078,10 +1642,10 @@ function lastData() {
         clearInterval(obj.timer);
         obj.style.left = target + "px";
       }
-    },100);
+    },15);
   }
 
-  var timer = setInterval(autoplay,15000);// 自动轮播
+  var timer = setInterval(autoplay,10000);// 自动轮播
 
   function autoplay(){
     /*自动轮播时,要对播放的张数key进行一个判断,如果播放的张数超过ulLis.length-1,

@@ -136,7 +136,6 @@ h1{
     /* 4 中心--  地图 */
     .only{
         text-shadow: #00e2e3 -2px 1px 0px;
-
     }
 
     .centerOne {
@@ -168,7 +167,6 @@ h1{
         /*visibility: hidden;*/
         /*animation: animate-height 2s;*/
         /*animation-fill-mode: forwards;*/
-
     }
     .cityT{
         background: url("../image/logo.png") ;
@@ -178,8 +176,6 @@ h1{
         height: 3vh;
     }
 
-
-
     .AllName {
         width: 3vh;
         position: absolute;
@@ -187,7 +183,6 @@ h1{
         color: white;
         font-size: 1.3vh;
         text-align: center;
-
     }
     .City > div {
         position: absolute;
@@ -203,7 +198,6 @@ h1{
         left: 1.1vh;
         background: #ff8714;
     }
-
     .Beijing {
         top: 4%;
         right: 24%;
@@ -229,7 +223,6 @@ h1{
         right: 24%;
     }
 
-
     /* 动画 */
     @keyframes animate-height {
         0% {
@@ -238,6 +231,14 @@ h1{
         100% {
             visibility: visible;
         }
+    }
+
+   .playMoney  i {
+        width: 5vh;
+        height: 5vh;
+        display: inline-block;
+        background: url('../image/number1.png') no-repeat;
+        background-position: 0 0;
     }
 
     .centerFont{
@@ -257,7 +258,6 @@ h1{
     .totalSize>li{
         font-size: 2vh;
     }
-
     .playFont1{
         display: inline-block;
         width: 1.5vh;
@@ -282,13 +282,12 @@ h1{
         /*color: #00e2e3;*/
         display: inline-block;
         font-weight: bold;
-        font-size: 4vh;
+        font-size: 5vh;
         letter-spacing: 10px;
         /*padding: 0 1vh;*/
         background: rgba(255,255,255,0.2);
         color: #ffcc3f!important;
     }
-
     .regNumber{
          font-size: 6vh;
          letter-spacing: 10px;
@@ -304,6 +303,7 @@ h1{
         color: #ffcc3f!important;
     }
 
+
     .message {
         /*width: 50%;*/
         /*background: red;*/
@@ -312,7 +312,6 @@ h1{
         /*left: 8%;*/
         /*margin-top: 3%;*/
     }
-
     .countSpan {
         /*font-size: 1.8vh;*/
         color: #00e2e3;
@@ -326,7 +325,7 @@ h1{
         /*margin: 3% 3% 0 0;*/
         padding-left: 5%;
         padding-bottom: 0.2%;
-        margin: 2vh 3vh 0 0 ;
+        margin: 1vh 1vh 1vh 0;
         font-size: 2vh;
     }
     .bigSecond li {
@@ -337,7 +336,6 @@ h1{
     .importDiv  span{
         /*font-size: 1.6vh;*/
     }
-
 
 
     /* 5 柱线混合 */
@@ -400,13 +398,8 @@ h1{
         color: #00e2e3;
     }
 
-.beiSpan{
-    display: inline-block;
-}
-
 
 /* 数字  滚动 。。。。。 */
-
 .clearfix:after {visibility: hidden;display: block;font-size: 0;content: ".";clear: both;height: 0;}
 * html .clearfix {zoom: 1;}
 *:first-child + html .clearfix {zoom: 1;}
