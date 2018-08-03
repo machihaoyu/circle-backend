@@ -135,7 +135,7 @@ function MyAnimate() {
 //  第一部分
 function MyFirst() {
   //  1个小时
-  var firstTimer  =setInterval(firstData1,3600000);
+  var firstTimer  =setInterval(firstData1,86400000);
 }
 
 function firstAll() {
@@ -302,7 +302,7 @@ function myContrast(first,data,flag) {
 
 
 function MySecond() {
-  var timer2  =setInterval(queryData,360000)
+  var timer2  =setInterval(queryData,86400000)
   // myRadar();
   queryData();
 }
@@ -424,7 +424,7 @@ function myRadar(data,xin,di,qi) {
 
 //  展示 三  --- -
 function MyThird() {
-  var thirdTimer  =setInterval(thirdData,60000);
+  var thirdTimer  =setInterval(thirdData,86400000);
 }
 function thirdData() {
   $.ajax({
@@ -437,7 +437,8 @@ function thirdData() {
     },
     success: function (data) {
       weekList = data.data;
-      thirdData2();
+      week(weekList);
+      // thirdData2();
     }
 
   })
@@ -798,7 +799,8 @@ function thirdData2() {
 //   polarp.setOption(coordinates);
 // }
 
-function week(data,list2) {
+function week(data) {
+  // list2
   //  柱形图
   var yShang = [],yBei =[] ,yGuang =[] , yShen =[] ,yHang =[],yZheng =[] ;
   for(var i=0;i<data.length;i++){
@@ -873,11 +875,6 @@ function week(data,list2) {
     }
   }
 
-// console.log(yBeiX,'北京',yBeiD);
-// console.log(yGuangX,'广州',yGuangD);
-// console.log(yShenX,'深圳',yShenD);
-
-
 var allShangD =parseFloat(yShangD[0].giveMoney) +parseFloat(yShangD[1].giveMoney)+parseFloat(yShangD[2].giveMoney);
 var allShangX = parseFloat(yShangX[0].giveMoney)+parseFloat(yShangX[0].giveMoney)+parseFloat(yShangX[0].giveMoney);
 
@@ -896,24 +893,20 @@ var allHangX =  parseFloat(yHangX[0].giveMoney)+ parseFloat(yHangX[1].giveMoney)
 var allZhengD = parseFloat( yZhengD[0].giveMoney)+parseFloat( yZhengD[1].giveMoney)+parseFloat( yZhengD[2].giveMoney);
 var allZhengX = parseFloat( yZhengX[0].giveMoney)+parseFloat( yZhengX[1].giveMoney)+parseFloat( yZhengX[2].giveMoney);
 
-
-  // console.log(yShangX,'上海',allShangD,allShangX);
-
-
   //   饼图 --部分
-  var L16 =[], L17 =[], L18 =[];
-  for(var i=0;i<list2.length;i++){
-    if(list2[i].createYear =='2016'){
-      L16.push(list2[i]);
-    }else if(list2[i].createYear =='2017'){
-      L17.push(list2[i]);
-    }else if(list2[i].createYear =='2018'){
-      L18.push(list2[i]);
-    }else {
-      console.log(list2[i]);
-    }
-  }
-  // console.log(list2,'--==-=');
+  // var L16 =[], L17 =[], L18 =[];
+  // for(var i=0;i<list2.length;i++){
+  //   if(list2[i].createYear =='2016'){
+  //     L16.push(list2[i]);
+  //   }else if(list2[i].createYear =='2017'){
+  //     L17.push(list2[i]);
+  //   }else if(list2[i].createYear =='2018'){
+  //     L18.push(list2[i]);
+  //   }else {
+  //     console.log(list2[i]);
+  //   }
+  // }
+  // // console.log(list2,'--==-=');
 
   // 模块3 ------
   var polarp = echarts.init(document.getElementById('polarp'));
@@ -1189,8 +1182,8 @@ var allZhengX = parseFloat( yZhengX[0].giveMoney)+parseFloat( yZhengX[1].giveMon
         {
           name: '放款占比',
           type: 'pie',
-          center: ['75%', '35%'],
-          radius: '25%',
+          center: ['30%', '35%'],
+          radius: '15%',
           label : {
             normal : {
               // formatter: '{b}:{c}: ({d}%)',
@@ -1207,7 +1200,7 @@ var allZhengX = parseFloat( yZhengX[0].giveMoney)+parseFloat( yZhengX[1].giveMon
     options: [
       {
         title : {
-          text: '上海 放款机构对比',
+          text: '上海 放款对比',
           textStyle:{
             fontSize:12
           },
@@ -1229,7 +1222,7 @@ var allZhengX = parseFloat( yZhengX[0].giveMoney)+parseFloat( yZhengX[1].giveMon
       },
       {
         title : {
-          text: '北京 放款机构对比',
+          text: '北京 放款对比',
           textStyle:{
             fontSize:12
           },
@@ -1249,7 +1242,7 @@ var allZhengX = parseFloat( yZhengX[0].giveMoney)+parseFloat( yZhengX[1].giveMon
       },
       {
         title : {
-          text: '广州 放款机构对比',
+          text: '广州 放款对比',
           textStyle:{
             fontSize:12
           },
@@ -1265,7 +1258,7 @@ var allZhengX = parseFloat( yZhengX[0].giveMoney)+parseFloat( yZhengX[1].giveMon
       },
       {
         title : {
-          text: '深圳 放款机构对比',
+          text: '深圳 放款对比',
           textStyle:{
             fontSize:12
           },
@@ -1282,7 +1275,7 @@ var allZhengX = parseFloat( yZhengX[0].giveMoney)+parseFloat( yZhengX[1].giveMon
       },
       {
         title : {
-          text: '杭州 放款机构对比',
+          text: '杭州 放款对比',
           textStyle:{
             fontSize:12
           },
@@ -1299,7 +1292,7 @@ var allZhengX = parseFloat( yZhengX[0].giveMoney)+parseFloat( yZhengX[1].giveMon
       },
       {
         title : {
-          text: '郑州 放款机构对比',
+          text: '郑州 放款对比',
           textStyle:{
             fontSize:12
           },
@@ -1322,9 +1315,8 @@ var allZhengX = parseFloat( yZhengX[0].giveMoney)+parseFloat( yZhengX[1].giveMon
 
 // 模块4----  地图+ 设计
 function MyFourth() {
-  var fourthTimer1  =setInterval(allMoney,1000);
-  var fourthTimer2  =setInterval(playMoney,100000);
-
+  var MyFourthTimer  = setInterval(allMoney,8000);
+  var fourthTimer222  = setInterval(playMoney,100000);
 }
 function fourthData() {
     allMoney();
@@ -1349,12 +1341,7 @@ function allMoney() {
       // var dataNums2 = document.getElementById('dataNums2');
       // dataNums.innerHTML = formatCurrency(registerNum);
       // dataNums2.innerHTML = formatCurrency(planMoney);
-      show_num1(registerNum);
-      show_num2(planMoney);
-
-      // $("#dataNums").countUp();
-      // $("#dataNums2").countUp();
-
+      allNumShow(registerNum,planMoney)
     }
 
   })
@@ -1422,9 +1409,6 @@ function playMoney() {
           hangSpan.innerHTML = formatCurrency(registerNum);
           hangSpan2.innerHTML = formatCurrency(planMoney);
           // $(".hangSpan").countUp();
-
-
-
         }else if(moneyCity[i].city=="郑州"){
           var registerNum =  moneyCity[i].registerNum;
           var planMoney =  moneyCity[i].planMoney;
@@ -1433,18 +1417,20 @@ function playMoney() {
           zhengSpan.innerHTML = formatCurrency(registerNum);
           zhengSpan2.innerHTML = formatCurrency(planMoney);
           // $(".hangSpan").countUp();
-
         } else {
           // console.log(moneyCity,'----=-==-')
         }
-
-        $(".countSpan").countUp();
+        // $(".countSpan").countUp();
       }
       // detailMoney(moneyCity);
     }
   })
 }
 
+function allNumShow(num1,num2) {
+  show_num1(num1);
+  show_num2(num2);
+}
 function show_num1(n) {
   var it = $(".t_num1 i");
   var len = String(n).length;
@@ -1479,9 +1465,6 @@ function show_num2(m) {
   }
   // $("#cur_num").val(n);
 }
-
-
-
 
 
 function MyFifth() {
@@ -1594,7 +1577,7 @@ function quarter(data) {
 // 第六部分
 function MySixth() {
   lastData();
-  var  lastTimer =  setInterval(myLast,500000);
+  var  lastTimer =  setInterval(myLast,600000);
 }
 
 
@@ -1642,7 +1625,7 @@ function lastData() {
         clearInterval(obj.timer);
         obj.style.left = target + "px";
       }
-    },15);
+    },10);
   }
 
   var timer = setInterval(autoplay,10000);// 自动轮播
@@ -1653,12 +1636,10 @@ function lastData() {
     key++; // 先++
     if(key > ulLis.length-1){// 后判断
       ul.style.left = 0; // 迅速调回
-      key = 1; // 因为第6张是第一张，所以播放的时候是从第2张开始播放
+      key = 1; // 因为第4张是第一张，所以播放的时候是从第2张开始播放
     }
     // 动画部分
     animate(ul,-key*liWidth);
-
-
   }
 }
 //   --年度  榜单
