@@ -852,7 +852,7 @@ function week(data) {
   }
  //   深圳---
  for(var j=0;j<yShen.length;j++){
-    if(yGuang[j].productType == '信用'){
+    if(yShen[j].productType == '信用'){
       yShenX.push(yShen[j]);
     }else {
       yShenD.push(yShen[j]);
@@ -1315,7 +1315,7 @@ var allZhengX = parseFloat( yZhengX[0].giveMoney)+parseFloat( yZhengX[1].giveMon
 
 // 模块4----  地图+ 设计
 function MyFourth() {
-  var MyFourthTimer  = setInterval(allMoney,8000);
+  var MyFourthTimer  = setInterval(allMoney,5000);
   var fourthTimer222  = setInterval(playMoney,100000);
 }
 function fourthData() {
@@ -1336,12 +1336,24 @@ function allMoney() {
       var moneyAnd = data.data;
       var  registerNum = moneyAnd[0].registerNum;
       var  planMoney = parseInt(moneyAnd[0].planMoney) ;
+
+
+      $("#dataNums").rollNum({
+        deVal:registerNum
+      });
+      $("#dataNums").value = formatCurrency(registerNum);
+
+      $("#dataNums2").rollNum({
+        deVal:planMoney
+      });
+      $("#dataNums2").value = formatCurrency(planMoney);
       // console.log(moneyAnd[0].planMoney,'----',moneyAnd[0].registerNum );
       // var dataNums = document.getElementById('dataNums');
       // var dataNums2 = document.getElementById('dataNums2');
       // dataNums.innerHTML = formatCurrency(registerNum);
       // dataNums2.innerHTML = formatCurrency(planMoney);
-      allNumShow(registerNum,planMoney)
+
+      // allNumShow(registerNum,planMoney)
     }
 
   })
@@ -1361,7 +1373,7 @@ function playMoney() {
       for(var i=0;i<moneyCity.length;i++){
         if(moneyCity[i].city=="北京"){
           var registerNum =  moneyCity[i].registerNum ;
-          var planMoney =  moneyCity[i].planMoney ;
+          var planMoney =  parseInt(moneyCity[i].planMoney) ;
           var beiSpan = document.getElementById('beiSpan1');
           var beiSpan2 = document.getElementById('beiSpan2');
           beiSpan.innerHTML = formatCurrency(registerNum);
@@ -1372,10 +1384,9 @@ function playMoney() {
           // $('.beiSpan')[0].setAttribute ( 'data-to', registerNum);
           // $('.beiSpan')[1].setAttribute ( 'data-to', planMoney);
 
-
         }else if(moneyCity[i].city=="上海"){
           var registerNum =  moneyCity[i].registerNum;
-          var planMoney =  moneyCity[i].planMoney;
+          var planMoney =  parseInt(moneyCity[i].planMoney);
 
           var shangSpan = document.getElementsByClassName('shangSpan')[0];
           var shangSpan2 = document.getElementsByClassName('shangSpan')[1];
@@ -1385,7 +1396,7 @@ function playMoney() {
 
         }else if(moneyCity[i].city=="广州"){
           var registerNum =  moneyCity[i].registerNum;
-          var planMoney =  moneyCity[i].planMoney;
+          var planMoney =  parseInt(moneyCity[i].planMoney);
           var guangSpan = document.getElementsByClassName('guangSpan')[0];
           var guangSpan2 = document.getElementsByClassName('guangSpan')[1];
           guangSpan.innerHTML = formatCurrency(registerNum);
@@ -1394,7 +1405,7 @@ function playMoney() {
 
         }else if(moneyCity[i].city=="深圳"){
           var registerNum =  moneyCity[i].registerNum;
-          var planMoney =  moneyCity[i].planMoney;
+          var planMoney =  parseInt(moneyCity[i].planMoney);
           var shenSpan = document.getElementsByClassName('shenSpan')[0];
           var shenSpan2 = document.getElementsByClassName('shenSpan')[1];
           shenSpan.innerHTML = formatCurrency(registerNum);
@@ -1403,7 +1414,7 @@ function playMoney() {
 
         }else if(moneyCity[i].city=="杭州"){
           var registerNum =  moneyCity[i].registerNum;
-          var planMoney =  moneyCity[i].planMoney;
+          var planMoney =  parseInt(moneyCity[i].planMoney);
           var hangSpan = document.getElementsByClassName('hangSpan')[0];
           var hangSpan2 = document.getElementsByClassName('hangSpan')[1];
           hangSpan.innerHTML = formatCurrency(registerNum);
@@ -1411,7 +1422,7 @@ function playMoney() {
           // $(".hangSpan").countUp();
         }else if(moneyCity[i].city=="郑州"){
           var registerNum =  moneyCity[i].registerNum;
-          var planMoney =  moneyCity[i].planMoney;
+          var planMoney =  parseInt(moneyCity[i].planMoney);
           var zhengSpan = document.getElementsByClassName('zhengSpan')[0];
           var zhengSpan2 = document.getElementsByClassName('zhengSpan')[1];
           zhengSpan.innerHTML = formatCurrency(registerNum);

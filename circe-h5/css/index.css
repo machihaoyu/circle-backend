@@ -28,7 +28,7 @@ ul, ol { list-style: none; }
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-family: hiraginoSansGB W3; }
 img { border: none; }
 h1{
-    font-size: 1.8vh;
+    font-size: 1.5vh;
     font-weight: normal;
 }
 
@@ -113,7 +113,7 @@ h1{
     }
     /* 1.2.3 .线--  长线 */
     .p2, .p3 {
-        width: 50%;
+        width: 80%;
         position: absolute;
     }
     .p2 {
@@ -259,6 +259,7 @@ h1{
         /*position: absolute;*/
         /*top:5%;*/
         /*left: 8%;*/
+        /*margin-bottom: 5vh;*/
     }
     .totalSize>li{
         font-size: 2vh;
@@ -292,7 +293,7 @@ h1{
         letter-spacing: 10px;
         padding: 10px 0 0 10px;
         /*padding: 0 1vh;*/
-        background: rgba(255,255,255,0.2);
+        /*background: rgba(255,255,255,0.2);*/
         /*color: #ffcc3f!important;*/
     }
     .regNumber{
@@ -312,6 +313,7 @@ h1{
 
 
     .message {
+        margin-top: 2vh;
         /*width: 50%;*/
         /*background: red;*/
         /*position: absolute;*/
@@ -325,7 +327,7 @@ h1{
     }
     .importDiv {
         /*margin-top: 50px;*/
-        width:30%;
+        width:20%;
         background: rgba(255,255,255,0.1);
         border-top: 1px solid white;
         display: inline-block;
@@ -333,7 +335,7 @@ h1{
         padding-left: 5%;
         padding-bottom: 0.2%;
         margin: 0.5vh 0.5vh 0.5vh 0;
-        font-size: 2vh;
+        font-size: 1vh;
     }
     .bigSecond li {
         list-style: none;
@@ -417,8 +419,16 @@ h1{
 .inrow{font-size:0;[;font-size:12px;];*font-size:0;font-family:arial;[;letter-spacing:-3px;];*letter-spacing:normal;*word-spacing:-1px;}
 .inrow>li,.inrow span{display:inline-block;*display:inline;*zoom:1;font-size:14px;letter-spacing:normal;word-spacing:normal; }
 .dataNums{  }
-.dataNums .dataOne{ width:61px; height:75px; margin: 0px 3px; text-align: center!important; background: url(../image/num-bg.png) no-repeat;}
+.dataNums .dataOne{ width:40px; height:50px; margin: 0px 3px; text-align: center!important; background: url(../image/num-bg.png) no-repeat;}
 .dataNums .dataBoc {position: relative; width: 100%; height: 100%; overflow: hidden;}
 .dataNums .dataBoc .tt {position: absolute; top: 0;  left: 0; width: 100%;  height: 100%;}
-.dataNums .tt span{width:100%;height:100%; font:bold 54px/75px "Arial";color:#ddf0ff;text-align: center}
+.dataNums .tt span{width:100%;height:100%; font:bold 50px/50px "Arial";color:#00e2e3;text-align: center}
+ .dataOne:nth-child(2){
+    margin-left: 2vh;
+}
+ .dataOne:nth-child(5){
+    margin-left: 2vh;
+}
 
+/* width:61px; height:75px; */
+/*font:bold 54px/75px "Arial";*/
